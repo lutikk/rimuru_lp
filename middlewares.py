@@ -1,5 +1,5 @@
 from vkbottle import BaseMiddleware
-from vkbottle.bot import Message
+from vkbottle.user import Message
 
 from models import User
 
