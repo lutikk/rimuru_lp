@@ -1,70 +1,51 @@
 import typing
 
-from vkbottle_types.objects import (
-    FaveBookmark,
-    FavePage,
-    FaveTag,
-    GroupsGroup,
-    UsersUserFull,
-)
+from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.objects import FaveBookmark, FavePage, FaveTag, GroupsGroup, UsersUserFull
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AddTagResponse(BaseResponse):
-    response: FaveTag
+class FaveAddTagResponse(BaseResponse):
+    response: "FaveTag" = Field()
 
 
-class GetPagesResponse(BaseResponse):
-    response: "GetPagesResponseModel"
+class FaveGetPagesResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["FavePage"] = Field()
 
 
-class GetTagsResponse(BaseResponse):
-    response: "GetTagsResponseModel"
+class FaveGetPagesResponse(BaseResponse):
+    response: "FaveGetPagesResponseModel" = Field()
 
 
-class GetExtendedResponse(BaseResponse):
-    response: "GetExtendedResponseModel"
+class FaveGetTagsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["FaveTag"] = Field()
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class FaveGetTagsResponse(BaseResponse):
+    response: "FaveGetTagsResponseModel" = Field()
 
 
-class GetPagesResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["FavePage"]] = None
+class FaveGetExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["FaveBookmark"] = Field()
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroup"]] = Field(
+        default=None,
+    )
 
 
-class GetTagsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["FaveTag"]] = None
+class FaveGetExtendedResponse(BaseResponse):
+    response: "FaveGetExtendedResponseModel" = Field()
 
 
-class GetExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["FaveBookmark"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+class FaveGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["FaveBookmark"] = Field()
 
 
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["FaveBookmark"]] = None
-
-
-__all__ = (
-    "AddTagResponse",
-    "FaveBookmark",
-    "FavePage",
-    "FaveTag",
-    "GetExtendedResponse",
-    "GetExtendedResponseModel",
-    "GetPagesResponse",
-    "GetPagesResponseModel",
-    "GetResponse",
-    "GetResponseModel",
-    "GetTagsResponse",
-    "GetTagsResponseModel",
-    "GroupsGroup",
-    "UsersUserFull",
-)
+class FaveGetResponse(BaseResponse):
+    response: "FaveGetResponseModel" = Field()

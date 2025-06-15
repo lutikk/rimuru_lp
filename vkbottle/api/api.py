@@ -1,12 +1,11 @@
 import typing
+from collections.abc import AsyncIterator, Iterable
 from typing import (
     TYPE_CHECKING,
     Any,
-    AsyncIterator,
-    Iterable,
+    Dict,
     List,
     NamedTuple,
-    NoReturn,
     Optional,
     Union,
 )
@@ -42,7 +41,7 @@ class APIRequest(NamedTuple):
 
 class API(ABCAPI):
     """Default API instance
-    Documentation: https://github.com/vkbottle/vkbottle/blob/master/docs/low-level/api/api.md
+    Documentation: https://vkbottle.rtfd.io/ru/latest/low-level/api
     """
 
     API_URL = vkbottle_types.API_URL
@@ -55,7 +54,7 @@ class API(ABCAPI):
         ignore_errors: bool = False,
         http_client: Optional["ABCHTTPClient"] = None,
         request_rescheduler: Optional["ABCRequestRescheduler"] = None,
-    ):
+    ) -> None:
         self.token_generator = get_token_generator(token)
         self.ignore_errors = ignore_errors
         self.http_client = http_client or SingleAiohttpClient()
@@ -64,7 +63,7 @@ class API(ABCAPI):
         self.request_validators: List["ABCRequestValidator"] = DEFAULT_REQUEST_VALIDATORS  # type: ignore
         self.captcha_handler: Optional["CaptchaHandler"] = None
 
-    async def request(self, method: str, data: dict) -> dict:
+    async def request(self, method: str, data: Dict[str, Any]) -> Dict[str, Any]:
         """Makes a single request opening a session"""
         data = await self.validate_request(data)
 
@@ -79,8 +78,9 @@ class API(ABCAPI):
         return await self.validate_response(method, data, response)  # type: ignore
 
     async def request_many(
-        self, requests: Iterable[APIRequest]  # type: ignore
-    ) -> AsyncIterator[dict]:
+        self,
+        requests: Iterable[APIRequest],  # type: ignore
+    ) -> AsyncIterator[Dict[str, Any]]:
         """Makes many requests opening one session"""
         for request in requests:
             method, data = request.method, await self.validate_request(request.data)  # type: ignore
@@ -88,15 +88,15 @@ class API(ABCAPI):
                 response = await self.http_client.request_json(
                     self.API_URL + method,
                     method="POST",
-                    data=data,  # noqa
-                    params={"access_token": token, "v": self.API_VERSION},  # noqa
+                    data=data,
+                    params={"access_token": token, "v": self.API_VERSION},
                 )
             logger.debug("Request {} with {} data returned {}", method, data, response)
             yield await self.validate_response(method, data, response)  # type: ignore
 
     async def validate_response(
-        self, method: str, data: dict, response: Union[dict, str]
-    ) -> Union[Any, NoReturn]:
+        self, method: str, data: Dict[str, Any], response: Union[Dict[str, Any], str]
+    ) -> Any:
         """Validates response from VK,
         to change validations change API.response_validators (list of ResponseValidator's)"""
         for validator in self.response_validators:
@@ -104,7 +104,7 @@ class API(ABCAPI):
         logger.debug("API response was validated")
         return response  # type: ignore
 
-    async def validate_request(self, request: dict) -> dict:
+    async def validate_request(self, request: Dict[str, Any]) -> Dict[str, Any]:
         """Validates requests from VK,
         to change validations change API.request_validators (list of RequestValidator's)"""
         for validator in self.request_validators:

@@ -1,5 +1,8 @@
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Any, AsyncIterator, Optional
+from collections.abc import AsyncIterator
+from typing import TYPE_CHECKING, Any, Optional
+
+from typing_extensions import Self
 
 if TYPE_CHECKING:
     from vkbottle.api import ABCAPI
@@ -8,7 +11,7 @@ if TYPE_CHECKING:
 
 class ABCPolling(ABC):
     """Abstract Polling class
-    Documentation: https://github.com/vkbottle/vkbottle/blob/master/docs/low-level/polling/polling.md
+    Documentation: https://vkbottle.rtfd.io/ru/latest/low-level/polling
     """
 
     @abstractmethod
@@ -28,12 +31,17 @@ class ABCPolling(ABC):
     def api(self) -> "ABCAPI":
         pass
 
-    @api.setter
-    def api(self, new_api: "ABCAPI"):
+    @api.setter  # noqa: B027
+    def api(self, new_api: "ABCAPI") -> None:
         pass
 
     @abstractmethod
     def construct(
-        self, api: "ABCAPI", error_handler: Optional["ABCErrorHandler"] = None
-    ) -> "ABCPolling":
+        self,
+        api: "ABCAPI",
+        error_handler: Optional["ABCErrorHandler"] = None,
+    ) -> Self:
         pass
+
+
+__all__ = ("ABCPolling",)

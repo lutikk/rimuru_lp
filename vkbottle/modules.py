@@ -1,43 +1,66 @@
 import asyncio
+import inspect
+import sys
+import warnings
+from typing import Protocol
 
 from choicelib import choice_in_order
-from typing_extensions import Protocol
 
 
 class JSONModule(Protocol):
-    def loads(self, s: str) -> dict:
-        ...
+    def loads(self, s: str) -> dict: ...
 
-    def dumps(self, o: dict) -> str:
-        ...
+    def dumps(self, o: dict) -> str: ...
 
-    def load(self, f: str) -> dict:
-        ...
+    def load(self, f: str) -> dict: ...
 
-    def dump(self, o: dict, f: str) -> None:
-        ...
+    def dump(self, o: dict, f: str) -> None: ...
 
 
 json: JSONModule = choice_in_order(
-    ["ujson", "hyperjson", "orjson"], do_import=True, default="json"
+    ["orjson", "ujson", "hyperjson"],
+    do_import=True,
+    default="json",
 )
-logging_module = choice_in_order(["loguru"], default="logging")
 
+
+def showwarning(message, category, filename, lineno, file=None, line=None):  # noqa: ARG001
+    new_message = f"{category.__name__}: {message}"
+    if logging_module == "loguru":
+        logger.opt(depth=2).log("WARNING", new_message)  # type: ignore
+        return
+    logger.log(
+        logging.WARNING,
+        new_message,
+        stacklevel=4,
+    )
+
+
+logging_module = choice_in_order(["loguru"], default="logging")
 if logging_module == "loguru":
+    import logging
     import os
-    import sys
 
     if not os.environ.get("LOGURU_AUTOINIT"):
         os.environ["LOGURU_AUTOINIT"] = "0"
+        os.environ["LOGURU_INFO_COLOR"] = "<bold><green>"
+
     from loguru import logger  # type: ignore
 
     if not logger._core.handlers:  # type: ignore
+
+        def log_filter(record):
+            if record["function"] == "<module>":
+                record["function"] = "\b"
+            return True
+
         log_format = (
-            "<level>{level: <8}</level> | "
-            "{time:YYYY-MM-DD HH:mm:ss} | "
-            "{name}:{function}:{line} > <level>{message}</level>"
+            "<level>{level: <8}</level> <bold><level>|</level></bold> "
+            "{time:YYYY-MM-DD HH:mm:ss} <bold><level>|</level></bold> "
+            "{name}:{function}:{line}<bold><level> > </level></bold><level>{message}</level>"
         )
-        logger.add(sys.stderr, format=log_format, enqueue=True, colorize=True)
+        logger.add(sys.stderr, format=log_format, enqueue=True, colorize=True, filter=log_filter)
+        warnings.showwarning = showwarning
 
 elif logging_module == "logging":
     """
@@ -46,10 +69,53 @@ elif logging_module == "logging":
     About:
     https://docs.python.org/3/howto/logging-cookbook.html#use-of-alternative-formatting-styles
     """
-    import inspect
     import logging
 
-    logging.basicConfig(level=logging.DEBUG)
+    import colorama
+
+    colorama.just_fix_windows_console()
+
+    LEVEL_COLORS = {
+        "DEBUG": colorama.Style.BRIGHT + colorama.Fore.BLUE,
+        "INFO": colorama.Style.BRIGHT + colorama.Fore.GREEN,
+        "WARNING": colorama.Fore.YELLOW,
+        "ERROR": colorama.Fore.RED,
+        "CRITICAL": colorama.Style.BRIGHT + colorama.Fore.RED,
+    }
+    loguru_like_format = (
+        "<level>{levelname: <8}</level> <bold><level>|</level></bold> "
+        "{asctime} <bold><level>|</level></bold> "
+        "{module}:{funcName}:{lineno}<bold><level> > </level></bold><level>{message}</level>"
+    )
+
+    class ColorFormatter(logging.Formatter):
+        def format(self, record):
+            color = LEVEL_COLORS.get(record.levelname, "")
+            log_format = (
+                loguru_like_format.replace("<level>", color)
+                .replace("</level>", colorama.Style.RESET_ALL)
+                .replace("<bold>", colorama.Style.BRIGHT)
+                .replace("</bold>", colorama.Style.RESET_ALL)
+            )
+
+            if not record.funcName or record.funcName == "<module>":
+                record.funcName = "\b"
+
+            frame = sys._getframe(1)
+            while frame:
+                if frame.f_code.co_filename == record.pathname and frame.f_lineno == record.lineno:
+                    break
+
+                frame = frame.f_back  # type: ignore
+
+            if frame is not None:
+                record.module = frame.f_globals.get("__name__", "<module>")
+
+            return logging.Formatter(
+                log_format,
+                datefmt=self.datefmt,
+                style="{",
+            ).format(record)
 
     class LogMessage:
         def __init__(self, fmt, args, kwargs):
@@ -63,31 +129,33 @@ elif logging_module == "logging":
     class StyleAdapter(logging.LoggerAdapter):
         def __init__(self, logger, extra=None):
             super().__init__(logger, extra or {})
+            self.log_arg_names = frozenset(inspect.getfullargspec(self.logger._log).args[1:])
 
         def log(self, level, msg, *args, **kwargs):
             if self.isEnabledFor(level):
+                kwargs.setdefault("stacklevel", 2)
                 msg, args, kwargs = self.process(msg, args, kwargs)
                 self.logger._log(level, msg, args, **kwargs)
 
-        def process(self, msg, args, kwargs):
-            log_kwargs = {
-                key: kwargs[key]
-                for key in inspect.getfullargspec(self.logger._log).args[1:]
-                if key in kwargs
-            }
+        def process(self, msg, args, kwargs):  # type: ignore
             if isinstance(msg, str):
                 msg = LogMessage(msg, args, kwargs)
                 args = ()
-            return msg, args, log_kwargs
+            return msg, args, {name: kwargs[name] for name in self.log_arg_names if name in kwargs}
 
-    logger = StyleAdapter(logging.getLogger("vkbottle"))  # type: ignore
-    logger.info(
-        "logging is used as the default logger, but we recommend using loguru. "
-        "It may also become a required dependency in future releases."
-    )
+    warnings.showwarning = showwarning
+    _logger = logging.getLogger("vkbottle")
+
+    if not _logger.handlers:
+        console_handler = logging.StreamHandler()
+        _logger.addHandler(console_handler)
+
+    _logger.handlers[0].setFormatter(ColorFormatter())
+    logger = StyleAdapter(_logger)  # type: ignore
 
 if hasattr(asyncio, "WindowsProactorEventLoopPolicy") and isinstance(
-    asyncio.get_event_loop_policy(), asyncio.WindowsProactorEventLoopPolicy  # type: ignore
+    asyncio.get_event_loop_policy(),
+    asyncio.WindowsProactorEventLoopPolicy,  # type: ignore
 ):
     """
     This is a workaround for a bug in ProactorEventLoop:
@@ -117,3 +185,6 @@ if hasattr(asyncio, "WindowsProactorEventLoopPolicy") and isinstance(
     _ProactorBaseWritePipeTransport._loop_writing = silence_exception(  # type: ignore
         _ProactorBaseWritePipeTransport._loop_writing  # type: ignore
     )
+
+
+__all__ = ("json", "logger")

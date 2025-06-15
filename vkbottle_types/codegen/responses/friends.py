@@ -1,194 +1,196 @@
+import enum
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     FriendsFriendExtendedStatus,
     FriendsFriendsList,
     FriendsFriendStatus,
     FriendsMutualFriend,
-    FriendsRequests,
+    FriendsOnlineUsers,
+    FriendsOnlineUsersWithMobile,
     FriendsRequestsXtrMessage,
-    FriendsUserXtrPhone,
+    FriendsRequestsXtrMutual,
     UsersUserFull,
 )
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AddListResponse(BaseResponse):
-    response: "AddListResponseModel"
+class FriendsAddListResponseModel(BaseModel):
+    list_id: int = Field()
 
 
-class AddResponse(BaseResponse):
-    response: int
+class FriendsAddListResponse(BaseResponse):
+    response: "FriendsAddListResponseModel" = Field()
 
 
-class AreFriendsExtendedResponse(BaseResponse):
-    response: typing.List["FriendsFriendExtendedStatus"]
+class FriendsAddResponseModel(enum.IntEnum):
+    SEND = 1
+    APPROVED = 2
+    RESEND = 4
 
 
-class AreFriendsResponse(BaseResponse):
-    response: typing.List["FriendsFriendStatus"]
+class FriendsAddResponse(BaseResponse):
+    response: "FriendsAddResponseModel" = Field()
 
 
-class DeleteResponse(BaseResponse):
-    response: "DeleteResponseModel"
+class FriendsAreFriendsExtendedResponse(BaseResponse):
+    response: typing.List["FriendsFriendExtendedStatus"] = Field()
 
 
-class GetAppUsersResponse(BaseResponse):
-    response: typing.List[int]
+class FriendsAreFriendsResponse(BaseResponse):
+    response: typing.List["FriendsFriendStatus"] = Field()
 
 
-class GetByPhonesResponse(BaseResponse):
-    response: typing.List["FriendsUserXtrPhone"]
+class FriendsDeleteResponseModel(BaseModel):
+    success: int = Field(default=1)
+    friend_deleted: typing.Optional[int] = Field(
+        default=None,
+    )
+    out_request_deleted: typing.Optional[int] = Field(
+        default=None,
+    )
+    in_request_deleted: typing.Optional[int] = Field(
+        default=None,
+    )
+    suggestion_deleted: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class GetListsResponse(BaseResponse):
-    response: "GetListsResponseModel"
+class FriendsDeleteResponse(BaseResponse):
+    response: "FriendsDeleteResponseModel" = Field()
 
 
-class GetMutualResponse(BaseResponse):
-    response: typing.List[int]
+class FriendsGetAppUsersResponse(BaseResponse):
+    response: typing.List[int] = Field()
 
 
-class GetMutualTargetUidsResponse(BaseResponse):
-    response: typing.List["FriendsMutualFriend"]
+class FriendsGetListsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["FriendsFriendsList"] = Field()
 
 
-class GetOnlineOnlineMobileResponse(BaseResponse):
-    response: "GetOnlineOnlineMobileResponseModel"
+class FriendsGetListsResponse(BaseResponse):
+    response: "FriendsGetListsResponseModel" = Field()
 
 
-class GetOnlineResponse(BaseResponse):
-    response: typing.List[int]
+class FriendsGetMutualResponse(BaseResponse):
+    response: typing.List[int] = Field()
 
 
-class GetRecentResponse(BaseResponse):
-    response: typing.List[int]
+class FriendsGetMutualTargetUidsResponse(BaseResponse):
+    response: typing.List["FriendsMutualFriend"] = Field()
 
 
-class GetRequestsExtendedResponse(BaseResponse):
-    response: "GetRequestsExtendedResponseModel"
+class FriendsGetMutualTotalCountResponse(BaseResponse):
+    response: "FriendsMutualFriend" = Field()
 
 
-class GetRequestsNeedMutualResponse(BaseResponse):
-    response: "GetRequestsNeedMutualResponseModel"
+class FriendsGetOnlineExtendedResponse(BaseResponse):
+    response: "FriendsOnlineUsers" = Field()
 
 
-class GetRequestsResponse(BaseResponse):
-    response: "GetRequestsResponseModel"
+class FriendsGetOnlineOnlineMobileExtendedResponse(BaseResponse):
+    response: "FriendsOnlineUsersWithMobile" = Field()
 
 
-class GetSuggestionsResponse(BaseResponse):
-    response: "GetSuggestionsResponseModel"
+class FriendsGetOnlineOnlineMobileResponseModel(BaseModel):
+    online: typing.List[int] = Field()
+    online_mobile: typing.List[int] = Field()
 
 
-class GetFieldsResponse(BaseResponse):
-    response: "GetFieldsResponseModel"
+class FriendsGetOnlineOnlineMobileResponse(BaseResponse):
+    response: "FriendsGetOnlineOnlineMobileResponseModel" = Field()
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class FriendsGetOnlineResponse(BaseResponse):
+    response: typing.List[int] = Field()
 
 
-class SearchResponse(BaseResponse):
-    response: "SearchResponseModel"
+class FriendsGetRecentResponse(BaseResponse):
+    response: typing.List[int] = Field()
 
 
-class AddListResponseModel(BaseResponse):
-    list_id: typing.Optional[int] = None
+class FriendsGetRequestsExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["FriendsRequestsXtrMessage"] = Field()
+    count_unread: typing.Optional[int] = Field(
+        default=None,
+    )
+    last_viewed: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class DeleteResponseModel(BaseResponse):
-    success: typing.Optional[int] = None
-    friend_deleted: typing.Optional[int] = None
-    out_request_deleted: typing.Optional[int] = None
-    in_request_deleted: typing.Optional[int] = None
-    suggestion_deleted: typing.Optional[int] = None
+class FriendsGetRequestsExtendedResponse(BaseResponse):
+    response: "FriendsGetRequestsExtendedResponseModel" = Field()
 
 
-class GetListsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["FriendsFriendsList"]] = None
+class FriendsGetRequestsNeedMutualResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["FriendsRequestsXtrMutual"] = Field()
+    count_unread: typing.Optional[int] = Field(
+        default=None,
+    )
+    last_viewed: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class GetOnlineOnlineMobileResponseModel(BaseResponse):
-    online: typing.Optional[typing.List[int]] = None
-    online_mobile: typing.Optional[typing.List[int]] = None
+class FriendsGetRequestsNeedMutualResponse(BaseResponse):
+    response: "FriendsGetRequestsNeedMutualResponseModel" = Field()
 
 
-class GetRequestsExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["FriendsRequestsXtrMessage"]] = None
+class FriendsGetRequestsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List[int] = Field()
+    count_unread: typing.Optional[int] = Field(
+        default=None,
+    )
+    last_viewed: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class GetRequestsNeedMutualResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["FriendsRequests"]] = None
+class FriendsGetRequestsResponse(BaseResponse):
+    response: "FriendsGetRequestsResponseModel" = Field()
 
 
-class GetRequestsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List[int]] = None
-    count_unread: typing.Optional[int] = None
+class FriendsGetSuggestionsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["UsersUserFull"] = Field()
 
 
-class GetSuggestionsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["UsersUserFull"]] = None
+class FriendsGetSuggestionsResponse(BaseResponse):
+    response: "FriendsGetSuggestionsResponseModel" = Field()
 
 
-class GetFieldsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["UsersUserFull"]] = None
+class FriendsGetFieldsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["UsersUserFull"] = Field()
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
 
 
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List[int]] = None
+class FriendsGetFieldsResponse(BaseResponse):
+    response: "FriendsGetFieldsResponseModel" = Field()
 
 
-class SearchResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["UsersUserFull"]] = None
+class FriendsGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List[int] = Field()
 
 
-__all__ = (
-    "AddListResponse",
-    "AddListResponseModel",
-    "AddResponse",
-    "AreFriendsExtendedResponse",
-    "AreFriendsResponse",
-    "DeleteResponse",
-    "DeleteResponseModel",
-    "FriendsFriendExtendedStatus",
-    "FriendsFriendStatus",
-    "FriendsFriendsList",
-    "FriendsMutualFriend",
-    "FriendsRequests",
-    "FriendsRequestsXtrMessage",
-    "FriendsUserXtrPhone",
-    "GetAppUsersResponse",
-    "GetByPhonesResponse",
-    "GetFieldsResponse",
-    "GetFieldsResponseModel",
-    "GetListsResponse",
-    "GetListsResponseModel",
-    "GetMutualResponse",
-    "GetMutualTargetUidsResponse",
-    "GetOnlineOnlineMobileResponse",
-    "GetOnlineOnlineMobileResponseModel",
-    "GetOnlineResponse",
-    "GetRecentResponse",
-    "GetRequestsExtendedResponse",
-    "GetRequestsExtendedResponseModel",
-    "GetRequestsNeedMutualResponse",
-    "GetRequestsNeedMutualResponseModel",
-    "GetRequestsResponse",
-    "GetRequestsResponseModel",
-    "GetResponse",
-    "GetResponseModel",
-    "GetSuggestionsResponse",
-    "GetSuggestionsResponseModel",
-    "SearchResponse",
-    "SearchResponseModel",
-    "UsersUserFull",
-)
+class FriendsGetResponse(BaseResponse):
+    response: "FriendsGetResponseModel" = Field()
+
+
+class FriendsSearchResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["UsersUserFull"] = Field()
+
+
+class FriendsSearchResponse(BaseResponse):
+    response: "FriendsSearchResponseModel" = Field()

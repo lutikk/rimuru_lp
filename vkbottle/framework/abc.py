@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from asyncio import AbstractEventLoop
 from typing import TYPE_CHECKING, NoReturn
 
 if TYPE_CHECKING:
@@ -12,18 +11,15 @@ class ABCFramework(ABC):
 
     @property
     @abstractmethod
-    def polling(self) -> "ABCPolling":
-        pass
-
-    @property
-    @abstractmethod
-    def loop(self) -> AbstractEventLoop:
-        pass
+    def polling(self) -> "ABCPolling": ...
 
     @abstractmethod
-    async def run_polling(self) -> NoReturn:  # type: ignore
-        pass
+    async def run_polling(self) -> NoReturn:
+        raise NotImplementedError
 
     @abstractmethod
-    def run_forever(self) -> NoReturn:  # type: ignore
-        pass
+    def run_forever(self) -> NoReturn:
+        raise NotImplementedError
+
+
+__all__ = ("ABCFramework",)

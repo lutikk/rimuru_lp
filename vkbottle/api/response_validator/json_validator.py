@@ -1,5 +1,5 @@
 import contextlib
-from typing import TYPE_CHECKING, Any, NoReturn, Optional, Union
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 from vkbottle.modules import json, logger
 
@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 class JSONResponseValidator(ABCResponseValidator):
     """Default response json-parse validator
-    Documentation: https://github.com/vkbottle/vkbottle/blob/master/docs/low-level/api/response-validator.md
+    Documentation: https://vkbottle.rtfd.io/ru/latest/low-level/api/response-validator
     """
 
     def __init__(self, context: Optional[dict] = None):
@@ -23,7 +23,7 @@ class JSONResponseValidator(ABCResponseValidator):
         data: dict,
         response: Any,
         ctx_api: Union["ABCAPI", "API"],
-    ) -> Union[Any, NoReturn]:
+    ) -> Any:
         if isinstance(response, dict):
             return response
         elif isinstance(response, str):
@@ -34,7 +34,7 @@ class JSONResponseValidator(ABCResponseValidator):
             return None
 
         logger.info(
-            "VK returned object of invalid type ({}). Request will be rescheduled with {}",
+            "VK returned object of invalid type ({!r}). Request will be rescheduled with {!r}.",
             type(response).__name__,
             ctx_api.request_rescheduler.__class__.__name__,
         )

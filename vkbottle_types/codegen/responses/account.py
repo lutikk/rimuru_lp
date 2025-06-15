@@ -1,5 +1,6 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     AccountAccountCounters,
     AccountInfo,
@@ -7,92 +8,73 @@ from vkbottle_types.objects import (
     AccountOffer,
     AccountPushSettings,
     AccountUserSettings,
-    BaseBoolInt,
     GroupsGroup,
     UsersUserFull,
 )
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class ChangePasswordResponse(BaseResponse):
-    response: "ChangePasswordResponseModel"
+class AccountChangePasswordResponseModel(BaseModel):
+    token: str = Field()
+    secret: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class GetActiveOffersResponse(BaseResponse):
-    response: "GetActiveOffersResponseModel"
+class AccountChangePasswordResponse(BaseResponse):
+    response: "AccountChangePasswordResponseModel" = Field()
 
 
-class GetAppPermissionsResponse(BaseResponse):
-    response: int
+class AccountGetActiveOffersResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["AccountOffer"] = Field()
 
 
-class GetBannedResponse(BaseResponse):
-    response: "GetBannedResponseModel"
+class AccountGetActiveOffersResponse(BaseResponse):
+    response: "AccountGetActiveOffersResponseModel" = Field()
 
 
-class GetCountersResponse(BaseResponse):
-    response: AccountAccountCounters
+class AccountGetAppPermissionsResponse(BaseResponse):
+    response: int = Field()
 
 
-class GetInfoResponse(BaseResponse):
-    response: AccountInfo
+class AccountGetBannedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List[int] = Field()
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroup"]] = Field(
+        default=None,
+    )
 
 
-class GetProfileInfoResponse(BaseResponse):
-    response: AccountUserSettings
+class AccountGetBannedResponse(BaseResponse):
+    response: "AccountGetBannedResponseModel" = Field()
 
 
-class GetPushSettingsResponse(BaseResponse):
-    response: AccountPushSettings
+class AccountGetCountersResponse(BaseResponse):
+    response: "AccountAccountCounters" = Field()
 
 
-class SaveProfileInfoResponse(BaseResponse):
-    response: "SaveProfileInfoResponseModel"
+class AccountGetInfoResponse(BaseResponse):
+    response: "AccountInfo" = Field()
 
 
-class ChangePasswordResponseModel(BaseResponse):
-    token: typing.Optional[str] = None
-    secret: typing.Optional[str] = None
+class AccountGetProfileInfoResponse(BaseResponse):
+    response: "AccountUserSettings" = Field()
 
 
-class GetActiveOffersResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["AccountOffer"]] = None
+class AccountGetPushSettingsResponse(BaseResponse):
+    response: "AccountPushSettings" = Field()
 
 
-class GetBannedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List[int]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+class AccountSaveProfileInfoResponseModel(BaseModel):
+    changed: bool = Field()
+    name_request: typing.Optional["AccountNameRequest"] = Field(
+        default=None,
+    )
 
 
-class SaveProfileInfoResponseModel(BaseResponse):
-    changed: typing.Optional["BaseBoolInt"] = None
-    name_request: typing.Optional["AccountNameRequest"] = None
-
-
-__all__ = (
-    "AccountAccountCounters",
-    "AccountInfo",
-    "AccountNameRequest",
-    "AccountOffer",
-    "AccountPushSettings",
-    "AccountUserSettings",
-    "BaseBoolInt",
-    "ChangePasswordResponse",
-    "ChangePasswordResponseModel",
-    "GetActiveOffersResponse",
-    "GetActiveOffersResponseModel",
-    "GetAppPermissionsResponse",
-    "GetBannedResponse",
-    "GetBannedResponseModel",
-    "GetCountersResponse",
-    "GetInfoResponse",
-    "GetProfileInfoResponse",
-    "GetPushSettingsResponse",
-    "GroupsGroup",
-    "SaveProfileInfoResponse",
-    "SaveProfileInfoResponseModel",
-    "UsersUserFull",
-)
+class AccountSaveProfileInfoResponse(BaseResponse):
+    response: "AccountSaveProfileInfoResponseModel" = Field()

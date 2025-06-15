@@ -1,32 +1,23 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import WidgetsWidgetComment, WidgetsWidgetPage
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel"
+class WidgetsGetCommentsResponseModel(BaseModel):
+    count: int = Field()
+    posts: typing.List["WidgetsWidgetComment"] = Field()
 
 
-class GetPagesResponse(BaseResponse):
-    response: "GetPagesResponseModel"
+class WidgetsGetCommentsResponse(BaseResponse):
+    response: "WidgetsGetCommentsResponseModel" = Field()
 
 
-class GetCommentsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    posts: typing.Optional[typing.List["WidgetsWidgetComment"]] = None
+class WidgetsGetPagesResponseModel(BaseModel):
+    count: int = Field()
+    pages: typing.List["WidgetsWidgetPage"] = Field()
 
 
-class GetPagesResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    pages: typing.Optional[typing.List["WidgetsWidgetPage"]] = None
-
-
-__all__ = (
-    "GetCommentsResponse",
-    "GetCommentsResponseModel",
-    "GetPagesResponse",
-    "GetPagesResponseModel",
-    "WidgetsWidgetComment",
-    "WidgetsWidgetPage",
-)
+class WidgetsGetPagesResponse(BaseResponse):
+    response: "WidgetsGetPagesResponseModel" = Field()

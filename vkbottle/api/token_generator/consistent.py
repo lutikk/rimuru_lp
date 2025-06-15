@@ -1,5 +1,5 @@
 import itertools
-from typing import Iterable
+from collections.abc import Iterable
 
 from .abc import ABCTokenGenerator
 
@@ -10,3 +10,6 @@ class ConsistentTokenGenerator(ABCTokenGenerator):
 
     async def get_token(self) -> str:
         return next(self.tokens)
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        pass

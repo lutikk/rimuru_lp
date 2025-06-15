@@ -1,131 +1,129 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.pretty_cards import (
-    CreateResponse,
-    CreateResponseModel,
-    DeleteResponse,
-    DeleteResponseModel,
-    EditResponse,
-    EditResponseModel,
-    GetByIdResponse,
-    GetResponse,
-    GetResponseModel,
-    GetUploadURLResponse,
-    PrettyCardsPrettyCardOrError,
-)
+from vkbottle_types.objects import PrettyCardsPrettyCardOrError
+from vkbottle_types.responses.pretty_cards import *  # noqa: F401,F403  # type: ignore
 
 
 class PrettyCardsCategory(BaseCategory):
     async def create(
         self,
+        link: str,
         owner_id: int,
         photo: str,
         title: str,
-        link: str,
+        button: typing.Optional[str] = None,
         price: typing.Optional[str] = None,
         price_old: typing.Optional[str] = None,
-        button: typing.Optional[str] = None,
-        **kwargs
-    ) -> CreateResponseModel:
-        """prettyCards.create method
+        **kwargs: typing.Any,
+    ) -> PrettyCardsCreateResponseModel:
+        """Method `prettyCards.create()`
 
+        :param link:
         :param owner_id:
         :param photo:
         :param title:
-        :param link:
+        :param button:
         :param price:
         :param price_old:
-        :param button:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("prettyCards.create", params)
-        model = CreateResponse
+        model = PrettyCardsCreateResponse
         return model(**response).response
 
     async def delete(
-        self, owner_id: int, card_id: int, **kwargs
-    ) -> DeleteResponseModel:
-        """prettyCards.delete method
+        self,
+        card_id: int,
+        owner_id: int,
+        **kwargs: typing.Any,
+    ) -> PrettyCardsDeleteResponseModel:
+        """Method `prettyCards.delete()`
 
-        :param owner_id:
         :param card_id:
+        :param owner_id:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("prettyCards.delete", params)
-        model = DeleteResponse
+        model = PrettyCardsDeleteResponse
         return model(**response).response
 
     async def edit(
         self,
-        owner_id: int,
         card_id: int,
-        photo: typing.Optional[str] = None,
-        title: typing.Optional[str] = None,
+        owner_id: int,
+        button: typing.Optional[str] = None,
         link: typing.Optional[str] = None,
+        photo: typing.Optional[str] = None,
         price: typing.Optional[str] = None,
         price_old: typing.Optional[str] = None,
-        button: typing.Optional[str] = None,
-        **kwargs
-    ) -> EditResponseModel:
-        """prettyCards.edit method
+        title: typing.Optional[str] = None,
+        **kwargs: typing.Any,
+    ) -> PrettyCardsEditResponseModel:
+        """Method `prettyCards.edit()`
 
-        :param owner_id:
         :param card_id:
-        :param photo:
-        :param title:
+        :param owner_id:
+        :param button:
         :param link:
+        :param photo:
         :param price:
         :param price_old:
-        :param button:
+        :param title:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("prettyCards.edit", params)
-        model = EditResponse
+        model = PrettyCardsEditResponse
         return model(**response).response
 
     async def get(
         self,
         owner_id: int,
-        offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        **kwargs
-    ) -> GetResponseModel:
-        """prettyCards.get method
+        offset: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> PrettyCardsGetResponseModel:
+        """Method `prettyCards.get()`
 
         :param owner_id:
-        :param offset:
         :param count:
+        :param offset:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("prettyCards.get", params)
-        model = GetResponse
+        model = PrettyCardsGetResponse
         return model(**response).response
 
     async def get_by_id(
-        self, owner_id: int, card_ids: typing.List[int], **kwargs
+        self,
+        card_ids: typing.List[int],
+        owner_id: int,
+        **kwargs: typing.Any,
     ) -> typing.List[PrettyCardsPrettyCardOrError]:
-        """prettyCards.getById method
+        """Method `prettyCards.getById()`
 
-        :param owner_id:
         :param card_ids:
+        :param owner_id:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("prettyCards.getById", params)
-        model = GetByIdResponse
+        model = PrettyCardsGetByIdResponse
         return model(**response).response
 
-    async def get_upload_url(self, **kwargs) -> str:
-        """prettyCards.getUploadURL method"""
+    async def get_upload_url(
+        self,
+        **kwargs: typing.Any,
+    ) -> str:
+        """Method `prettyCards.getUploadURL()`"""
 
         params = self.get_set_params(locals())
         response = await self.api.request("prettyCards.getUploadURL", params)
-        model = GetUploadURLResponse
+        model = PrettyCardsGetUploadURLResponse
         return model(**response).response
 
 

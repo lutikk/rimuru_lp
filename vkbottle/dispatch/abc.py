@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Callable, Dict, Type
 
+from typing_extensions import Self
+
 if TYPE_CHECKING:
     from vkbottle.api.abc import ABCAPI
     from vkbottle.exception_factory.error_handler import ABCErrorHandler
@@ -11,12 +13,15 @@ if TYPE_CHECKING:
 
 class ABCRouter(ABC):
     """Abstract Router
-    Documentation: soon
+    Documentation: https://vkbottle.rtfd.io/ru/latest/high-level/handling/router/
     """
 
-    views: Dict[str, "ABCView"] = {}
+    views: Dict[str, "ABCView"]
     state_dispenser: "ABCStateDispenser"
     error_handler: "ABCErrorHandler"
+
+    def __init__(self):
+        self.views = {}
 
     @abstractmethod
     async def route(self, event: dict, ctx_api: "ABCAPI") -> None:
@@ -28,7 +33,7 @@ class ABCRouter(ABC):
         views: Dict[str, "ABCView"],
         state_dispenser: "ABCStateDispenser",
         error_handler: "ABCErrorHandler",
-    ) -> "ABCRouter":
+    ) -> Self:
         pass
 
     def add_view(self, name: str, view: "ABCView") -> None:

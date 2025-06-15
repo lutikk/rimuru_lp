@@ -1,40 +1,56 @@
 import typing
 
-from typing_extensions import Literal
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.base import OkResponse
-from vkbottle_types.responses.streaming import (
-    GetServerUrlResponse,
-    GetServerUrlResponseModel,
-)
+from vkbottle_types.objects import StreamingStats
+from vkbottle_types.responses.streaming import *  # noqa: F401,F403  # type: ignore
 
 
 class StreamingCategory(BaseCategory):
-    async def get_server_url(self, **kwargs) -> GetServerUrlResponseModel:
-        """Allows to receive data for the connection to Streaming API."""
+    async def get_server_url(
+        self,
+        **kwargs: typing.Any,
+    ) -> StreamingGetServerUrlResponseModel:
+        """Method `streaming.getServerUrl()`"""
 
         params = self.get_set_params(locals())
         response = await self.api.request("streaming.getServerUrl", params)
-        model = GetServerUrlResponse
+        model = StreamingGetServerUrlResponse
         return model(**response).response
 
-    async def set_settings(
+    async def get_stats(
         self,
-        monthly_tier: typing.Optional[
-            Literal[
-                "tier_1", "tier_2", "tier_3", "tier_4", "tier_5", "tier_6", "unlimited"
-            ]
-        ] = None,
-        **kwargs
-    ) -> int:
-        """streaming.setSettings method
+        end_time: typing.Optional[int] = None,
+        interval: typing.Optional[str] = None,
+        start_time: typing.Optional[int] = None,
+        type: typing.Optional[str] = None,
+        **kwargs: typing.Any,
+    ) -> typing.List[StreamingStats]:
+        """Method `streaming.getStats()`
 
-        :param monthly_tier:
+        :param end_time:
+        :param interval:
+        :param start_time:
+        :param type:
         """
 
         params = self.get_set_params(locals())
-        response = await self.api.request("streaming.setSettings", params)
-        model = OkResponse
+        response = await self.api.request("streaming.getStats", params)
+        model = StreamingGetStatsResponse
+        return model(**response).response
+
+    async def get_stem(
+        self,
+        word: str,
+        **kwargs: typing.Any,
+    ) -> StreamingGetStemResponseModel:
+        """Method `streaming.getStem()`
+
+        :param word:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("streaming.getStem", params)
+        model = StreamingGetStemResponse
         return model(**response).response
 
 

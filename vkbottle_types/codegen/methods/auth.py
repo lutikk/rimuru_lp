@@ -1,20 +1,25 @@
+import typing
+
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.auth import RestoreResponse, RestoreResponseModel
+from vkbottle_types.responses.auth import *  # noqa: F401,F403  # type: ignore
 
 
 class AuthCategory(BaseCategory):
     async def restore(
-        self, phone: str, last_name: str, **kwargs
-    ) -> RestoreResponseModel:
-        """Allows to restore account access using a code received via SMS. " This method is only available for apps with [vk.com/dev/auth_direct|Direct authorization] access. "
+        self,
+        last_name: str,
+        phone: str,
+        **kwargs: typing.Any,
+    ) -> AuthRestoreResponseModel:
+        """Method `auth.restore()`
 
-        :param phone: User phone number.
         :param last_name: User last name.
+        :param phone: User phone number.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("auth.restore", params)
-        model = RestoreResponse
+        model = AuthRestoreResponse
         return model(**response).response
 
 

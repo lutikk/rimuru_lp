@@ -1,63 +1,59 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.widgets import (
-    GetCommentsResponse,
-    GetCommentsResponseModel,
-    GetPagesResponse,
-    GetPagesResponseModel,
-)
+from vkbottle_types.objects import UsersFields
+from vkbottle_types.responses.widgets import *  # noqa: F401,F403  # type: ignore
 
 
 class WidgetsCategory(BaseCategory):
     async def get_comments(
         self,
-        widget_api_id: typing.Optional[int] = None,
-        url: typing.Optional[str] = None,
-        page_id: typing.Optional[str] = None,
-        order: typing.Optional[str] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        **kwargs
-    ) -> GetCommentsResponseModel:
-        """Gets a list of comments for the page added through the [vk.com/dev/Comments|Comments widget].
+        fields: typing.Optional[typing.List[UsersFields]] = None,
+        offset: typing.Optional[int] = None,
+        order: typing.Optional[str] = None,
+        page_id: typing.Optional[str] = None,
+        url: typing.Optional[str] = None,
+        widget_api_id: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> WidgetsGetCommentsResponseModel:
+        """Method `widgets.getComments()`
 
-        :param widget_api_id:
-        :param url:
-        :param page_id:
-        :param order:
+        :param count:
         :param fields:
         :param offset:
-        :param count:
+        :param order:
+        :param page_id:
+        :param url:
+        :param widget_api_id:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("widgets.getComments", params)
-        model = GetCommentsResponse
+        model = WidgetsGetCommentsResponse
         return model(**response).response
 
     async def get_pages(
         self,
-        widget_api_id: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
         order: typing.Optional[str] = None,
         period: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        **kwargs
-    ) -> GetPagesResponseModel:
-        """Gets a list of application/site pages where the [vk.com/dev/Comments|Comments widget] or [vk.com/dev/Like|Like widget] is installed.
+        widget_api_id: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> WidgetsGetPagesResponseModel:
+        """Method `widgets.getPages()`
 
-        :param widget_api_id:
+        :param count:
+        :param offset:
         :param order:
         :param period:
-        :param offset:
-        :param count:
+        :param widget_api_id:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("widgets.getPages", params)
-        model = GetPagesResponse
+        model = WidgetsGetPagesResponse
         return model(**response).response
 
 

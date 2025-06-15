@@ -1,5 +1,6 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     GroupsGroupsArray,
     UsersSubscriptionsItem,
@@ -9,69 +10,53 @@ from vkbottle_types.objects import (
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class GetFollowersFieldsResponse(BaseResponse):
-    response: "GetFollowersFieldsResponseModel"
+class UsersGetFollowersFieldsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["UsersUserFull"] = Field()
+    friends_count: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class GetFollowersResponse(BaseResponse):
-    response: "GetFollowersResponseModel"
+class UsersGetFollowersFieldsResponse(BaseResponse):
+    response: "UsersGetFollowersFieldsResponseModel" = Field()
 
 
-class GetSubscriptionsExtendedResponse(BaseResponse):
-    response: "GetSubscriptionsExtendedResponseModel"
+class UsersGetFollowersResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List[int] = Field()
 
 
-class GetSubscriptionsResponse(BaseResponse):
-    response: "GetSubscriptionsResponseModel"
+class UsersGetFollowersResponse(BaseResponse):
+    response: "UsersGetFollowersResponseModel" = Field()
 
 
-class GetResponse(BaseResponse):
-    response: typing.List["UsersUserFull"]
+class UsersGetSubscriptionsExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["UsersSubscriptionsItem"] = Field()
 
 
-class SearchResponse(BaseResponse):
-    response: "SearchResponseModel"
+class UsersGetSubscriptionsExtendedResponse(BaseResponse):
+    response: "UsersGetSubscriptionsExtendedResponseModel" = Field()
 
 
-class GetFollowersFieldsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["UsersUserFull"]] = None
+class UsersGetSubscriptionsResponseModel(BaseModel):
+    users: "UsersUsersArray" = Field()
+    groups: "GroupsGroupsArray" = Field()
 
 
-class GetFollowersResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List[int]] = None
+class UsersGetSubscriptionsResponse(BaseResponse):
+    response: "UsersGetSubscriptionsResponseModel" = Field()
 
 
-class GetSubscriptionsExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["UsersSubscriptionsItem"]] = None
+class UsersGetResponse(BaseResponse):
+    response: typing.List["UsersUserFull"] = Field()
 
 
-class GetSubscriptionsResponseModel(BaseResponse):
-    users: typing.Optional["UsersUsersArray"] = None
-    groups: typing.Optional["GroupsGroupsArray"] = None
+class UsersSearchResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["UsersUserFull"] = Field()
 
 
-class SearchResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["UsersUserFull"]] = None
-
-
-__all__ = (
-    "GetFollowersFieldsResponse",
-    "GetFollowersFieldsResponseModel",
-    "GetFollowersResponse",
-    "GetFollowersResponseModel",
-    "GetResponse",
-    "GetSubscriptionsExtendedResponse",
-    "GetSubscriptionsExtendedResponseModel",
-    "GetSubscriptionsResponse",
-    "GetSubscriptionsResponseModel",
-    "GroupsGroupsArray",
-    "SearchResponse",
-    "SearchResponseModel",
-    "UsersSubscriptionsItem",
-    "UsersUserFull",
-    "UsersUsersArray",
-)
+class UsersSearchResponse(BaseResponse):
+    response: "UsersSearchResponseModel" = Field()

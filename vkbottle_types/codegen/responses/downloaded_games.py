@@ -1,17 +1,10 @@
-import typing
-
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class PaidStatusResponse(BaseResponse):
-    response: "PaidStatusResponseModel"
+class DownloadedGamesPaidStatusResponseModel(BaseModel):
+    is_paid: bool = Field()
 
 
-class PaidStatusResponseModel(BaseResponse):
-    is_paid: typing.Optional[bool] = None
-
-
-__all__ = (
-    "PaidStatusResponse",
-    "PaidStatusResponseModel",
-)
+class DownloadedGamesPaidStatusResponse(BaseResponse):
+    response: "DownloadedGamesPaidStatusResponseModel" = Field()

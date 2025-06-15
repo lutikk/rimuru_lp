@@ -1,5 +1,6 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     UtilsDomainResolved,
     UtilsLastShortenedLink,
@@ -11,52 +12,34 @@ from vkbottle_types.objects import (
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class CheckLinkResponse(BaseResponse):
-    response: UtilsLinkChecked
+class UtilsCheckLinkResponse(BaseResponse):
+    response: "UtilsLinkChecked" = Field()
 
 
-class GetLastShortenedLinksResponse(BaseResponse):
-    response: "GetLastShortenedLinksResponseModel"
+class UtilsGetLastShortenedLinksResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["UtilsLastShortenedLink"] = Field()
 
 
-class GetLinkStatsExtendedResponse(BaseResponse):
-    response: UtilsLinkStatsExtended
+class UtilsGetLastShortenedLinksResponse(BaseResponse):
+    response: "UtilsGetLastShortenedLinksResponseModel" = Field()
 
 
-class GetLinkStatsResponse(BaseResponse):
-    response: UtilsLinkStats
+class UtilsGetLinkStatsExtendedResponse(BaseResponse):
+    response: "UtilsLinkStatsExtended" = Field()
 
 
-class GetServerTimeResponse(BaseResponse):
-    response: int
+class UtilsGetLinkStatsResponse(BaseResponse):
+    response: "UtilsLinkStats" = Field()
 
 
-class GetShortLinkResponse(BaseResponse):
-    response: UtilsShortLink
+class UtilsGetServerTimeResponse(BaseResponse):
+    response: int = Field()
 
 
-class ResolveScreenNameResponse(BaseResponse):
-    response: UtilsDomainResolved
+class UtilsGetShortLinkResponse(BaseResponse):
+    response: "UtilsShortLink" = Field()
 
 
-class GetLastShortenedLinksResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["UtilsLastShortenedLink"]] = None
-
-
-__all__ = (
-    "CheckLinkResponse",
-    "GetLastShortenedLinksResponse",
-    "GetLastShortenedLinksResponseModel",
-    "GetLinkStatsExtendedResponse",
-    "GetLinkStatsResponse",
-    "GetServerTimeResponse",
-    "GetShortLinkResponse",
-    "ResolveScreenNameResponse",
-    "UtilsDomainResolved",
-    "UtilsLastShortenedLink",
-    "UtilsLinkChecked",
-    "UtilsLinkStats",
-    "UtilsLinkStatsExtended",
-    "UtilsShortLink",
-)
+class UtilsResolveScreenNameResponse(BaseResponse):
+    response: "UtilsDomainResolved" = Field()

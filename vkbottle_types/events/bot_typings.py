@@ -17,6 +17,7 @@ from .bot_events import (
     GroupJoin,
     GroupLeave,
     GroupOfficersEdit,
+    LeadFormsNew,
     LikeAdd,
     LikeRemove,
     MarketCommentDelete,
@@ -30,6 +31,8 @@ from .bot_events import (
     MessageEdit,
     MessageEvent,
     MessageNew,
+    MessageReactionEvent,
+    MessageRead,
     MessageReply,
     MessageTypingState,
     PhotoCommentDelete,
@@ -59,8 +62,10 @@ class GroupTypes:
     MessageNew = MessageNew
     MessageReply = MessageReply
     MessageEdit = MessageEdit
+    MessageRead = MessageRead
     MessageAllow = MessageAllow
     MessageDeny = MessageDeny
+    MessageReactionEvent = MessageReactionEvent
     MessageTypingState = MessageTypingState
     MessageEvent = MessageEvent
     PhotoNew = PhotoNew
@@ -80,6 +85,7 @@ class GroupTypes:
     WallReplyEdit = WallReplyEdit
     WallReplyRestore = WallReplyRestore
     WallReplyDelete = WallReplyDelete
+    LeadFormsNew = LeadFormsNew
     LikeAdd = LikeAdd
     LikeRemove = LikeRemove
     BoardPostNew = BoardPostNew
@@ -109,3 +115,6 @@ class GroupTypes:
     DonutSubscriptionPriceChanged = DonutSubscriptionPriceChanged
     DonutMoneyWithdraw = DonutMoneyWithdraw
     DonutMoneyWithdrawError = DonutMoneyWithdrawError
+
+
+__all__ = ("GroupTypes",)

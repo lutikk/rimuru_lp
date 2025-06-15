@@ -1,113 +1,105 @@
 import typing
 
-from typing_extensions import Literal
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.app_widgets import (
-    AppWidgetsPhoto,
-    AppWidgetsPhotos,
-    GetAppImagesResponse,
-    GetAppImageUploadServerResponse,
-    GetAppImageUploadServerResponseModel,
-    GetGroupImagesResponse,
-    GetGroupImageUploadServerResponse,
-    GetGroupImageUploadServerResponseModel,
-    GetImagesByIdResponse,
-    SaveAppImageResponse,
-    SaveGroupImageResponse,
+from vkbottle_types.objects import AppWidgetsPhoto, AppWidgetsPhotos
+from vkbottle_types.responses.app_widgets import *  # noqa: F401,F403  # type: ignore
+from vkbottle_types.responses.base import (
+    BaseOkResponse,
+    BaseOkResponseModel,
 )
-from vkbottle_types.responses.base import OkResponse
 
 
 class AppWidgetsCategory(BaseCategory):
     async def get_app_image_upload_server(
         self,
-        image_type: Literal["160x160", "160x240", "24x24", "50x50", "510x128"],
-        **kwargs
-    ) -> GetAppImageUploadServerResponseModel:
-        """Returns a URL for uploading a photo to the community collection for community app widgets
+        image_type: str,
+        **kwargs: typing.Any,
+    ) -> AppWidgetsGetAppImageUploadServerResponseModel:
+        """Method `appWidgets.getAppImageUploadServer()`
 
         :param image_type:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("appWidgets.getAppImageUploadServer", params)
-        model = GetAppImageUploadServerResponse
+        model = AppWidgetsGetAppImageUploadServerResponse
         return model(**response).response
 
     async def get_app_images(
         self,
-        offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        image_type: typing.Optional[
-            Literal["160x160", "160x240", "24x24", "50x50", "510x128"]
-        ] = None,
-        **kwargs
-    ) -> AppWidgetsPhotos:
-        """Returns an app collection of images for community app widgets
+        image_type: typing.Optional[str] = None,
+        offset: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> "AppWidgetsPhotos":
+        """Method `appWidgets.getAppImages()`
 
-        :param offset: Offset needed to return a specific subset of images.
         :param count: Maximum count of results.
         :param image_type:
+        :param offset: Offset needed to return a specific subset of images.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("appWidgets.getAppImages", params)
-        model = GetAppImagesResponse
+        model = AppWidgetsGetAppImagesResponse
         return model(**response).response
 
     async def get_group_image_upload_server(
         self,
-        image_type: Literal["160x160", "160x240", "24x24", "50x50", "510x128"],
-        **kwargs
-    ) -> GetGroupImageUploadServerResponseModel:
-        """Returns a URL for uploading a photo to the community collection for community app widgets
+        image_type: str,
+        **kwargs: typing.Any,
+    ) -> AppWidgetsGetGroupImageUploadServerResponseModel:
+        """Method `appWidgets.getGroupImageUploadServer()`
 
         :param image_type:
         """
 
         params = self.get_set_params(locals())
-        response = await self.api.request(
-            "appWidgets.getGroupImageUploadServer", params
-        )
-        model = GetGroupImageUploadServerResponse
+        response = await self.api.request("appWidgets.getGroupImageUploadServer", params)
+        model = AppWidgetsGetGroupImageUploadServerResponse
         return model(**response).response
 
     async def get_group_images(
         self,
-        offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        image_type: typing.Optional[
-            Literal["160x160", "160x240", "24x24", "50x50", "510x128"]
-        ] = None,
-        **kwargs
-    ) -> AppWidgetsPhotos:
-        """Returns a community collection of images for community app widgets
+        image_type: typing.Optional[str] = None,
+        offset: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> "AppWidgetsPhotos":
+        """Method `appWidgets.getGroupImages()`
 
-        :param offset: Offset needed to return a specific subset of images.
         :param count: Maximum count of results.
         :param image_type:
+        :param offset: Offset needed to return a specific subset of images.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("appWidgets.getGroupImages", params)
-        model = GetGroupImagesResponse
+        model = AppWidgetsGetGroupImagesResponse
         return model(**response).response
 
     async def get_images_by_id(
-        self, images: typing.List[str], **kwargs
+        self,
+        images: typing.List[str],
+        **kwargs: typing.Any,
     ) -> typing.List[AppWidgetsPhoto]:
-        """Returns an image for community app widgets by its ID
+        """Method `appWidgets.getImagesById()`
 
         :param images: List of images IDs
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("appWidgets.getImagesById", params)
-        model = GetImagesByIdResponse
+        model = AppWidgetsGetImagesByIdResponse
         return model(**response).response
 
-    async def save_app_image(self, hash: str, image: str, **kwargs) -> AppWidgetsPhoto:
-        """Allows to save image into app collection for community app widgets
+    async def save_app_image(
+        self,
+        hash: str,
+        image: str,
+        **kwargs: typing.Any,
+    ) -> "AppWidgetsPhoto":
+        """Method `appWidgets.saveAppImage()`
 
         :param hash: Parameter returned when photo is uploaded to server
         :param image: Parameter returned when photo is uploaded to server
@@ -115,13 +107,16 @@ class AppWidgetsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("appWidgets.saveAppImage", params)
-        model = SaveAppImageResponse
+        model = AppWidgetsSaveAppImageResponse
         return model(**response).response
 
     async def save_group_image(
-        self, hash: str, image: str, **kwargs
-    ) -> AppWidgetsPhoto:
-        """Allows to save image into community collection for community app widgets
+        self,
+        hash: str,
+        image: str,
+        **kwargs: typing.Any,
+    ) -> "AppWidgetsPhoto":
+        """Method `appWidgets.saveGroupImage()`
 
         :param hash: Parameter returned when photo is uploaded to server
         :param image: Parameter returned when photo is uploaded to server
@@ -129,26 +124,16 @@ class AppWidgetsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("appWidgets.saveGroupImage", params)
-        model = SaveGroupImageResponse
+        model = AppWidgetsSaveGroupImageResponse
         return model(**response).response
 
     async def update(
         self,
         code: str,
-        type: Literal[
-            "compact_list",
-            "cover_list",
-            "donation",
-            "list",
-            "match",
-            "matches",
-            "table",
-            "text",
-            "tiles",
-        ],
-        **kwargs
-    ) -> int:
-        """Allows to update community app widget
+        type: str,
+        **kwargs: typing.Any,
+    ) -> BaseOkResponseModel:
+        """Method `appWidgets.update()`
 
         :param code:
         :param type:
@@ -156,7 +141,7 @@ class AppWidgetsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("appWidgets.update", params)
-        model = OkResponse
+        model = BaseOkResponse
         return model(**response).response
 
 

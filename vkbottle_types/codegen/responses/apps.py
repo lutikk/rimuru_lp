@@ -1,125 +1,154 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     AppsApp,
     AppsCatalogList,
+    AppsCustomSnippet,
     AppsLeaderboard,
     AppsScope,
+    AppsTestingGroup,
+    GroupsGroupFull,
     UsersUser,
     UsersUserFull,
 )
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class GetCatalogResponse(BaseResponse):
-    response: AppsCatalogList
+class AppsAddSnippetResponseModel(BaseModel):
+    snippet_id: int = Field()
 
 
-class GetFriendsListExtendedResponse(BaseResponse):
-    response: "GetFriendsListExtendedResponseModel"
+class AppsAddSnippetResponse(BaseResponse):
+    response: "AppsAddSnippetResponseModel" = Field()
 
 
-class GetFriendsListResponse(BaseResponse):
-    response: "GetFriendsListResponseModel"
+class AppsCreatedGroupResponseModel(BaseModel):
+    group_id: int = Field()
 
 
-class GetLeaderboardExtendedResponse(BaseResponse):
-    response: "GetLeaderboardExtendedResponseModel"
+class AppsCreatedGroupResponse(BaseResponse):
+    response: "AppsCreatedGroupResponseModel" = Field()
 
 
-class GetLeaderboardResponse(BaseResponse):
-    response: "GetLeaderboardResponseModel"
+class AppsGetCatalogResponse(BaseResponse):
+    response: "AppsCatalogList" = Field()
 
 
-class GetMiniAppPoliciesResponse(BaseResponse):
-    response: "GetMiniAppPoliciesResponseModel"
+class AppsGetFriendsListExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["UsersUserFull"] = Field()
 
 
-class GetScopesResponse(BaseResponse):
-    response: "GetScopesResponseModel"
+class AppsGetFriendsListExtendedResponse(BaseResponse):
+    response: "AppsGetFriendsListExtendedResponseModel" = Field()
 
 
-class GetScoreResponse(BaseResponse):
-    response: int
+class AppsGetFriendsListResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List[int] = Field()
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class AppsGetFriendsListResponse(BaseResponse):
+    response: "AppsGetFriendsListResponseModel" = Field()
 
 
-class ImageUploadResponse(BaseResponse):
-    response: "ImageUploadResponseModel"
+class AppsGetLeaderboardExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["AppsLeaderboard"] = Field()
+    profiles: typing.Optional[typing.List["UsersUser"]] = Field(
+        default=None,
+    )
 
 
-class SendRequestResponse(BaseResponse):
-    response: int
+class AppsGetLeaderboardExtendedResponse(BaseResponse):
+    response: "AppsGetLeaderboardExtendedResponseModel" = Field()
 
 
-class GetFriendsListExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["UsersUserFull"]] = None
+class AppsGetLeaderboardResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["AppsLeaderboard"] = Field()
 
 
-class GetFriendsListResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List[int]] = None
+class AppsGetLeaderboardResponse(BaseResponse):
+    response: "AppsGetLeaderboardResponseModel" = Field()
 
 
-class GetLeaderboardExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["AppsLeaderboard"]] = None
-    profiles: typing.Optional[typing.List["UsersUser"]] = None
+class AppsGetMiniAppPoliciesResponseModel(BaseModel):
+    privacy_policy: typing.Optional[str] = Field(
+        default=None,
+    )
+    terms: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class GetLeaderboardResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["AppsLeaderboard"]] = None
+class AppsGetMiniAppPoliciesResponse(BaseResponse):
+    response: "AppsGetMiniAppPoliciesResponseModel" = Field()
 
 
-class GetMiniAppPoliciesResponseModel(BaseResponse):
-    privacy_policy: typing.Optional[str] = None
-    terms: typing.Optional[str] = None
+class AppsGetScopesResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["AppsScope"] = Field()
 
 
-class GetScopesResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["AppsScope"]] = None
+class AppsGetScopesResponse(BaseResponse):
+    response: "AppsGetScopesResponseModel" = Field()
 
 
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["AppsApp"]] = None
+class AppsGetScoreResponse(BaseResponse):
+    response: int = Field()
 
 
-class ImageUploadResponseModel(BaseResponse):
-    hash: typing.Optional[str] = None
-    image: typing.Optional[str] = None
+class AppsGetSnippetsResponseModel(BaseModel):
+    items: typing.Optional[typing.List["AppsCustomSnippet"]] = Field(
+        default=None,
+    )
 
 
-__all__ = (
-    "AppsApp",
-    "AppsCatalogList",
-    "AppsLeaderboard",
-    "AppsScope",
-    "GetCatalogResponse",
-    "GetFriendsListExtendedResponse",
-    "GetFriendsListExtendedResponseModel",
-    "GetFriendsListResponse",
-    "GetFriendsListResponseModel",
-    "GetLeaderboardExtendedResponse",
-    "GetLeaderboardExtendedResponseModel",
-    "GetLeaderboardResponse",
-    "GetLeaderboardResponseModel",
-    "GetMiniAppPoliciesResponse",
-    "GetMiniAppPoliciesResponseModel",
-    "GetResponse",
-    "GetResponseModel",
-    "GetScopesResponse",
-    "GetScopesResponseModel",
-    "GetScoreResponse",
-    "ImageUploadResponse",
-    "ImageUploadResponseModel",
-    "SendRequestResponse",
-    "UsersUser",
-    "UsersUserFull",
-)
+class AppsGetSnippetsResponse(BaseResponse):
+    response: "AppsGetSnippetsResponseModel" = Field()
+
+
+class AppsGetTestingGroupsResponse(BaseResponse):
+    response: typing.List["AppsTestingGroup"] = Field()
+
+
+class AppsGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["AppsApp"] = Field()
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
+
+
+class AppsGetResponse(BaseResponse):
+    response: "AppsGetResponseModel" = Field()
+
+
+class AppsImageUploadResponseModel(BaseModel):
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    image: typing.Optional[str] = Field(
+        default=None,
+    )
+
+
+class AppsImageUploadResponse(BaseResponse):
+    response: "AppsImageUploadResponseModel" = Field()
+
+
+class AppsIsNotificationsAllowedResponseModel(BaseModel):
+    is_allowed: bool = Field()
+
+
+class AppsIsNotificationsAllowedResponse(BaseResponse):
+    response: "AppsIsNotificationsAllowedResponseModel" = Field()
+
+
+class AppsSendRequestResponse(BaseResponse):
+    response: int = Field()

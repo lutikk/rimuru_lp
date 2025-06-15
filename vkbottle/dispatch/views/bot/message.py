@@ -4,11 +4,11 @@ from vkbottle_types.events import GroupEventType
 
 from vkbottle.dispatch.return_manager.bot import BotMessageReturnHandler
 from vkbottle.dispatch.views.abc import ABCMessageView
-from vkbottle.tools.dev.mini_types.bot import message_min
+from vkbottle.tools.mini_types.bot import message_min
 
 if TYPE_CHECKING:
     from vkbottle.api import ABCAPI, API
-    from vkbottle.tools.dev.mini_types.bot import MessageMin
+    from vkbottle.tools.mini_types.bot import MessageMin
 
 
 F_contra = TypeVar("F_contra", contravariant=True)
@@ -25,7 +25,9 @@ class ABCBotMessageView(ABCMessageView[dict, F_contra], Generic[F_contra]):
 
     @staticmethod
     async def get_message(
-        event: dict, ctx_api: Union["API", "ABCAPI"], replace_mention: bool
+        event: dict,
+        ctx_api: Union["API", "ABCAPI"],
+        replace_mention: bool,
     ) -> "MessageMin":
         return message_min(event, ctx_api, replace_mention)
 

@@ -41,13 +41,13 @@ class User(BaseModel):
 
     @staticmethod
     def get_path() -> str:
-        return f'{os.getcwd()}/config.json'
+        return os.path.join(os.getcwd(), 'config.json')
 
     def save(self):
         path_to_file = User.get_path()
         with open(path_to_file, 'w', encoding='utf-8') as file:
             file.write(
-                self.json(**{"ensure_ascii": False, "indent": 2})
+                self.model_dump_json(indent=2)  # Исправлено здесь
             )
 
     @staticmethod
@@ -55,8 +55,11 @@ class User(BaseModel):
         path_to_file = User.get_path()
         try:
             with open(path_to_file, 'r', encoding='utf-8') as file:
-                db = User(**json.loads(file.read()))
-        except FileNotFoundError:
+                data = file.read()
+                if not data:  # Проверка на пустой файл
+                    raise json.JSONDecodeError("Empty file", "", 0)
+                db = User(**json.loads(data))
+        except (FileNotFoundError, json.JSONDecodeError):
             from utils import get_token
             token_input = input("Файл конфигурации не найден. Пожалуйста, введите токен: ")
             token = get_token(token_input)

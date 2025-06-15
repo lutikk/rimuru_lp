@@ -1,8 +1,11 @@
-from typing import Iterable
+from collections.abc import Iterable
+from typing import TYPE_CHECKING
 
-from .abc import ABCTokenGenerator, Token
 from .consistent import ConsistentTokenGenerator
 from .single import SingleTokenGenerator
+
+if TYPE_CHECKING:
+    from .abc import ABCTokenGenerator, Token
 
 
 def get_token_generator(token: "Token") -> "ABCTokenGenerator":

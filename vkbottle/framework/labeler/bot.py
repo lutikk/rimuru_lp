@@ -6,12 +6,13 @@ from vkbottle.dispatch.handlers import FromFuncHandler
 from vkbottle.dispatch.rules import ABCRule
 from vkbottle.dispatch.views.bot import BotHandlerBasement, BotMessageView, RawBotEventView
 
-from .base import CUSTOM_RULES_TYPE, BaseLabeler
+from .base import BaseLabeler, CustomRuleType
 
 if TYPE_CHECKING:
     from vkbottle_types.events import BaseGroupEvent
 
     from vkbottle.dispatch.views.bot import ABCBotMessageView
+    from vkbottle.tools.mini_types.bot.message import MessageMin
 
     from .abc import LabeledHandler
 
@@ -34,10 +35,10 @@ class BotLabeler(BaseLabeler):
         self,
         message_view: Optional["ABCBotMessageView"] = None,
         raw_event_view: Optional[RawBotEventView] = None,
-        custom_rules: Optional[CUSTOM_RULES_TYPE] = None,
+        custom_rules: Optional[CustomRuleType] = None,
         auto_rules: Optional[List["ABCRule"]] = None,
         raw_event_auto_rules: Optional[List["ABCRule"]] = None,
-    ):
+    ) -> None:
         message_view = message_view or BotMessageView()
         raw_event_view = raw_event_view or RawBotEventView()
         super().__init__(
@@ -71,16 +72,14 @@ class BotLabeler(BaseLabeler):
         blocking: bool = True,
         **custom_rules,
     ) -> "LabeledHandler":
-        assert all(isinstance(rule, ABCRule) for rule in rules), (
-            "All rules must be subclasses of ABCRule or rule shortcuts "
-            "(https://vkbottle.readthedocs.io/ru/latest/high-level/routing/rules/)"
-        )
+        if any(not isinstance(rule, ABCRule) for rule in rules):
+            msg = "All rules must be subclasses of ABCRule or rule shortcuts (https://vkbottle.rtfd.io/ru/latest/high-level/handling/rules/)"
+            raise ValueError(msg)
 
-        if not isinstance(event, list):
-            event = [event]
+        event_types = event if isinstance(event, list) else [event]
 
         def decorator(func):
-            for e in event:
+            for e in event_types:
                 if isinstance(e, str):
                     e = GroupEventType(e)
                 handler_basement = BotHandlerBasement(

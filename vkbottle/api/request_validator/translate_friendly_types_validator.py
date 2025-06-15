@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+import pydantic
 
 from vkbottle.modules import json
 
@@ -12,10 +12,10 @@ class TranslateFriendlyTypesRequestValidator(ABCRequestValidator):
                 request[k] = ",".join(str(e) for e in v)
             elif isinstance(v, bool):
                 request[k] = int(v)
-            elif isinstance(v, BaseModel):
-                request[k] = v.json(exclude_none=True, encoder=json.dumps)
+            elif isinstance(v, pydantic.BaseModel):
+                request[k] = v.model_dump(exclude_none=True)
             elif isinstance(v, dict):
                 request[k] = json.dumps(await self.validate(v))
             elif v is None:
-                del request[k]
+                request.pop(k)
         return request

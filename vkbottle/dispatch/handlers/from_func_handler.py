@@ -1,21 +1,20 @@
-import inspect
 from typing import TYPE_CHECKING, Any, Callable, Union
 
-from .abc import ABCHandler
+from vkbottle.tools.magic import magic_bundle
+
+from .abc import ABCHandler, Event
 
 if TYPE_CHECKING:
-    from vkbottle_types.events import Event
-
     from vkbottle.dispatch.rules import ABCRule
 
 
-class FromFuncHandler(ABCHandler):
+class FromFuncHandler(ABCHandler[Event]):
     def __init__(self, handler: Callable, *rules: "ABCRule", blocking: bool = True):
         self.handler = handler
         self.rules = rules
         self.blocking = blocking
 
-    async def filter(self, event: "Event") -> Union[dict, bool]:
+    async def filter(self, event: Event) -> Union[dict, bool]:
         rule_context = {}
         for rule in self.rules:
             result = await rule.check(event)
@@ -26,10 +25,8 @@ class FromFuncHandler(ABCHandler):
             rule_context.update(result)
         return rule_context
 
-    async def handle(self, event: "Event", **context) -> Any:
-        acceptable_keys = list(inspect.signature(self.handler).parameters.keys())[1:]
-        acceptable_context = {k: v for k, v in context.items() if k in acceptable_keys}
-        return await self.handler(event, **acceptable_context)
+    async def handle(self, event: Event, **context: Any) -> Any:
+        return await self.handler(event, **magic_bundle(self.handler, context))
 
     def __eq__(self, obj: object) -> bool:
         """
@@ -40,6 +37,7 @@ class FromFuncHandler(ABCHandler):
         >>> my_handler in middleware_handlers
         True
         """
+
         if callable(obj):
             return self.handler == obj
         return super().__eq__(obj)

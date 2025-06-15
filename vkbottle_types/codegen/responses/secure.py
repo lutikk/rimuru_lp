@@ -1,5 +1,6 @@
 import typing
 
+from vkbottle_types.base_model import Field
 from vkbottle_types.objects import (
     SecureGiveEventStickerItem,
     SecureLevel,
@@ -11,51 +12,33 @@ from vkbottle_types.objects import (
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class CheckTokenResponse(BaseResponse):
-    response: SecureTokenChecked
+class SecureCheckTokenResponse(BaseResponse):
+    response: "SecureTokenChecked" = Field()
 
 
-class GetAppBalanceResponse(BaseResponse):
-    response: int
+class SecureGetAppBalanceResponse(BaseResponse):
+    response: int = Field()
 
 
-class GetSMSHistoryResponse(BaseResponse):
-    response: typing.List["SecureSmsNotification"]
+class SecureGetSMSHistoryResponse(BaseResponse):
+    response: typing.List["SecureSmsNotification"] = Field()
 
 
-class GetTransactionsHistoryResponse(BaseResponse):
-    response: typing.List["SecureTransaction"]
+class SecureGetTransactionsHistoryResponse(BaseResponse):
+    response: typing.List["SecureTransaction"] = Field()
 
 
-class GetUserLevelResponse(BaseResponse):
-    response: typing.List["SecureLevel"]
+class SecureGetUserLevelResponse(BaseResponse):
+    response: typing.List["SecureLevel"] = Field()
 
 
-class GiveEventStickerResponse(BaseResponse):
-    response: typing.List["SecureGiveEventStickerItem"]
+class SecureGiveEventStickerResponse(BaseResponse):
+    response: typing.List["SecureGiveEventStickerItem"] = Field()
 
 
-class SendNotificationResponse(BaseResponse):
-    response: typing.List[int]
+class SecureSendNotificationResponse(BaseResponse):
+    response: typing.List[int] = Field()
 
 
-class SetCounterArrayResponse(BaseResponse):
-    response: typing.List["SecureSetCounterItem"]
-
-
-__all__ = (
-    "CheckTokenResponse",
-    "GetAppBalanceResponse",
-    "GetSMSHistoryResponse",
-    "GetTransactionsHistoryResponse",
-    "GetUserLevelResponse",
-    "GiveEventStickerResponse",
-    "SecureGiveEventStickerItem",
-    "SecureLevel",
-    "SecureSetCounterItem",
-    "SecureSmsNotification",
-    "SecureTokenChecked",
-    "SecureTransaction",
-    "SendNotificationResponse",
-    "SetCounterArrayResponse",
-)
+class SecureSetCounterArrayResponse(BaseResponse):
+    response: typing.List["SecureSetCounterItem"] = Field()

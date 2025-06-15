@@ -1,20 +1,14 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import GiftsGift
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class GiftsGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["GiftsGift"] = Field()
 
 
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["GiftsGift"]] = None
-
-
-__all__ = (
-    "GetResponse",
-    "GetResponseModel",
-    "GiftsGift",
-)
+class GiftsGetResponse(BaseResponse):
+    response: "GiftsGetResponseModel" = Field()

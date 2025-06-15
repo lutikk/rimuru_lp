@@ -1,21 +1,17 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import SearchHint
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class GetHintsResponse(BaseResponse):
-    response: "GetHintsResponseModel"
+class SearchGetHintsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["SearchHint"] = Field()
+    suggested_queries: typing.Optional[typing.List[str]] = Field(
+        default=None,
+    )
 
 
-class GetHintsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["SearchHint"]] = None
-    suggested_queries: typing.Optional[typing.List[str]] = None
-
-
-__all__ = (
-    "GetHintsResponse",
-    "GetHintsResponseModel",
-    "SearchHint",
-)
+class SearchGetHintsResponse(BaseResponse):
+    response: "SearchGetHintsResponseModel" = Field()

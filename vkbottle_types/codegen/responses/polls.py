@@ -1,47 +1,35 @@
 import typing
 
-from vkbottle_types.objects import BaseBoolInt, PollsBackground, PollsPoll, PollsVoters
+from vkbottle_types.base_model import Field
+from vkbottle_types.objects import (
+    PollsBackground,
+    PollsFieldsVoters,
+    PollsPoll,
+    PollsPollExtended,
+    PollsVoters,
+)
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AddVoteResponse(BaseResponse):
-    response: BaseBoolInt
+class PollsCreateResponse(BaseResponse):
+    response: "PollsPoll" = Field()
 
 
-class CreateResponse(BaseResponse):
-    response: PollsPoll
+class PollsGetBackgroundsResponse(BaseResponse):
+    response: typing.List["PollsBackground"] = Field()
 
 
-class DeleteVoteResponse(BaseResponse):
-    response: BaseBoolInt
+class PollsGetByIdResponse(BaseResponse):
+    response: "PollsPollExtended" = Field()
 
 
-class GetBackgroundsResponse(BaseResponse):
-    response: typing.List["PollsBackground"]
+class PollsGetVotersFieldsResponse(BaseResponse):
+    response: typing.List["PollsFieldsVoters"] = Field()
 
 
-class GetByIdResponse(BaseResponse):
-    response: PollsPoll
+class PollsGetVotersResponse(BaseResponse):
+    response: typing.List["PollsVoters"] = Field()
 
 
-class GetVotersResponse(BaseResponse):
-    response: typing.List["PollsVoters"]
-
-
-class SavePhotoResponse(BaseResponse):
-    response: PollsBackground
-
-
-__all__ = (
-    "AddVoteResponse",
-    "BaseBoolInt",
-    "CreateResponse",
-    "DeleteVoteResponse",
-    "GetBackgroundsResponse",
-    "GetByIdResponse",
-    "GetVotersResponse",
-    "PollsBackground",
-    "PollsPoll",
-    "PollsVoters",
-    "SavePhotoResponse",
-)
+class PollsSavePhotoResponse(BaseResponse):
+    response: "PollsBackground" = Field()

@@ -1,22 +1,22 @@
 import re
-from typing import TYPE_CHECKING, Any, Dict, List, Optional, Type
 
+import typing_extensions as typing
 import vbml
 
 from vkbottle.dispatch.handlers import FromFuncHandler
 from vkbottle.dispatch.rules import ABCRule, base
-from vkbottle.dispatch.views.abc import ABCRawEventView
 
 from .abc import ABCLabeler
 
-if TYPE_CHECKING:
+if typing.TYPE_CHECKING:
     from vkbottle.dispatch.views import ABCView
-    from vkbottle.dispatch.views.abc import ABCMessageView
+    from vkbottle.dispatch.views.abc import ABCMessageView, ABCRawEventView
 
     from .abc import LabeledMessageHandler
 
+CustomRuleType = typing.Dict[str, typing.Type["ABCRule"]]
 
-DEFAULT_CUSTOM_RULES: Dict[str, Type["ABCRule"]] = {
+DEFAULT_CUSTOM_RULES: CustomRuleType = {
     "from_chat": base.PeerRule,
     "mention": base.MentionRule,
     "command": base.CommandRule,
@@ -38,11 +38,12 @@ DEFAULT_CUSTOM_RULES: Dict[str, Type["ABCRule"]] = {
     "state_group": base.StateGroupRule,
     "regexp": base.RegexRule,
     "regex": base.RegexRule,
+    "reply_message": base.ReplyMessageRule,
     "macro": base.MacroRule,
     "text": base.VBMLRule,
+    "fuzzy": base.FuzzyTextRule,
+    "is_admin": base.IsAdminRule,
 }
-
-CUSTOM_RULES_TYPE = Dict[str, Type["ABCRule"]]
 
 
 class BaseLabeler(ABCLabeler):
@@ -50,10 +51,10 @@ class BaseLabeler(ABCLabeler):
         self,
         message_view: "ABCMessageView",
         raw_event_view: "ABCRawEventView",
-        custom_rules: Optional[CUSTOM_RULES_TYPE] = None,
-        auto_rules: Optional[List["ABCRule"]] = None,
-        raw_event_auto_rules: Optional[List["ABCRule"]] = None,
-    ):
+        custom_rules: typing.Optional[CustomRuleType] = None,
+        auto_rules: typing.Optional[typing.List["ABCRule"]] = None,
+        raw_event_auto_rules: typing.Optional[typing.List["ABCRule"]] = None,
+    ) -> None:
         self.message_view = message_view
         self.raw_event_view = raw_event_view
 
@@ -62,7 +63,7 @@ class BaseLabeler(ABCLabeler):
         self.raw_event_auto_rules = raw_event_auto_rules or []
 
         # Rule config is accessible from every single custom rule
-        self.rule_config: Dict[str, Any] = {
+        self.rule_config: typing.Dict[str, typing.Any] = {
             "vbml_flags": re.DOTALL,  # Flags for VBMLRule
             "vbml_patcher": vbml.Patcher(),  # Patcher for VBMLRule
         }
@@ -70,11 +71,13 @@ class BaseLabeler(ABCLabeler):
     @property
     def vbml_ignore_case(self) -> bool:
         """Gets ignore case flag from rule config flags"""
+
         return re.IGNORECASE in self.rule_config["flags"]
 
     @vbml_ignore_case.setter
     def vbml_ignore_case(self, ignore_case: bool):
         """Adds ignore case flag to rule config flags or removes it"""
+
         if not ignore_case:
             self.rule_config["vbml_flags"] ^= re.IGNORECASE
         else:
@@ -97,12 +100,14 @@ class BaseLabeler(ABCLabeler):
         self.rule_config["vbml_flags"] = flags
 
     def message(
-        self, *rules: "ABCRule", blocking: bool = True, **custom_rules
+        self,
+        *rules: "ABCRule",
+        blocking: bool = True,
+        **custom_rules,
     ) -> "LabeledMessageHandler":
-        assert all(isinstance(rule, ABCRule) for rule in rules), (
-            "All rules must be subclasses of ABCRule or rule shortcuts "
-            "(https://vkbottle.readthedocs.io/ru/latest/high-level/routing/rules/)"
-        )
+        if any(not isinstance(rule, ABCRule) for rule in rules):
+            msg = "All rules must be subclasses of ABCRule or rule shortcuts (https://vkbottle.rtfd.io/ru/latest/high-level/handling/rules/)"
+            raise ValueError(msg)
 
         def decorator(func):
             self.message_view.handlers.append(
@@ -119,12 +124,14 @@ class BaseLabeler(ABCLabeler):
         return decorator
 
     def chat_message(
-        self, *rules: "ABCRule", blocking: bool = True, **custom_rules
+        self,
+        *rules: "ABCRule",
+        blocking: bool = True,
+        **custom_rules,
     ) -> "LabeledMessageHandler":
-        assert all(isinstance(rule, ABCRule) for rule in rules), (
-            "All rules must be subclasses of ABCRule or rule shortcuts "
-            "(https://vkbottle.readthedocs.io/ru/latest/high-level/routing/rules/)"
-        )
+        if any(not isinstance(rule, ABCRule) for rule in rules):
+            msg = "All rules must be subclasses of ABCRule or rule shortcuts (https://vkbottle.rtfd.io/ru/latest/high-level/handling/rules/)"
+            raise ValueError(msg)
 
         def decorator(func):
             self.message_view.handlers.append(
@@ -142,12 +149,14 @@ class BaseLabeler(ABCLabeler):
         return decorator
 
     def private_message(
-        self, *rules: "ABCRule", blocking: bool = True, **custom_rules
+        self,
+        *rules: "ABCRule",
+        blocking: bool = True,
+        **custom_rules,
     ) -> "LabeledMessageHandler":
-        assert all(isinstance(rule, ABCRule) for rule in rules), (
-            "All rules must be subclasses of ABCRule or rule shortcuts "
-            "(https://vkbottle.readthedocs.io/ru/latest/high-level/routing/rules/)"
-        )
+        if any(not isinstance(rule, ABCRule) for rule in rules):
+            msg = "All rules must be subclasses of ABCRule or rule shortcuts (https://vkbottle.rtfd.io/ru/latest/high-level/handling/rules/)"
+            raise ValueError(msg)
 
         def decorator(func):
             self.message_view.handlers.append(
@@ -172,8 +181,12 @@ class BaseLabeler(ABCLabeler):
             event_handlers = self.raw_event_view.handlers.setdefault(event, [])
             event_handlers.extend(handler_basements)
 
-    def get_custom_rules(self, custom_rules: Dict[str, Any]) -> List["ABCRule"]:
-        return [self.custom_rules[k].with_config(self.rule_config)(v) for k, v in custom_rules.items()]  # type: ignore
+    def get_custom_rules(
+        self, custom_rules: typing.Dict[str, typing.Any]
+    ) -> typing.List["ABCRule"]:
+        return [
+            self.custom_rules[k].with_config(self.rule_config)(v) for k, v in custom_rules.items()  # type: ignore
+        ]
 
-    def views(self) -> Dict[str, "ABCView"]:
+    def views(self) -> typing.Dict[str, "ABCView"]:
         return {"message": self.message_view, "raw": self.raw_event_view}

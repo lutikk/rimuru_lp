@@ -1,10 +1,9 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
-    GroupsGroup,
     GroupsGroupFull,
     StoriesFeedItem,
-    StoriesPromoBlock,
     StoriesStory,
     StoriesStoryStats,
     StoriesViewersItem,
@@ -14,154 +13,118 @@ from vkbottle_types.objects import (
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class GetBannedExtendedResponse(BaseResponse):
-    response: "GetBannedExtendedResponseModel"
+class StoriesGetBannedExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List[int] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
 
 
-class GetBannedResponse(BaseResponse):
-    response: "GetBannedResponseModel"
+class StoriesGetBannedExtendedResponse(BaseResponse):
+    response: "StoriesGetBannedExtendedResponseModel" = Field()
 
 
-class GetByIdExtendedResponse(BaseResponse):
-    response: "GetByIdExtendedResponseModel"
+class StoriesGetBannedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List[int] = Field()
 
 
-class GetPhotoUploadServerResponse(BaseResponse):
-    response: "GetPhotoUploadServerResponseModel"
+class StoriesGetBannedResponse(BaseResponse):
+    response: "StoriesGetBannedResponseModel" = Field()
 
 
-class GetStatsResponse(BaseResponse):
-    response: StoriesStoryStats
+class StoriesGetByIdExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["StoriesStory"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
 
 
-class GetVideoUploadServerResponse(BaseResponse):
-    response: "GetVideoUploadServerResponseModel"
+class StoriesGetByIdExtendedResponse(BaseResponse):
+    response: "StoriesGetByIdExtendedResponseModel" = Field()
 
 
-class GetViewersExtendedV5115Response(BaseResponse):
-    response: "GetViewersExtendedV5115ResponseModel"
+class StoriesGetPhotoUploadServerResponseModel(BaseModel):
+    upload_url: str = Field()
+    user_ids: typing.List[int] = Field()
 
 
-class GetViewersExtendedResponse(BaseResponse):
-    response: "GetViewersExtendedResponseModel"
+class StoriesGetPhotoUploadServerResponse(BaseResponse):
+    response: "StoriesGetPhotoUploadServerResponseModel" = Field()
 
 
-class GetV5113Response(BaseResponse):
-    response: "GetV5113ResponseModel"
+class StoriesGetStatsResponse(BaseResponse):
+    response: "StoriesStoryStats" = Field()
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class StoriesGetVideoUploadServerResponseModel(BaseModel):
+    upload_url: str = Field()
+    user_ids: typing.List[int] = Field()
 
 
-class SaveResponse(BaseResponse):
-    response: "SaveResponseModel"
+class StoriesGetVideoUploadServerResponse(BaseResponse):
+    response: "StoriesGetVideoUploadServerResponseModel" = Field()
 
 
-class UploadResponse(BaseResponse):
-    response: "UploadResponseModel"
+class StoriesGetViewersExtendedV5115ResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["StoriesViewersItem"] = Field()
+    hidden_reason: typing.Optional[str] = Field(
+        default=None,
+    )
+    next_from: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class GetBannedExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List[int]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+class StoriesGetViewersExtendedV5115Response(BaseResponse):
+    response: "StoriesGetViewersExtendedV5115ResponseModel" = Field()
 
 
-class GetBannedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List[int]] = None
+class StoriesGetV5113ResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["StoriesFeedItem"] = Field()
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
+    need_upload_screen: typing.Optional[bool] = Field(
+        default=None,
+    )
+    track_code: typing.Optional[str] = Field(
+        default=None,
+    )
+    next_from: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class GetByIdExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["StoriesStory"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+class StoriesGetV5113Response(BaseResponse):
+    response: "StoriesGetV5113ResponseModel" = Field()
 
 
-class GetPhotoUploadServerResponseModel(BaseResponse):
-    upload_url: typing.Optional[str] = None
-    user_ids: typing.Optional[typing.List[int]] = None
+class StoriesSaveResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["StoriesStory"] = Field()
+    profiles: typing.Optional[typing.List["UsersUser"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
 
 
-class GetVideoUploadServerResponseModel(BaseResponse):
-    upload_url: typing.Optional[str] = None
-    user_ids: typing.Optional[typing.List[int]] = None
+class StoriesSaveResponse(BaseResponse):
+    response: "StoriesSaveResponseModel" = Field()
 
 
-class GetViewersExtendedV5115ResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["StoriesViewersItem"]] = None
-    hidden_reason: typing.Optional[str] = None
-    next_from: typing.Optional[str] = None
+class StoriesUploadResponseModel(BaseModel):
+    upload_result: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class GetViewersExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["UsersUserFull"]] = None
-
-
-class GetV5113ResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["StoriesFeedItem"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
-    need_upload_screen: typing.Optional[bool] = None
-
-
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["list"]] = None
-    promo_data: typing.Optional["StoriesPromoBlock"] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
-    need_upload_screen: typing.Optional[bool] = None
-
-
-class SaveResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["StoriesStory"]] = None
-    profiles: typing.Optional[typing.List["UsersUser"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
-
-
-class UploadResponseModel(BaseResponse):
-    upload_result: typing.Optional[str] = None
-
-
-__all__ = (
-    "GetBannedExtendedResponse",
-    "GetBannedExtendedResponseModel",
-    "GetBannedResponse",
-    "GetBannedResponseModel",
-    "GetByIdExtendedResponse",
-    "GetByIdExtendedResponseModel",
-    "GetPhotoUploadServerResponse",
-    "GetPhotoUploadServerResponseModel",
-    "GetResponse",
-    "GetResponseModel",
-    "GetStatsResponse",
-    "GetV5113Response",
-    "GetV5113ResponseModel",
-    "GetVideoUploadServerResponse",
-    "GetVideoUploadServerResponseModel",
-    "GetViewersExtendedResponse",
-    "GetViewersExtendedResponseModel",
-    "GetViewersExtendedV5115Response",
-    "GetViewersExtendedV5115ResponseModel",
-    "GroupsGroup",
-    "GroupsGroupFull",
-    "SaveResponse",
-    "SaveResponseModel",
-    "StoriesFeedItem",
-    "StoriesPromoBlock",
-    "StoriesStory",
-    "StoriesStoryStats",
-    "StoriesViewersItem",
-    "UploadResponse",
-    "UploadResponseModel",
-    "UsersUser",
-    "UsersUserFull",
-)
+class StoriesUploadResponse(BaseResponse):
+    response: "StoriesUploadResponseModel" = Field()

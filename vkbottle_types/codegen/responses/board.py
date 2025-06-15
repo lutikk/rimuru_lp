@@ -1,89 +1,75 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
-    BaseBoolInt,
     BoardDefaultOrder,
     BoardTopic,
     BoardTopicComment,
     GroupsGroupFull,
-    PollsPoll,
     UsersUserFull,
 )
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AddTopicResponse(BaseResponse):
-    response: int
+class BoardAddTopicResponse(BaseResponse):
+    response: int = Field()
 
 
-class CreateCommentResponse(BaseResponse):
-    response: int
+class BoardCreateCommentResponse(BaseResponse):
+    response: int = Field()
 
 
-class GetCommentsExtendedResponse(BaseResponse):
-    response: "GetCommentsExtendedResponseModel"
+class BoardGetCommentsExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["BoardTopicComment"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
+    poll: typing.Optional[dict] = Field(
+        default=None,
+    )
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel"
+class BoardGetCommentsExtendedResponse(BaseResponse):
+    response: "BoardGetCommentsExtendedResponseModel" = Field()
 
 
-class GetTopicsExtendedResponse(BaseResponse):
-    response: "GetTopicsExtendedResponseModel"
+class BoardGetCommentsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["BoardTopicComment"] = Field()
+    poll: typing.Optional[dict] = Field(
+        default=None,
+    )
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class GetTopicsResponse(BaseResponse):
-    response: "GetTopicsResponseModel"
+class BoardGetCommentsResponse(BaseResponse):
+    response: "BoardGetCommentsResponseModel" = Field()
 
 
-class GetCommentsExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["BoardTopicComment"]] = None
-    poll: typing.Optional[typing.Any] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-    real_offset: typing.Optional[int] = None
+class BoardGetTopicsExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["BoardTopic"] = Field()
+    default_order: "BoardDefaultOrder" = Field()
+    can_add_topics: bool = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
 
 
-class GetCommentsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["BoardTopicComment"]] = None
-    poll: typing.Optional[typing.Any] = None
-    real_offset: typing.Optional[int] = None
+class BoardGetTopicsExtendedResponse(BaseResponse):
+    response: "BoardGetTopicsExtendedResponseModel" = Field()
 
 
-class GetTopicsExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["BoardTopic"]] = None
-    default_order: typing.Optional["BoardDefaultOrder"] = None
-    can_add_topics: typing.Optional["BaseBoolInt"] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+class BoardGetTopicsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["BoardTopic"] = Field()
+    default_order: "BoardDefaultOrder" = Field()
+    can_add_topics: bool = Field()
 
 
-class GetTopicsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["BoardTopic"]] = None
-    default_order: typing.Optional["BoardDefaultOrder"] = None
-    can_add_topics: typing.Optional["BaseBoolInt"] = None
-
-
-__all__ = (
-    "AddTopicResponse",
-    "BaseBoolInt",
-    "BoardDefaultOrder",
-    "BoardTopic",
-    "BoardTopicComment",
-    "CreateCommentResponse",
-    "GetCommentsExtendedResponse",
-    "GetCommentsExtendedResponseModel",
-    "GetCommentsResponse",
-    "GetCommentsResponseModel",
-    "GetTopicsExtendedResponse",
-    "GetTopicsExtendedResponseModel",
-    "GetTopicsResponse",
-    "GetTopicsResponseModel",
-    "GroupsGroupFull",
-    "PollsPoll",
-    "UsersUserFull",
-)
+class BoardGetTopicsResponse(BaseResponse):
+    response: "BoardGetTopicsResponseModel" = Field()

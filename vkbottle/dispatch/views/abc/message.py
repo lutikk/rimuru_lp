@@ -9,17 +9,16 @@ if TYPE_CHECKING:
     from vkbottle.api.abc import ABCAPI
     from vkbottle.dispatch.dispenser.abc import ABCStateDispenser
     from vkbottle.dispatch.handlers import ABCHandler
-    from vkbottle.tools.dev.mini_types.base import BaseMessageMin
-
-DEFAULT_STATE_KEY = "peer_id"
-
+    from vkbottle.tools.mini_types.base import BaseMessageMin
 
 T_contra = TypeVar("T_contra", list, dict, contravariant=True)
 F_contra = TypeVar("F_contra", contravariant=True)
 
+DEFAULT_STATE_KEY = "peer_id"
+
 
 class ABCMessageView(ABCDispenseView[T_contra, F_contra], ABC, Generic[T_contra, F_contra]):
-    handlers: List["ABCHandler"]
+    handlers: List["ABCHandler[F_contra]"]
     state_source_key: str
     default_text_approximators: List[Callable[["BaseMessageMin"], str]]
     replace_mention = False
@@ -54,7 +53,7 @@ class ABCMessageView(ABCDispenseView[T_contra, F_contra], ABC, Generic[T_contra,
 
         mw_instances = await self.pre_middleware(message, context_variables)
         if mw_instances is None:
-            logger.info("Handling stopped, pre_middleware returned error")
+            logger.debug("Handling stopped, pre_middleware returned error")
             return
 
         handle_responses = []

@@ -1,63 +1,34 @@
 import typing
 
-from vkbottle_types.objects import (
-    BaseBoolInt,
-    OrdersAmount,
-    OrdersOrder,
-    OrdersSubscription,
-)
+from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.objects import OrdersAmount, OrdersOrder, OrdersSubscription
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class CancelSubscriptionResponse(BaseResponse):
-    response: BaseBoolInt
+class OrdersChangeStateResponse(BaseResponse):
+    response: str = Field()
 
 
-class ChangeStateResponse(BaseResponse):
-    response: str
+class OrdersGetAmountResponse(BaseResponse):
+    response: typing.List["OrdersAmount"] = Field()
 
 
-class GetAmountResponse(BaseResponse):
-    response: typing.List["OrdersAmount"]
+class OrdersGetByIdResponse(BaseResponse):
+    response: typing.List["OrdersOrder"] = Field()
 
 
-class GetByIdResponse(BaseResponse):
-    response: typing.List["OrdersOrder"]
+class OrdersGetUserSubscriptionByIdResponse(BaseResponse):
+    response: "OrdersSubscription" = Field()
 
 
-class GetUserSubscriptionByIdResponse(BaseResponse):
-    response: OrdersSubscription
+class OrdersGetUserSubscriptionsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["OrdersSubscription"] = Field()
 
 
-class GetUserSubscriptionsResponse(BaseResponse):
-    response: "GetUserSubscriptionsResponseModel"
+class OrdersGetUserSubscriptionsResponse(BaseResponse):
+    response: "OrdersGetUserSubscriptionsResponseModel" = Field()
 
 
-class GetResponse(BaseResponse):
-    response: typing.List["OrdersOrder"]
-
-
-class UpdateSubscriptionResponse(BaseResponse):
-    response: BaseBoolInt
-
-
-class GetUserSubscriptionsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["OrdersSubscription"]] = None
-
-
-__all__ = (
-    "BaseBoolInt",
-    "CancelSubscriptionResponse",
-    "ChangeStateResponse",
-    "GetAmountResponse",
-    "GetByIdResponse",
-    "GetResponse",
-    "GetUserSubscriptionByIdResponse",
-    "GetUserSubscriptionsResponse",
-    "GetUserSubscriptionsResponseModel",
-    "OrdersAmount",
-    "OrdersOrder",
-    "OrdersSubscription",
-    "UpdateSubscriptionResponse",
-)
+class OrdersGetResponse(BaseResponse):
+    response: typing.List["OrdersOrder"] = Field()

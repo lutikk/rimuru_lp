@@ -1,162 +1,198 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     GroupsGroupFull,
+    NewsfeedCommentsItem,
     NewsfeedList,
     NewsfeedListFull,
     NewsfeedNewsfeedItem,
     UsersSubscriptionsItem,
     UsersUserFull,
     WallWallpostFull,
-    WallWallpostToId,
 )
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class GenericResponse(BaseResponse):
-    response: "GenericResponseModel"
+class NewsfeedGenericResponseModel(BaseModel):
+    items: typing.List["NewsfeedNewsfeedItem"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
+    lives_items: typing.Optional[typing.List["NewsfeedNewsfeedItem"]] = Field(
+        default=None,
+    )
 
 
-class GetBannedExtendedResponse(BaseResponse):
-    response: "GetBannedExtendedResponseModel"
+class NewsfeedGenericResponse(BaseResponse):
+    response: "NewsfeedGenericResponseModel" = Field()
 
 
-class GetBannedResponse(BaseResponse):
-    response: "GetBannedResponseModel"
+class NewsfeedGetBannedExtendedResponseModel(BaseModel):
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
 
 
-class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel"
+class NewsfeedGetBannedExtendedResponse(BaseResponse):
+    response: "NewsfeedGetBannedExtendedResponseModel" = Field()
 
 
-class GetListsExtendedResponse(BaseResponse):
-    response: "GetListsExtendedResponseModel"
+class NewsfeedGetBannedResponseModel(BaseModel):
+    groups: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    members: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
 
 
-class GetListsResponse(BaseResponse):
-    response: "GetListsResponseModel"
+class NewsfeedGetBannedResponse(BaseResponse):
+    response: "NewsfeedGetBannedResponseModel" = Field()
 
 
-class GetMentionsResponse(BaseResponse):
-    response: "GetMentionsResponseModel"
+class NewsfeedGetCommentsResponseModel(BaseModel):
+    items: typing.List["NewsfeedCommentsItem"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
+    next_from: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class GetSuggestedSourcesResponse(BaseResponse):
-    response: "GetSuggestedSourcesResponseModel"
+class NewsfeedGetCommentsResponse(BaseResponse):
+    response: "NewsfeedGetCommentsResponseModel" = Field()
 
 
-class IgnoreItemResponse(BaseResponse):
-    response: "IgnoreItemResponseModel"
+class NewsfeedGetListsExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["NewsfeedListFull"] = Field()
 
 
-class SaveListResponse(BaseResponse):
-    response: int
+class NewsfeedGetListsExtendedResponse(BaseResponse):
+    response: "NewsfeedGetListsExtendedResponseModel" = Field()
 
 
-class SearchExtendedResponse(BaseResponse):
-    response: "SearchExtendedResponseModel"
+class NewsfeedGetListsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["NewsfeedList"] = Field()
 
 
-class SearchResponse(BaseResponse):
-    response: "SearchResponseModel"
+class NewsfeedGetListsResponse(BaseResponse):
+    response: "NewsfeedGetListsResponseModel" = Field()
 
 
-class GenericResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["NewsfeedNewsfeedItem"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-    new_returned_news_items_count: typing.Optional[int] = None
+class NewsfeedGetMentionsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallpostFull"] = Field()
 
 
-class GetBannedExtendedResponseModel(BaseResponse):
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+class NewsfeedGetMentionsResponse(BaseResponse):
+    response: "NewsfeedGetMentionsResponseModel" = Field()
 
 
-class GetBannedResponseModel(BaseResponse):
-    groups: typing.Optional[typing.List[int]] = None
-    members: typing.Optional[typing.List[int]] = None
+class NewsfeedGetSuggestedSourcesResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["UsersSubscriptionsItem"] = Field()
 
 
-class GetCommentsResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["NewsfeedNewsfeedItem"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-    next_from: typing.Optional[str] = None
+class NewsfeedGetSuggestedSourcesResponse(BaseResponse):
+    response: "NewsfeedGetSuggestedSourcesResponseModel" = Field()
 
 
-class GetListsExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["NewsfeedListFull"]] = None
+class NewsfeedIgnoreItemResponseModel(BaseModel):
+    status: bool = Field(default=1)
 
 
-class GetListsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["NewsfeedList"]] = None
+class NewsfeedIgnoreItemResponse(BaseResponse):
+    response: "NewsfeedIgnoreItemResponseModel" = Field()
 
 
-class GetMentionsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallpostToId"]] = None
+class NewsfeedSaveListResponse(BaseResponse):
+    response: int = Field()
 
 
-class GetSuggestedSourcesResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["UsersSubscriptionsItem"]] = None
+class NewsfeedSearchExtendedResponseModel(BaseModel):
+    items: typing.List["WallWallpostFull"] = Field()
+    count: int = Field()
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
+    suggested_queries: typing.Optional[typing.List[str]] = Field(
+        default=None,
+    )
+    next_from: typing.Optional[str] = Field(
+        default=None,
+    )
+    total_count: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class IgnoreItemResponseModel(BaseResponse):
-    status: typing.Optional[bool] = None
+class NewsfeedSearchExtendedResponse(BaseResponse):
+    response: "NewsfeedSearchExtendedResponseModel" = Field()
 
 
-class SearchExtendedResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["WallWallpostFull"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-    suggested_queries: typing.Optional[typing.List[str]] = None
-    next_from: typing.Optional[str] = None
-    count: typing.Optional[int] = None
-    total_count: typing.Optional[int] = None
+class NewsfeedSearchExtendedStrictResponseModel(BaseModel):
+    items: typing.List["WallWallpostFull"] = Field()
+    count: int = Field()
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
+    suggested_queries: typing.Optional[typing.List[str]] = Field(
+        default=None,
+    )
+    next_from: typing.Optional[str] = Field(
+        default=None,
+    )
+    total_count: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class SearchResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["WallWallpostFull"]] = None
-    suggested_queries: typing.Optional[typing.List[str]] = None
-    next_from: typing.Optional[str] = None
-    count: typing.Optional[int] = None
-    total_count: typing.Optional[int] = None
+class NewsfeedSearchExtendedStrictResponse(BaseResponse):
+    response: "NewsfeedSearchExtendedStrictResponseModel" = Field()
 
 
-__all__ = (
-    "GenericResponse",
-    "GenericResponseModel",
-    "GetBannedExtendedResponse",
-    "GetBannedExtendedResponseModel",
-    "GetBannedResponse",
-    "GetBannedResponseModel",
-    "GetCommentsResponse",
-    "GetCommentsResponseModel",
-    "GetListsExtendedResponse",
-    "GetListsExtendedResponseModel",
-    "GetListsResponse",
-    "GetListsResponseModel",
-    "GetMentionsResponse",
-    "GetMentionsResponseModel",
-    "GetSuggestedSourcesResponse",
-    "GetSuggestedSourcesResponseModel",
-    "GroupsGroupFull",
-    "IgnoreItemResponse",
-    "IgnoreItemResponseModel",
-    "NewsfeedList",
-    "NewsfeedListFull",
-    "NewsfeedNewsfeedItem",
-    "SaveListResponse",
-    "SearchExtendedResponse",
-    "SearchExtendedResponseModel",
-    "SearchResponse",
-    "SearchResponseModel",
-    "UsersSubscriptionsItem",
-    "UsersUserFull",
-    "WallWallpostFull",
-    "WallWallpostToId",
-)
+class NewsfeedSearchResponseModel(BaseModel):
+    items: typing.List["WallWallpostFull"] = Field()
+    count: int = Field()
+    suggested_queries: typing.Optional[typing.List[str]] = Field(
+        default=None,
+    )
+    next_from: typing.Optional[str] = Field(
+        default=None,
+    )
+    total_count: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
+class NewsfeedSearchResponse(BaseResponse):
+    response: "NewsfeedSearchResponseModel" = Field()
+
+
+class NewsfeedSearchStrictResponseModel(BaseModel):
+    items: typing.List["WallWallpostFull"] = Field()
+    count: int = Field()
+    suggested_queries: typing.Optional[typing.List[str]] = Field(
+        default=None,
+    )
+    next_from: typing.Optional[str] = Field(
+        default=None,
+    )
+    total_count: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
+class NewsfeedSearchStrictResponse(BaseResponse):
+    response: "NewsfeedSearchStrictResponseModel" = Field()

@@ -2,6 +2,8 @@ from random import choice
 from string import ascii_lowercase
 from typing import TYPE_CHECKING, Any, Dict, List, Optional
 
+from typing_extensions import Self
+
 from vkbottle.exception_factory import ErrorHandler
 from vkbottle.modules import logger
 
@@ -23,13 +25,13 @@ class BotCallback(ABCCallback):
         api: Optional["ABCAPI"] = None,
         group_id: Optional[int] = None,
         error_handler: Optional["ABCErrorHandler"] = None,
-    ):
+    ) -> None:
         self.url = url
         self.title = title
         self.secret_key = secret_key or self._generate_secret_key()
         self._api = api
         self.group_id = group_id
-        self.error_handler = error_handler or ErrorHandler()
+        self.error_handler = error_handler or ErrorHandler()  # type: ignore
 
     def get_secret_key(self) -> str:
         return self.secret_key
@@ -39,7 +41,9 @@ class BotCallback(ABCCallback):
 
     async def setup_group_id(self):
         if self.group_id is None:
-            self.group_id = (await self.api.request("groups.getById", {}))["response"][0]["id"]
+            self.group_id = (await self.api.request("groups.getById", {}))["response"]["groups"][
+                0
+            ]["id"]
 
     async def find_server_id(self) -> Optional[int]:
         servers = await self.get_callback_servers()
@@ -57,13 +61,13 @@ class BotCallback(ABCCallback):
         }
         return (await self.api.request("groups.addCallbackServer", data))["response"]["server_id"]
 
-    async def delete_callback_server(self, server_id: int):
+    async def delete_callback_server(self, server_id: int) -> None:
         logger.debug("Delete callback server...")
         await self.api.request(
             "groups.deleteCallbackServer", {"group_id": self.group_id, "server_id": server_id}
         )
 
-    async def edit_callback_server(self, server_id: int, secret_key: Optional[str] = None):
+    async def edit_callback_server(self, server_id: int, secret_key: Optional[str] = None) -> None:
         logger.debug("Editing callback server...")
         data = {
             "group_id": self.group_id,
@@ -89,7 +93,8 @@ class BotCallback(ABCCallback):
         )["response"]["code"]
 
     async def get_callback_servers(
-        self, servers_ids: Optional[List[int]] = None
+        self,
+        servers_ids: Optional[List[int]] = None,
     ) -> List[Dict[str, Any]]:
         logger.debug("Getting callback servers...")
         data: Dict[str, Any] = {"group_id": self.group_id}
@@ -106,21 +111,26 @@ class BotCallback(ABCCallback):
         )["response"]["events"]
 
     async def set_callback_settings(
-        self, server_id: int, params: Optional[Dict[str, bool]] = None
-    ):
+        self,
+        server_id: int,
+        params: Optional[Dict[str, bool]] = None,
+    ) -> None:
         """Search values in https://dev.vk.com/method/groups.getCallbackSettings"""
+
         logger.debug("Setting callback settings...")
 
         data = {"group_id": self.group_id, "server_id": server_id}
 
         if params is not None:
             for k, v in params.items():
-                data[k] = v
+                data[k] = v  # noqa: PERF403
         await self.api.request("groups.setCallbackSettings", data)
 
     def construct(
-        self, api: "ABCAPI", error_handler: Optional["ABCErrorHandler"] = None
-    ) -> "BotCallback":
+        self,
+        api: "ABCAPI",
+        error_handler: Optional["ABCErrorHandler"] = None,
+    ) -> Self:
         self._api = api
         if error_handler is not None:
             self.error_handler = error_handler
@@ -129,11 +139,10 @@ class BotCallback(ABCCallback):
     @property
     def api(self) -> "ABCAPI":
         if self._api is None:
-            raise NotImplementedError(
-                "You must construct callback with API before try to access api property of Callback"
-            )
+            msg = "You must construct callback with API before try to access api property of Callback"
+            raise NotImplementedError(msg)
         return self._api
 
     @api.setter
-    def api(self, new_api: "ABCAPI"):
+    def api(self, new_api: "ABCAPI") -> None:
         self._api = new_api

@@ -1,8 +1,12 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.base import OkResponse
-from vkbottle_types.responses.storage import GetKeysResponse, GetResponse, StorageValue
+from vkbottle_types.objects import StorageValue
+from vkbottle_types.responses.base import (
+    BaseOkResponse,
+    BaseOkResponseModel,
+)
+from vkbottle_types.responses.storage import *  # noqa: F401,F403  # type: ignore
 
 
 class StorageCategory(BaseCategory):
@@ -11,9 +15,9 @@ class StorageCategory(BaseCategory):
         key: typing.Optional[str] = None,
         keys: typing.Optional[typing.List[str]] = None,
         user_id: typing.Optional[int] = None,
-        **kwargs
+        **kwargs: typing.Any,
     ) -> typing.List[StorageValue]:
-        """Returns a value of variable with the name set by key parameter.
+        """Method `storage.get()`
 
         :param key:
         :param keys:
@@ -22,45 +26,45 @@ class StorageCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("storage.get", params)
-        model = GetResponse
+        model = StorageGetResponse
         return model(**response).response
 
     async def get_keys(
         self,
-        user_id: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        **kwargs
+        offset: typing.Optional[int] = None,
+        user_id: typing.Optional[int] = None,
+        **kwargs: typing.Any,
     ) -> typing.List[str]:
-        """Returns the names of all variables.
+        """Method `storage.getKeys()`
 
-        :param user_id: user id, whose variables names are returned if they were requested with a server method.
-        :param offset:
         :param count: amount of variable names the info needs to be collected from.
+        :param offset:
+        :param user_id: user id, whose variables names are returned if they were requested with a server method.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("storage.getKeys", params)
-        model = GetKeysResponse
+        model = StorageGetKeysResponse
         return model(**response).response
 
     async def set(
         self,
         key: str,
-        value: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
-        **kwargs
-    ) -> int:
-        """Saves a value of variable with the name set by 'key' parameter.
+        value: typing.Optional[str] = None,
+        **kwargs: typing.Any,
+    ) -> BaseOkResponseModel:
+        """Method `storage.set()`
 
         :param key:
-        :param value:
         :param user_id:
+        :param value:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("storage.set", params)
-        model = OkResponse
+        model = BaseOkResponse
         return model(**response).response
 
 

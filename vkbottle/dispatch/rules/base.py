@@ -1,17 +1,16 @@
+import difflib
 import inspect
 import re
 import types
+from collections.abc import Awaitable, Coroutine, Iterable
+from re import Pattern
 from typing import (
     TYPE_CHECKING,
     Any,
-    Awaitable,
     Callable,
-    Coroutine,
     Dict,
-    Iterable,
     List,
     Optional,
-    Pattern,
     Tuple,
     Type,
     Union,
@@ -20,7 +19,7 @@ from typing import (
 import vbml
 
 from vkbottle.dispatch.dispenser import get_state_repr
-from vkbottle.tools.dev.mini_types.base import BaseMessageMin
+from vkbottle.tools.mini_types.base import BaseMessageMin
 from vkbottle.tools.validator import (
     ABCValidator,
     CallableValidator,
@@ -54,8 +53,17 @@ class MentionRule(ABCRule[BaseMessageMin]):
     async def check(self, event: BaseMessageMin) -> bool:
         if self.mention_only:
             return event.is_mentioned and not event.text
-        else:
-            return event.is_mentioned
+        return event.is_mentioned
+
+
+class TextRule(ABCRule[BaseMessageMin]):
+    def __init__(self, texts: Union[str, List[str]], *, ignore_case: bool = False) -> None:
+        texts = texts if isinstance(texts, list) else [texts]
+        self.texts = texts if not ignore_case else list(map(str.lower, texts))
+        self.ignore_case = ignore_case
+
+    async def check(self, event: BaseMessageMin) -> bool:
+        return (event.text if not self.ignore_case else event.text.lower()) in self.texts
 
 
 class CommandRule(ABCRule[BaseMessageMin]):
@@ -182,8 +190,11 @@ class ForwardMessagesRule(ABCRule[BaseMessageMin]):
 
 
 class ReplyMessageRule(ABCRule[BaseMessageMin]):
+    def __init__(self, reply_message: bool = True):
+        self.reply_message = reply_message
+
     async def check(self, event: BaseMessageMin) -> bool:
-        return bool(event.reply_message)
+        return self.reply_message is bool(event.reply_message)
 
 
 class GeoRule(ABCRule[BaseMessageMin]):
@@ -224,6 +235,20 @@ class LevenshteinRule(ABCRule[BaseMessageMin]):
         return any(
             self.distance(event.text, levenshtein_text) <= self.max_distance
             for levenshtein_text in self.levenshtein_texts
+        )
+
+
+class FuzzyTextRule(ABCRule[BaseMessageMin]):
+    def __init__(self, texts: Union[List[str], str], min_ratio: float = 0.7) -> None:
+        if isinstance(texts, str):
+            texts = [texts]
+        self.texts = texts
+        self.min_ratio = min_ratio
+
+    async def check(self, event: BaseMessageMin) -> bool:
+        return any(
+            difflib.SequenceMatcher(None, event.text, text).ratio() >= self.min_ratio
+            for text in self.texts
         )
 
 
@@ -280,7 +305,7 @@ class PayloadMapRule(ABCRule[BaseMessageMin]):
     def transform_to_map(cls, payload_map_dict: PayloadMapDict) -> PayloadMap:
         """Transforms PayloadMapDict to PayloadMap"""
         payload_map = []
-        for (k, v) in payload_map_dict.items():
+        for k, v in payload_map_dict.items():
             if isinstance(v, dict):
                 v = cls.transform_to_map(v)  # type: ignore
             payload_map.append((k, v))
@@ -304,7 +329,7 @@ class PayloadMapRule(ABCRule[BaseMessageMin]):
     @classmethod
     async def match(cls, payload: dict, payload_map: PayloadMapStrict) -> bool:
         """Matches payload with payload_map recursively"""
-        for (k, validator) in payload_map:  # noqa: SIM111
+        for k, validator in payload_map:
             if k not in payload:
                 return False
             elif isinstance(validator, list):
@@ -391,7 +416,8 @@ except ImportError:
 class MacroRule(ABCRule[BaseMessageMin]):
     def __init__(self, pattern: Union[str, List[str]]):
         if macro is None:  # type: ignore
-            raise RuntimeError("macro must be installed to use MacroRule")
+            msg = "macro must be installed to use MacroRule"
+            raise RuntimeError(msg)
 
         if isinstance(pattern, str):
             pattern = [pattern]
@@ -405,6 +431,11 @@ class MacroRule(ABCRule[BaseMessageMin]):
         return False
 
 
+class IsAdminRule(ABCRule[BaseMessageMin]):
+    async def check(self, event: BaseMessageMin) -> bool:
+        return event.peer_id != event.from_id and await event.user_is_admin(event.from_id)
+
+
 __all__ = (
     "AttachmentTypeRule",
     "ChatActionRule",
@@ -413,6 +444,8 @@ __all__ = (
     "FromPeerRule",
     "FromUserRule",
     "FuncRule",
+    "IsAdminRule",
+    "TextRule",
     "LevenshteinRule",
     "MacroRule",
     "MentionRule",
@@ -426,4 +459,5 @@ __all__ = (
     "StateRule",
     "StickerRule",
     "VBMLRule",
+    "FuzzyTextRule",
 )

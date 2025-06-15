@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Any, NoReturn, Union
+from typing import TYPE_CHECKING, Any, Union
 
 from vkbottle.exception_factory import CaptchaError, VKAPIError
 from vkbottle.modules import logger
@@ -11,16 +11,16 @@ if TYPE_CHECKING:
 
 class VKAPIErrorResponseValidator(ABCResponseValidator):
     """Default vk api error response validator
-    Documentation: https://github.com/vkbottle/vkbottle/blob/master/docs/low-level/api/response-validator.md
+    Documentation: https://vkbottle.rtfd.io/ru/latest/low-level/api/response-validator
     """
 
-    async def validate(  # noqa: CCR001
+    async def validate(
         self,
         method: str,
         data: dict,
         response: Any,
         ctx_api: Union["ABCAPI", "API"],
-    ) -> Union[Any, NoReturn]:
+    ) -> Any:
         if "error" not in response:
             if "response" not in response:
                 request_params = [{"key": key, "value": value} for key, value in data.items()]
@@ -28,10 +28,12 @@ class VKAPIErrorResponseValidator(ABCResponseValidator):
                     error_msg=f"Unknown response from {method}: {response}",
                     request_params=request_params,
                 )
+
             if isinstance(response["response"], list) and any(
-                "error" in item for item in response["response"]
+                "error" in item for item in response["response"] if isinstance(item, dict)
             ):
-                logger.info("API error(s) in response wasn't handled: {}", response["response"])
+                logger.info("API error(s) in response wasn't handled: {!r}", response["response"])
+
             return response
 
         if ctx_api.ignore_errors:
@@ -39,10 +41,11 @@ class VKAPIErrorResponseValidator(ABCResponseValidator):
         error = response["error"]
         code = error.pop("error_code")
 
-        if VKAPIError[code] is CaptchaError and ctx_api.captcha_handler:
+        if VKAPIError[code] is CaptchaError and ctx_api.captcha_handler is not None:
             key = await ctx_api.captcha_handler(CaptchaError(**error))  # type: ignore
             return await ctx_api.request(
-                method, {**data, "captcha_sid": error["captcha_sid"], "captcha_key": key}
+                method,
+                data={**data, "captcha_sid": error["captcha_sid"], "captcha_key": key},
             )
 
         raise VKAPIError[code](**error)

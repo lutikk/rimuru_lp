@@ -1,65 +1,52 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import PrettyCardsPrettyCard, PrettyCardsPrettyCardOrError
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class CreateResponse(BaseResponse):
-    response: "CreateResponseModel"
+class PrettyCardsCreateResponseModel(BaseModel):
+    owner_id: int = Field()
+    card_id: str = Field()
 
 
-class DeleteResponse(BaseResponse):
-    response: "DeleteResponseModel"
+class PrettyCardsCreateResponse(BaseResponse):
+    response: "PrettyCardsCreateResponseModel" = Field()
 
 
-class EditResponse(BaseResponse):
-    response: "EditResponseModel"
+class PrettyCardsDeleteResponseModel(BaseModel):
+    owner_id: int = Field()
+    card_id: str = Field()
+    error: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class GetByIdResponse(BaseResponse):
-    response: typing.List["PrettyCardsPrettyCardOrError"]
+class PrettyCardsDeleteResponse(BaseResponse):
+    response: "PrettyCardsDeleteResponseModel" = Field()
 
 
-class GetUploadURLResponse(BaseResponse):
-    response: str
+class PrettyCardsEditResponseModel(BaseModel):
+    owner_id: int = Field()
+    card_id: str = Field()
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class PrettyCardsEditResponse(BaseResponse):
+    response: "PrettyCardsEditResponseModel" = Field()
 
 
-class CreateResponseModel(BaseResponse):
-    owner_id: typing.Optional[int] = None
-    card_id: typing.Optional[str] = None
+class PrettyCardsGetByIdResponse(BaseResponse):
+    response: typing.List["PrettyCardsPrettyCardOrError"] = Field()
 
 
-class DeleteResponseModel(BaseResponse):
-    owner_id: typing.Optional[int] = None
-    card_id: typing.Optional[str] = None
-    error: typing.Optional[str] = None
+class PrettyCardsGetUploadURLResponse(BaseResponse):
+    response: str = Field()
 
 
-class EditResponseModel(BaseResponse):
-    owner_id: typing.Optional[int] = None
-    card_id: typing.Optional[str] = None
+class PrettyCardsGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PrettyCardsPrettyCard"] = Field()
 
 
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PrettyCardsPrettyCard"]] = None
-
-
-__all__ = (
-    "CreateResponse",
-    "CreateResponseModel",
-    "DeleteResponse",
-    "DeleteResponseModel",
-    "EditResponse",
-    "EditResponseModel",
-    "GetByIdResponse",
-    "GetResponse",
-    "GetResponseModel",
-    "GetUploadURLResponse",
-    "PrettyCardsPrettyCard",
-    "PrettyCardsPrettyCardOrError",
-)
+class PrettyCardsGetResponse(BaseResponse):
+    response: "PrettyCardsGetResponseModel" = Field()

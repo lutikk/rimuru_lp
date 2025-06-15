@@ -1,54 +1,53 @@
 import typing
 
-from typing_extensions import Literal
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.base import OkResponse
-from vkbottle_types.responses.stats import (
-    GetPostReachResponse,
-    GetResponse,
-    StatsPeriod,
-    StatsWallpostStat,
+from vkbottle_types.objects import StatsPeriod, StatsWallpostStat
+from vkbottle_types.responses.base import (
+    BaseOkResponse,
+    BaseOkResponseModel,
 )
+from vkbottle_types.responses.stats import *  # noqa: F401,F403  # type: ignore
 
 
 class StatsCategory(BaseCategory):
     async def get(
         self,
-        group_id: typing.Optional[int] = None,
         app_id: typing.Optional[int] = None,
-        timestamp_from: typing.Optional[int] = None,
-        timestamp_to: typing.Optional[int] = None,
-        interval: typing.Optional[
-            Literal["all", "day", "month", "week", "year"]
-        ] = None,
-        intervals_count: typing.Optional[int] = None,
-        filters: typing.Optional[typing.List[str]] = None,
-        stats_groups: typing.Optional[typing.List[str]] = None,
         extended: typing.Optional[bool] = None,
-        **kwargs
+        filters: typing.Optional[typing.List[str]] = None,
+        group_id: typing.Optional[int] = None,
+        interval: typing.Optional[str] = None,
+        intervals_count: typing.Optional[int] = None,
+        stats_groups: typing.Optional[typing.List[str]] = None,
+        timestamp_from: typing.Optional[float] = None,
+        timestamp_to: typing.Optional[float] = None,
+        **kwargs: typing.Any,
     ) -> typing.List[StatsPeriod]:
-        """Returns statistics of a community or an application.
+        """Method `stats.get()`
 
-        :param group_id: Community ID.
         :param app_id: Application ID.
-        :param timestamp_from:
-        :param timestamp_to:
+        :param extended:
+        :param filters:
+        :param group_id: Community ID.
         :param interval:
         :param intervals_count:
-        :param filters:
         :param stats_groups:
-        :param extended:
+        :param timestamp_from:
+        :param timestamp_to:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("stats.get", params)
-        model = GetResponse
+        model = StatsGetResponse
         return model(**response).response
 
     async def get_post_reach(
-        self, owner_id: str, post_ids: typing.List[int], **kwargs
+        self,
+        owner_id: int,
+        post_ids: typing.List[int],
+        **kwargs: typing.Any,
     ) -> typing.List[StatsWallpostStat]:
-        """Returns stats for a wall post.
+        """Method `stats.getPostReach()`
 
         :param owner_id: post owner community id. Specify with "-" sign.
         :param post_ids: wall posts id
@@ -56,15 +55,22 @@ class StatsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("stats.getPostReach", params)
-        model = GetPostReachResponse
+        model = StatsGetPostReachResponse
         return model(**response).response
 
-    async def track_visitor(self, **kwargs) -> int:
-        """stats.trackVisitor method"""
+    async def track_visitor(
+        self,
+        type: typing.Optional[str] = None,
+        **kwargs: typing.Any,
+    ) -> BaseOkResponseModel:
+        """Method `stats.trackVisitor()`
+
+        :param type:
+        """
 
         params = self.get_set_params(locals())
         response = await self.api.request("stats.trackVisitor", params)
-        model = OkResponse
+        model = BaseOkResponse
         return model(**response).response
 
 

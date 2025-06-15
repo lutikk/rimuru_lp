@@ -1,55 +1,45 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import AppWidgetsPhoto, AppWidgetsPhotos
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class GetAppImageUploadServerResponse(BaseResponse):
-    response: "GetAppImageUploadServerResponseModel"
+class AppWidgetsGetAppImageUploadServerResponseModel(BaseModel):
+    upload_url: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class GetAppImagesResponse(BaseResponse):
-    response: AppWidgetsPhotos
+class AppWidgetsGetAppImageUploadServerResponse(BaseResponse):
+    response: "AppWidgetsGetAppImageUploadServerResponseModel" = Field()
 
 
-class GetGroupImageUploadServerResponse(BaseResponse):
-    response: "GetGroupImageUploadServerResponseModel"
+class AppWidgetsGetAppImagesResponse(BaseResponse):
+    response: "AppWidgetsPhotos" = Field()
 
 
-class GetGroupImagesResponse(BaseResponse):
-    response: AppWidgetsPhotos
+class AppWidgetsGetGroupImageUploadServerResponseModel(BaseModel):
+    upload_url: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class GetImagesByIdResponse(BaseResponse):
-    response: typing.List["AppWidgetsPhoto"]
+class AppWidgetsGetGroupImageUploadServerResponse(BaseResponse):
+    response: "AppWidgetsGetGroupImageUploadServerResponseModel" = Field()
 
 
-class SaveAppImageResponse(BaseResponse):
-    response: AppWidgetsPhoto
+class AppWidgetsGetGroupImagesResponse(BaseResponse):
+    response: "AppWidgetsPhotos" = Field()
 
 
-class SaveGroupImageResponse(BaseResponse):
-    response: AppWidgetsPhoto
+class AppWidgetsGetImagesByIdResponse(BaseResponse):
+    response: typing.List["AppWidgetsPhoto"] = Field()
 
 
-class GetAppImageUploadServerResponseModel(BaseResponse):
-    upload_url: typing.Optional[str] = None
+class AppWidgetsSaveAppImageResponse(BaseResponse):
+    response: "AppWidgetsPhoto" = Field()
 
 
-class GetGroupImageUploadServerResponseModel(BaseResponse):
-    upload_url: typing.Optional[str] = None
-
-
-__all__ = (
-    "AppWidgetsPhoto",
-    "AppWidgetsPhotos",
-    "GetAppImageUploadServerResponse",
-    "GetAppImageUploadServerResponseModel",
-    "GetAppImagesResponse",
-    "GetGroupImageUploadServerResponse",
-    "GetGroupImageUploadServerResponseModel",
-    "GetGroupImagesResponse",
-    "GetImagesByIdResponse",
-    "SaveAppImageResponse",
-    "SaveGroupImageResponse",
-)
+class AppWidgetsSaveGroupImageResponse(BaseResponse):
+    response: "AppWidgetsPhoto" = Field()

@@ -1,184 +1,282 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
-    BaseBoolInt,
-    GroupsGroup,
     GroupsGroupFull,
     UsersUser,
     UsersUserFull,
+    VideoLiveCategory,
     VideoSaveResult,
+    VideoStreamInputParams,
     VideoVideoAlbum,
     VideoVideoAlbumFull,
     VideoVideoFull,
+    VideoVideoImage,
     WallWallComment,
 )
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AddAlbumResponse(BaseResponse):
-    response: "AddAlbumResponseModel"
+class VideoAddAlbumResponseModel(BaseModel):
+    album_id: int = Field()
 
 
-class ChangeVideoAlbumsResponse(BaseResponse):
-    response: typing.List[int]
+class VideoAddAlbumResponse(BaseResponse):
+    response: "VideoAddAlbumResponseModel" = Field()
 
 
-class CreateCommentResponse(BaseResponse):
-    response: int
+class VideoChangeVideoAlbumsResponse(BaseResponse):
+    response: typing.List[int] = Field()
 
 
-class GetAlbumByIdResponse(BaseResponse):
-    response: VideoVideoAlbumFull
+class VideoCreateCommentResponse(BaseResponse):
+    response: int = Field()
 
 
-class GetAlbumsByVideoExtendedResponse(BaseResponse):
-    response: "GetAlbumsByVideoExtendedResponseModel"
+class VideoEditResponseModel(BaseModel):
+    success: bool = Field()
+    access_key: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class GetAlbumsByVideoResponse(BaseResponse):
-    response: typing.List[int]
+class VideoEditResponse(BaseResponse):
+    response: "VideoEditResponseModel" = Field()
 
 
-class GetAlbumsExtendedResponse(BaseResponse):
-    response: "GetAlbumsExtendedResponseModel"
+class VideoGetAlbumByIdResponse(BaseResponse):
+    response: "VideoVideoAlbumFull" = Field()
 
 
-class GetAlbumsResponse(BaseResponse):
-    response: "GetAlbumsResponseModel"
+class VideoGetAlbumsByVideoExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["VideoVideoAlbumFull"] = Field()
 
 
-class GetCommentsExtendedResponse(BaseResponse):
-    response: "GetCommentsExtendedResponseModel"
+class VideoGetAlbumsByVideoExtendedResponse(BaseResponse):
+    response: "VideoGetAlbumsByVideoExtendedResponseModel" = Field()
 
 
-class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel"
+class VideoGetAlbumsByVideoResponse(BaseResponse):
+    response: typing.List[int] = Field()
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class VideoGetAlbumsExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["VideoVideoAlbumFull"] = Field()
 
 
-class RestoreCommentResponse(BaseResponse):
-    response: BaseBoolInt
+class VideoGetAlbumsExtendedResponse(BaseResponse):
+    response: "VideoGetAlbumsExtendedResponseModel" = Field()
 
 
-class SaveResponse(BaseResponse):
-    response: VideoSaveResult
+class VideoGetAlbumsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["VideoVideoAlbum"] = Field()
 
 
-class SearchExtendedResponse(BaseResponse):
-    response: "SearchExtendedResponseModel"
+class VideoGetAlbumsResponse(BaseResponse):
+    response: "VideoGetAlbumsResponseModel" = Field()
 
 
-class SearchResponse(BaseResponse):
-    response: "SearchResponseModel"
+class VideoGetCommentsExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallComment"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
+    current_level_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    can_post: typing.Optional[bool] = Field(
+        default=None,
+    )
+    show_reply_button: typing.Optional[bool] = Field(
+        default=None,
+    )
+    groups_can_post: typing.Optional[bool] = Field(
+        default=None,
+    )
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class UploadResponse(BaseResponse):
-    response: "UploadResponseModel"
+class VideoGetCommentsExtendedResponse(BaseResponse):
+    response: "VideoGetCommentsExtendedResponseModel" = Field()
 
 
-class AddAlbumResponseModel(BaseResponse):
-    album_id: typing.Optional[int] = None
+class VideoGetCommentsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallComment"] = Field()
+    current_level_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    can_post: typing.Optional[bool] = Field(
+        default=None,
+    )
+    show_reply_button: typing.Optional[bool] = Field(
+        default=None,
+    )
+    groups_can_post: typing.Optional[bool] = Field(
+        default=None,
+    )
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class GetAlbumsByVideoExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["VideoVideoAlbumFull"]] = None
+class VideoGetCommentsResponse(BaseResponse):
+    response: "VideoGetCommentsResponseModel" = Field()
 
 
-class GetAlbumsExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["VideoVideoAlbumFull"]] = None
+class VideoGetLongPollServerResponseModel(BaseModel):
+    url: str = Field()
 
 
-class GetAlbumsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["VideoVideoAlbum"]] = None
+class VideoGetLongPollServerResponse(BaseResponse):
+    response: "VideoGetLongPollServerResponseModel" = Field()
 
 
-class GetCommentsExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallComment"]] = None
-    profiles: typing.Optional[typing.List["UsersUser"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
-    current_level_count: typing.Optional[int] = None
-    can_post: typing.Optional[bool] = None
-    show_reply_button: typing.Optional[bool] = None
-    groups_can_post: typing.Optional[bool] = None
-    real_offset: typing.Optional[int] = None
+class VideoGetOembedResponseModel(BaseModel):
+    version: str = Field()
+    type: str = Field()
+    html: str = Field()
+    title: typing.Optional[str] = Field(
+        default=None,
+    )
+    author_name: typing.Optional[str] = Field(
+        default=None,
+    )
+    width: typing.Optional[int] = Field(
+        default=None,
+    )
+    height: typing.Optional[int] = Field(
+        default=None,
+    )
+    provider_name: typing.Optional[str] = Field(
+        default=None,
+    )
+    provider_url: typing.Optional[str] = Field(
+        default=None,
+    )
+    thumbnail_url: typing.Optional[str] = Field(
+        default=None,
+    )
+    thumbnail_width: typing.Optional[int] = Field(
+        default=None,
+    )
+    thumbnail_height: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class GetCommentsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallComment"]] = None
-    current_level_count: typing.Optional[int] = None
-    can_post: typing.Optional[bool] = None
-    show_reply_button: typing.Optional[bool] = None
-    groups_can_post: typing.Optional[bool] = None
-    real_offset: typing.Optional[int] = None
+class VideoGetOembedResponse(BaseResponse):
+    response: "VideoGetOembedResponseModel" = Field()
 
 
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["VideoVideoFull"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+class VideoGetThumbUploadUrlResponseModel(BaseModel):
+    upload_url: str = Field()
 
 
-class SearchExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["VideoVideoFull"]] = None
-    profiles: typing.Optional[typing.List["UsersUser"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+class VideoGetThumbUploadUrlResponse(BaseResponse):
+    response: "VideoGetThumbUploadUrlResponseModel" = Field()
 
 
-class SearchResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["VideoVideoFull"]] = None
+class VideoGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["VideoVideoFull"] = Field()
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
+    max_attached_short_videos: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class UploadResponseModel(BaseResponse):
-    size: typing.Optional[int] = None
-    video_id: typing.Optional[int] = None
+class VideoGetResponse(BaseResponse):
+    response: "VideoGetResponseModel" = Field()
 
 
-__all__ = (
-    "AddAlbumResponse",
-    "AddAlbumResponseModel",
-    "BaseBoolInt",
-    "ChangeVideoAlbumsResponse",
-    "CreateCommentResponse",
-    "GetAlbumByIdResponse",
-    "GetAlbumsByVideoExtendedResponse",
-    "GetAlbumsByVideoExtendedResponseModel",
-    "GetAlbumsByVideoResponse",
-    "GetAlbumsExtendedResponse",
-    "GetAlbumsExtendedResponseModel",
-    "GetAlbumsResponse",
-    "GetAlbumsResponseModel",
-    "GetCommentsExtendedResponse",
-    "GetCommentsExtendedResponseModel",
-    "GetCommentsResponse",
-    "GetCommentsResponseModel",
-    "GetResponse",
-    "GetResponseModel",
-    "GroupsGroup",
-    "GroupsGroupFull",
-    "RestoreCommentResponse",
-    "SaveResponse",
-    "SearchExtendedResponse",
-    "SearchExtendedResponseModel",
-    "SearchResponse",
-    "SearchResponseModel",
-    "UploadResponse",
-    "UploadResponseModel",
-    "UsersUser",
-    "UsersUserFull",
-    "VideoSaveResult",
-    "VideoVideoAlbum",
-    "VideoVideoAlbumFull",
-    "VideoVideoFull",
-    "WallWallComment",
-)
+class VideoLiveGetCategoriesResponse(BaseResponse):
+    response: typing.List["VideoLiveCategory"] = Field()
+
+
+class VideoSaveUploadedThumbResponseModel(BaseModel):
+    photo_id: int = Field()
+    photo_hash: str = Field()
+    image: typing.Optional[typing.List["VideoVideoImage"]] = Field(
+        default=None,
+    )
+    photo_owner_id: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
+class VideoSaveUploadedThumbResponse(BaseResponse):
+    response: "VideoSaveUploadedThumbResponseModel" = Field()
+
+
+class VideoSaveResponse(BaseResponse):
+    response: "VideoSaveResult" = Field()
+
+
+class VideoSearchExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["VideoVideoFull"] = Field()
+    profiles: typing.List["UsersUser"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
+
+
+class VideoSearchExtendedResponse(BaseResponse):
+    response: "VideoSearchExtendedResponseModel" = Field()
+
+
+class VideoSearchResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["VideoVideoFull"] = Field()
+
+
+class VideoSearchResponse(BaseResponse):
+    response: "VideoSearchResponseModel" = Field()
+
+
+class VideoStartStreamingResponseModel(BaseModel):
+    owner_id: int = Field()
+    video_id: int = Field()
+    name: str = Field()
+    description: str = Field()
+    access_key: str = Field()
+    stream: "VideoStreamInputParams" = Field()
+    post_id: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
+class VideoStartStreamingResponse(BaseResponse):
+    response: "VideoStartStreamingResponseModel" = Field()
+
+
+class VideoStopStreamingResponseModel(BaseModel):
+    unique_viewers: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
+class VideoStopStreamingResponse(BaseResponse):
+    response: "VideoStopStreamingResponseModel" = Field()
+
+
+class VideoUploadResponseModel(BaseModel):
+    size: typing.Optional[int] = Field(
+        default=None,
+    )
+    video_id: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
+class VideoUploadResponse(BaseResponse):
+    response: "VideoUploadResponseModel" = Field()

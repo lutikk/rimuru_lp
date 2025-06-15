@@ -1,217 +1,235 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
-    GroupsGroup,
     GroupsGroupFull,
     UsersUser,
     UsersUserFull,
     WallWallComment,
+    WallWallItem,
+    WallWallpostAttachment,
     WallWallpostFull,
 )
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class CreateCommentResponse(BaseResponse):
-    response: "CreateCommentResponseModel"
+class WallCreateCommentResponseModel(BaseModel):
+    comment_id: int = Field()
+    parents_stack: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
 
 
-class EditResponse(BaseResponse):
-    response: "EditResponseModel"
+class WallCreateCommentResponse(BaseResponse):
+    response: "WallCreateCommentResponseModel" = Field()
 
 
-class GetByIdExtendedResponse(BaseResponse):
-    response: "GetByIdExtendedResponseModel"
+class WallEditResponseModel(BaseModel):
+    post_id: int = Field()
+
+
+class WallEditResponse(BaseResponse):
+    response: "WallEditResponseModel" = Field()
+
+
+class WallGetByIdExtendedResponseModel(BaseModel):
+    items: typing.List["WallWallItem"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
+
 
+class WallGetByIdExtendedResponse(BaseResponse):
+    response: "WallGetByIdExtendedResponseModel" = Field()
 
-class GetByIdLegacyResponse(BaseResponse):
-    response: typing.List["WallWallpostFull"]
 
+class WallGetByIdResponseModel(BaseModel):
+    items: typing.Optional[typing.List["WallWallItem"]] = Field(
+        default=None,
+    )
 
-class GetByIdResponse(BaseResponse):
-    response: "GetByIdResponseModel"
 
+class WallGetByIdResponse(BaseResponse):
+    response: "WallGetByIdResponseModel" = Field()
 
-class GetCommentExtendedResponse(BaseResponse):
-    response: "GetCommentExtendedResponseModel"
 
+class WallGetCommentExtendedResponseModel(BaseModel):
+    items: typing.List["WallWallComment"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
+    can_post: typing.Optional[bool] = Field(
+        default=None,
+    )
+    show_reply_button: typing.Optional[bool] = Field(
+        default=None,
+    )
+    groups_can_post: typing.Optional[bool] = Field(
+        default=None,
+    )
+    post_author_id: typing.Optional[int] = Field(
+        default=None,
+    )
 
-class GetCommentResponse(BaseResponse):
-    response: "GetCommentResponseModel"
 
+class WallGetCommentExtendedResponse(BaseResponse):
+    response: "WallGetCommentExtendedResponseModel" = Field()
 
-class GetCommentsExtendedResponse(BaseResponse):
-    response: "GetCommentsExtendedResponseModel"
 
+class WallGetCommentResponseModel(BaseModel):
+    items: typing.List["WallWallComment"] = Field()
+    can_post: typing.Optional[bool] = Field(
+        default=None,
+    )
+    show_reply_button: typing.Optional[bool] = Field(
+        default=None,
+    )
+    groups_can_post: typing.Optional[bool] = Field(
+        default=None,
+    )
 
-class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel"
 
+class WallGetCommentResponse(BaseResponse):
+    response: "WallGetCommentResponseModel" = Field()
 
-class GetRepostsResponse(BaseResponse):
-    response: "GetRepostsResponseModel"
 
+class WallGetCommentsExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallComment"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
+    current_level_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    can_post: typing.Optional[bool] = Field(
+        default=None,
+    )
+    show_reply_button: typing.Optional[bool] = Field(
+        default=None,
+    )
+    groups_can_post: typing.Optional[bool] = Field(
+        default=None,
+    )
+    post_author_id: typing.Optional[int] = Field(
+        default=None,
+    )
 
-class GetExtendedResponse(BaseResponse):
-    response: "GetExtendedResponseModel"
 
+class WallGetCommentsExtendedResponse(BaseResponse):
+    response: "WallGetCommentsExtendedResponseModel" = Field()
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
 
+class WallGetCommentsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallComment"] = Field()
+    current_level_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    can_post: typing.Optional[bool] = Field(
+        default=None,
+    )
+    show_reply_button: typing.Optional[bool] = Field(
+        default=None,
+    )
+    groups_can_post: typing.Optional[bool] = Field(
+        default=None,
+    )
 
-class PostAdsStealthResponse(BaseResponse):
-    response: "PostAdsStealthResponseModel"
 
+class WallGetCommentsResponse(BaseResponse):
+    response: "WallGetCommentsResponseModel" = Field()
 
-class PostResponse(BaseResponse):
-    response: "PostResponseModel"
 
+class WallGetRepostsResponseModel(BaseModel):
+    items: typing.List["WallWallpostFull"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
 
-class RepostResponse(BaseResponse):
-    response: "RepostResponseModel"
 
+class WallGetRepostsResponse(BaseResponse):
+    response: "WallGetRepostsResponseModel" = Field()
 
-class SearchExtendedResponse(BaseResponse):
-    response: "SearchExtendedResponseModel"
 
+class WallGetExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallItem"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
 
-class SearchResponse(BaseResponse):
-    response: "SearchResponseModel"
 
+class WallGetExtendedResponse(BaseResponse):
+    response: "WallGetExtendedResponseModel" = Field()
 
-class CreateCommentResponseModel(BaseResponse):
-    comment_id: typing.Optional[int] = None
 
+class WallGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallItem"] = Field()
 
-class EditResponseModel(BaseResponse):
-    post_id: typing.Optional[int] = None
 
+class WallGetResponse(BaseResponse):
+    response: "WallGetResponseModel" = Field()
 
-class GetByIdExtendedResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["WallWallpostFull"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
+class WallParseAttachedLinkResponseModel(BaseModel):
+    data: typing.List["WallWallpostAttachment"] = Field()
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
+    profiles: typing.Optional[typing.List["UsersUser"]] = Field(
+        default=None,
+    )
 
-class GetByIdResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["WallWallpostFull"]] = None
 
+class WallParseAttachedLinkResponse(BaseResponse):
+    response: "WallParseAttachedLinkResponseModel" = Field()
 
-class GetCommentExtendedResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["WallWallComment"]] = None
-    profiles: typing.Optional[typing.List["UsersUser"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
 
+class WallPostAdsStealthResponseModel(BaseModel):
+    post_id: int = Field()
 
-class GetCommentResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["WallWallComment"]] = None
 
+class WallPostAdsStealthResponse(BaseResponse):
+    response: "WallPostAdsStealthResponseModel" = Field()
 
-class GetCommentsExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallComment"]] = None
-    profiles: typing.Optional[typing.List["UsersUser"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
-    current_level_count: typing.Optional[int] = None
-    can_post: typing.Optional[bool] = None
-    show_reply_button: typing.Optional[bool] = None
-    groups_can_post: typing.Optional[bool] = None
-
-
-class GetCommentsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallComment"]] = None
-    current_level_count: typing.Optional[int] = None
-    can_post: typing.Optional[bool] = None
-    show_reply_button: typing.Optional[bool] = None
-    groups_can_post: typing.Optional[bool] = None
-
-
-class GetRepostsResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["WallWallpostFull"]] = None
-    profiles: typing.Optional[typing.List["UsersUser"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
-
-
-class GetExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallpostFull"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-
-
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallpostFull"]] = None
-
-
-class PostAdsStealthResponseModel(BaseResponse):
-    post_id: typing.Optional[int] = None
-
-
-class PostResponseModel(BaseResponse):
-    post_id: typing.Optional[int] = None
-
-
-class RepostResponseModel(BaseResponse):
-    success: typing.Optional[int] = None
-    post_id: typing.Optional[int] = None
-    reposts_count: typing.Optional[int] = None
-    wall_repost_count: typing.Optional[int] = None
-    mail_repost_count: typing.Optional[int] = None
-    likes_count: typing.Optional[int] = None
-
-
-class SearchExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallpostFull"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-
-
-class SearchResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallpostFull"]] = None
-
-
-__all__ = (
-    "CreateCommentResponse",
-    "CreateCommentResponseModel",
-    "EditResponse",
-    "EditResponseModel",
-    "GetByIdExtendedResponse",
-    "GetByIdExtendedResponseModel",
-    "GetByIdLegacyResponse",
-    "GetByIdResponse",
-    "GetByIdResponseModel",
-    "GetCommentExtendedResponse",
-    "GetCommentExtendedResponseModel",
-    "GetCommentResponse",
-    "GetCommentResponseModel",
-    "GetCommentsExtendedResponse",
-    "GetCommentsExtendedResponseModel",
-    "GetCommentsResponse",
-    "GetCommentsResponseModel",
-    "GetExtendedResponse",
-    "GetExtendedResponseModel",
-    "GetRepostsResponse",
-    "GetRepostsResponseModel",
-    "GetResponse",
-    "GetResponseModel",
-    "GroupsGroup",
-    "GroupsGroupFull",
-    "PostAdsStealthResponse",
-    "PostAdsStealthResponseModel",
-    "PostResponse",
-    "PostResponseModel",
-    "RepostResponse",
-    "RepostResponseModel",
-    "SearchExtendedResponse",
-    "SearchExtendedResponseModel",
-    "SearchResponse",
-    "SearchResponseModel",
-    "UsersUser",
-    "UsersUserFull",
-    "WallWallComment",
-    "WallWallpostFull",
-)
+
+class WallPostResponseModel(BaseModel):
+    post_id: int = Field()
+
+
+class WallPostResponse(BaseResponse):
+    response: "WallPostResponseModel" = Field()
+
+
+class WallRepostResponseModel(BaseModel):
+    success: int = Field(default=1)
+    post_id: int = Field()
+    reposts_count: int = Field()
+    likes_count: int = Field()
+    wall_repost_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    mail_repost_count: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
+class WallRepostResponse(BaseResponse):
+    response: "WallRepostResponseModel" = Field()
+
+
+class WallSearchExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallItem"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
+
+
+class WallSearchExtendedResponse(BaseResponse):
+    response: "WallSearchExtendedResponseModel" = Field()
+
+
+class WallSearchResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallItem"] = Field()
+
+
+class WallSearchResponse(BaseResponse):
+    response: "WallSearchResponseModel" = Field()

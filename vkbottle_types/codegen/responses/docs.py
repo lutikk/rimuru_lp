@@ -1,5 +1,6 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     BaseUploadServer,
     DocsDoc,
@@ -11,82 +12,69 @@ from vkbottle_types.objects import (
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AddResponse(BaseResponse):
-    response: int
+class DocsAddResponse(BaseResponse):
+    response: int = Field()
 
 
-class DocUploadResponse(BaseResponse):
-    response: "DocUploadResponseModel"
+class DocsDocUploadResponseModel(BaseModel):
+    file: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class GetByIdResponse(BaseResponse):
-    response: typing.List["DocsDoc"]
+class DocsDocUploadResponse(BaseResponse):
+    response: "DocsDocUploadResponseModel" = Field()
 
 
-class GetTypesResponse(BaseResponse):
-    response: "GetTypesResponseModel"
+class DocsGetByIdResponse(BaseResponse):
+    response: typing.List["DocsDoc"] = Field()
 
 
-class GetUploadServerResponse(BaseResponse):
-    response: BaseUploadServer
+class DocsGetTypesResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["DocsDocTypes"] = Field()
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class DocsGetTypesResponse(BaseResponse):
+    response: "DocsGetTypesResponseModel" = Field()
 
 
-class SaveResponse(BaseResponse):
-    response: "SaveResponseModel"
+class DocsGetUploadServerResponse(BaseResponse):
+    response: "BaseUploadServer" = Field()
 
 
-class SearchResponse(BaseResponse):
-    response: "SearchResponseModel"
+class DocsGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["DocsDoc"] = Field()
 
 
-class DocUploadResponseModel(BaseResponse):
-    file: typing.Optional[str] = None
+class DocsGetResponse(BaseResponse):
+    response: "DocsGetResponseModel" = Field()
 
 
-class GetTypesResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["DocsDocTypes"]] = None
+class DocsSaveResponseModel(BaseModel):
+    type: typing.Optional["DocsDocAttachmentType"] = Field(
+        default=None,
+    )
+    audio_message: typing.Optional["MessagesAudioMessage"] = Field(
+        default=None,
+    )
+    doc: typing.Optional["DocsDoc"] = Field(
+        default=None,
+    )
+    graffiti: typing.Optional["MessagesGraffiti"] = Field(
+        default=None,
+    )
 
 
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["DocsDoc"]] = None
+class DocsSaveResponse(BaseResponse):
+    response: "DocsSaveResponseModel" = Field()
 
 
-class SaveResponseModel(BaseResponse):
-    type: typing.Optional["DocsDocAttachmentType"] = None
-    audio_message: typing.Optional["MessagesAudioMessage"] = None
-    doc: typing.Optional["DocsDoc"] = None
-    graffiti: typing.Optional["MessagesGraffiti"] = None
+class DocsSearchResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["DocsDoc"] = Field()
 
 
-class SearchResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["DocsDoc"]] = None
-
-
-__all__ = (
-    "AddResponse",
-    "BaseUploadServer",
-    "DocUploadResponse",
-    "DocUploadResponseModel",
-    "DocsDoc",
-    "DocsDocAttachmentType",
-    "DocsDocTypes",
-    "GetByIdResponse",
-    "GetResponse",
-    "GetResponseModel",
-    "GetTypesResponse",
-    "GetTypesResponseModel",
-    "GetUploadServerResponse",
-    "MessagesAudioMessage",
-    "MessagesGraffiti",
-    "SaveResponse",
-    "SaveResponseModel",
-    "SearchResponse",
-    "SearchResponseModel",
-)
+class DocsSearchResponse(BaseResponse):
+    response: "DocsSearchResponseModel" = Field()

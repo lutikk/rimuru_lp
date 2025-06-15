@@ -1,57 +1,45 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import LeadFormsForm, LeadFormsLead
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class CreateResponse(BaseResponse):
-    response: "CreateResponseModel"
+class LeadFormsCreateResponseModel(BaseModel):
+    form_id: int = Field()
+    url: str = Field()
 
 
-class DeleteResponse(BaseResponse):
-    response: "DeleteResponseModel"
+class LeadFormsCreateResponse(BaseResponse):
+    response: "LeadFormsCreateResponseModel" = Field()
 
 
-class GetLeadsResponse(BaseResponse):
-    response: "GetLeadsResponseModel"
+class LeadFormsDeleteResponseModel(BaseModel):
+    form_id: int = Field()
 
 
-class GetResponse(BaseResponse):
-    response: LeadFormsForm
+class LeadFormsDeleteResponse(BaseResponse):
+    response: "LeadFormsDeleteResponseModel" = Field()
 
 
-class ListResponse(BaseResponse):
-    response: typing.List["LeadFormsForm"]
+class LeadFormsGetLeadsResponseModel(BaseModel):
+    leads: typing.List["LeadFormsLead"] = Field()
+    next_page_token: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class UploadUrlResponse(BaseResponse):
-    response: str
+class LeadFormsGetLeadsResponse(BaseResponse):
+    response: "LeadFormsGetLeadsResponseModel" = Field()
 
 
-class CreateResponseModel(BaseResponse):
-    form_id: typing.Optional[int] = None
-    url: typing.Optional[str] = None
+class LeadFormsGetResponse(BaseResponse):
+    response: "LeadFormsForm" = Field()
 
 
-class DeleteResponseModel(BaseResponse):
-    form_id: typing.Optional[int] = None
+class LeadFormsListResponse(BaseResponse):
+    response: typing.List["LeadFormsForm"] = Field()
 
 
-class GetLeadsResponseModel(BaseResponse):
-    leads: typing.Optional[typing.List["LeadFormsLead"]] = None
-    next_page_token: typing.Optional[str] = None
-
-
-__all__ = (
-    "CreateResponse",
-    "CreateResponseModel",
-    "DeleteResponse",
-    "DeleteResponseModel",
-    "GetLeadsResponse",
-    "GetLeadsResponseModel",
-    "GetResponse",
-    "LeadFormsForm",
-    "LeadFormsLead",
-    "ListResponse",
-    "UploadUrlResponse",
-)
+class LeadFormsUploadUrlResponse(BaseResponse):
+    response: str = Field()

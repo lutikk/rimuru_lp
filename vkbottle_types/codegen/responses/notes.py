@@ -1,47 +1,35 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import NotesNote, NotesNoteComment
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AddResponse(BaseResponse):
-    response: int
+class NotesAddResponse(BaseResponse):
+    response: int = Field()
 
 
-class CreateCommentResponse(BaseResponse):
-    response: int
+class NotesCreateCommentResponse(BaseResponse):
+    response: int = Field()
 
 
-class GetByIdResponse(BaseResponse):
-    response: NotesNote
+class NotesGetByIdResponse(BaseResponse):
+    response: "NotesNote" = Field()
 
 
-class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel"
+class NotesGetCommentsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["NotesNoteComment"] = Field()
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class NotesGetCommentsResponse(BaseResponse):
+    response: "NotesGetCommentsResponseModel" = Field()
 
 
-class GetCommentsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["NotesNoteComment"]] = None
+class NotesGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["NotesNote"] = Field()
 
 
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["NotesNote"]] = None
-
-
-__all__ = (
-    "AddResponse",
-    "CreateCommentResponse",
-    "GetByIdResponse",
-    "GetCommentsResponse",
-    "GetCommentsResponseModel",
-    "GetResponse",
-    "GetResponseModel",
-    "NotesNote",
-    "NotesNoteComment",
-)
+class NotesGetResponse(BaseResponse):
+    response: "NotesGetResponseModel" = Field()

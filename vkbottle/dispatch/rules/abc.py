@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
-from typing import Generic, Iterable, Type, TypeVar
+from collections.abc import Iterable
+from typing import ClassVar, Generic, Type, TypeVar
 
 T_contra = TypeVar("T_contra", contravariant=True)
 
 
 class ABCRule(ABC, Generic[T_contra]):
-    config: dict = {}
+    config: ClassVar[dict] = {}
 
     @classmethod
     def with_config(cls, config: dict) -> Type["ABCRule"]:

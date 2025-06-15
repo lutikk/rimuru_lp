@@ -1,249 +1,282 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
-    BaseBoolInt,
     GroupsGroupFull,
+    MarketGlobalSearchFilters,
     MarketMarketAlbum,
-    MarketMarketCategory,
     MarketMarketCategoryTree,
     MarketMarketItem,
+    MarketMarketItemBasicWithGroup,
     MarketMarketItemFull,
     MarketOrder,
     MarketOrderItem,
+    MarketProperty,
     MarketServicesViewType,
+    MarketUploadPhotoData,
+    PhotosPhoto,
+    UsersUserFull,
     WallWallComment,
 )
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AddAlbumResponse(BaseResponse):
-    response: "AddAlbumResponseModel"
+class MarketAddAlbumResponseModel(BaseModel):
+    market_album_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    albums_count: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class AddResponse(BaseResponse):
-    response: "AddResponseModel"
+class MarketAddAlbumResponse(BaseResponse):
+    response: "MarketAddAlbumResponseModel" = Field()
 
 
-class CreateCommentResponse(BaseResponse):
-    response: int
+class MarketAddPropertyVariantResponseModel(BaseModel):
+    variant_id: int = Field()
 
 
-class DeleteCommentResponse(BaseResponse):
-    response: BaseBoolInt
+class MarketAddPropertyVariantResponse(BaseResponse):
+    response: "MarketAddPropertyVariantResponseModel" = Field()
 
 
-class GetAlbumByIdResponse(BaseResponse):
-    response: "GetAlbumByIdResponseModel"
+class MarketAddPropertyResponseModel(BaseModel):
+    property_id: int = Field()
 
 
-class GetAlbumsResponse(BaseResponse):
-    response: "GetAlbumsResponseModel"
+class MarketAddPropertyResponse(BaseResponse):
+    response: "MarketAddPropertyResponseModel" = Field()
 
 
-class GetByIdExtendedResponse(BaseResponse):
-    response: "GetByIdExtendedResponseModel"
+class MarketAddResponseModel(BaseModel):
+    market_item_id: int = Field()
 
 
-class GetByIdResponse(BaseResponse):
-    response: "GetByIdResponseModel"
+class MarketAddResponse(BaseResponse):
+    response: "MarketAddResponseModel" = Field()
 
 
-class GetCategoriesNewResponse(BaseResponse):
-    response: "GetCategoriesNewResponseModel"
+class MarketCreateCommentResponse(BaseResponse):
+    response: int = Field()
 
 
-class GetCategoriesResponse(BaseResponse):
-    response: "GetCategoriesResponseModel"
+class MarketGetAlbumByIdResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketMarketAlbum"] = Field()
 
 
-class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel"
+class MarketGetAlbumByIdResponse(BaseResponse):
+    response: "MarketGetAlbumByIdResponseModel" = Field()
 
 
-class GetGroupOrdersResponse(BaseResponse):
-    response: "GetGroupOrdersResponseModel"
+class MarketGetAlbumsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketMarketAlbum"] = Field()
 
 
-class GetOrderByIdResponse(BaseResponse):
-    response: "GetOrderByIdResponseModel"
+class MarketGetAlbumsResponse(BaseResponse):
+    response: "MarketGetAlbumsResponseModel" = Field()
 
 
-class GetOrderItemsResponse(BaseResponse):
-    response: "GetOrderItemsResponseModel"
+class MarketGetByIdExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketMarketItemFull"] = Field()
 
 
-class GetOrdersExtendedResponse(BaseResponse):
-    response: "GetOrdersExtendedResponseModel"
+class MarketGetByIdExtendedResponse(BaseResponse):
+    response: "MarketGetByIdExtendedResponseModel" = Field()
 
 
-class GetOrdersResponse(BaseResponse):
-    response: "GetOrdersResponseModel"
+class MarketGetByIdResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketMarketItem"] = Field()
 
 
-class GetExtendedResponse(BaseResponse):
-    response: "GetExtendedResponseModel"
+class MarketGetByIdResponse(BaseResponse):
+    response: "MarketGetByIdResponseModel" = Field()
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class MarketGetCategoriesNewResponseModel(BaseModel):
+    items: typing.List["MarketMarketCategoryTree"] = Field()
 
 
-class RestoreCommentResponse(BaseResponse):
-    response: BaseBoolInt
+class MarketGetCategoriesNewResponse(BaseResponse):
+    response: "MarketGetCategoriesNewResponseModel" = Field()
 
 
-class SearchExtendedResponse(BaseResponse):
-    response: "SearchExtendedResponseModel"
+class MarketGetCommentsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallComment"] = Field()
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
 
 
-class SearchResponse(BaseResponse):
-    response: "SearchResponseModel"
+class MarketGetCommentsResponse(BaseResponse):
+    response: "MarketGetCommentsResponseModel" = Field()
 
 
-class AddAlbumResponseModel(BaseResponse):
-    market_album_id: typing.Optional[int] = None
-    albums_count: typing.Optional[int] = None
+class MarketGetFavesForAttachResponseModel(BaseModel):
+    market_items: typing.List["MarketMarketItem"] = Field()
+    next_from: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class AddResponseModel(BaseResponse):
-    market_item_id: typing.Optional[int] = None
+class MarketGetFavesForAttachResponse(BaseResponse):
+    response: "MarketGetFavesForAttachResponseModel" = Field()
 
 
-class GetAlbumByIdResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MarketMarketAlbum"]] = None
+class MarketGetGroupOrdersResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketOrder"] = Field()
 
 
-class GetAlbumsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MarketMarketAlbum"]] = None
+class MarketGetGroupOrdersResponse(BaseResponse):
+    response: "MarketGetGroupOrdersResponseModel" = Field()
 
 
-class GetByIdExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MarketMarketItemFull"]] = None
+class MarketGetOrderByIdResponseModel(BaseModel):
+    order: typing.Optional["MarketOrder"] = Field(
+        default=None,
+    )
 
 
-class GetByIdResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MarketMarketItem"]] = None
+class MarketGetOrderByIdResponse(BaseResponse):
+    response: "MarketGetOrderByIdResponseModel" = Field()
 
 
-class GetCategoriesNewResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["MarketMarketCategoryTree"]] = None
+class MarketGetOrderItemsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketOrderItem"] = Field()
 
 
-class GetCategoriesResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MarketMarketCategory"]] = None
+class MarketGetOrderItemsResponse(BaseResponse):
+    response: "MarketGetOrderItemsResponseModel" = Field()
 
-
-class GetCommentsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallComment"]] = None
-
-
-class GetGroupOrdersResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MarketOrder"]] = None
-
-
-class GetOrderByIdResponseModel(BaseResponse):
-    order: typing.Optional["MarketOrder"] = None
-
-
-class GetOrderItemsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MarketOrderItem"]] = None
-
-
-class GetOrdersExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MarketOrder"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-
-
-class GetOrdersResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MarketOrder"]] = None
-
-
-class GetExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MarketMarketItemFull"]] = None
-    variants: typing.Optional[typing.List["MarketMarketItemFull"]] = None
-
-
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MarketMarketItem"]] = None
-    variants: typing.Optional[typing.List["MarketMarketItem"]] = None
-
-
-class SearchExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    view_type: typing.Optional["MarketServicesViewType"] = None
-    items: typing.Optional[typing.List["MarketMarketItemFull"]] = None
-    variants: typing.Optional[typing.List["MarketMarketItemFull"]] = None
-
-
-class SearchResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    view_type: typing.Optional["MarketServicesViewType"] = None
-    items: typing.Optional[typing.List["MarketMarketItem"]] = None
-    variants: typing.Optional[typing.List["MarketMarketItem"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-
-
-__all__ = (
-    "AddAlbumResponse",
-    "AddAlbumResponseModel",
-    "AddResponse",
-    "AddResponseModel",
-    "BaseBoolInt",
-    "CreateCommentResponse",
-    "DeleteCommentResponse",
-    "GetAlbumByIdResponse",
-    "GetAlbumByIdResponseModel",
-    "GetAlbumsResponse",
-    "GetAlbumsResponseModel",
-    "GetByIdExtendedResponse",
-    "GetByIdExtendedResponseModel",
-    "GetByIdResponse",
-    "GetByIdResponseModel",
-    "GetCategoriesNewResponse",
-    "GetCategoriesNewResponseModel",
-    "GetCategoriesResponse",
-    "GetCategoriesResponseModel",
-    "GetCommentsResponse",
-    "GetCommentsResponseModel",
-    "GetExtendedResponse",
-    "GetExtendedResponseModel",
-    "GetGroupOrdersResponse",
-    "GetGroupOrdersResponseModel",
-    "GetOrderByIdResponse",
-    "GetOrderByIdResponseModel",
-    "GetOrderItemsResponse",
-    "GetOrderItemsResponseModel",
-    "GetOrdersExtendedResponse",
-    "GetOrdersExtendedResponseModel",
-    "GetOrdersResponse",
-    "GetOrdersResponseModel",
-    "GetResponse",
-    "GetResponseModel",
-    "GroupsGroupFull",
-    "MarketMarketAlbum",
-    "MarketMarketCategory",
-    "MarketMarketCategoryTree",
-    "MarketMarketItem",
-    "MarketMarketItemFull",
-    "MarketOrder",
-    "MarketOrderItem",
-    "MarketServicesViewType",
-    "RestoreCommentResponse",
-    "SearchExtendedResponse",
-    "SearchExtendedResponseModel",
-    "SearchResponse",
-    "SearchResponseModel",
-    "WallWallComment",
-)
+
+class MarketGetOrdersExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketOrder"] = Field()
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
+
+
+class MarketGetOrdersExtendedResponse(BaseResponse):
+    response: "MarketGetOrdersExtendedResponseModel" = Field()
+
+
+class MarketGetOrdersResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketOrder"] = Field()
+
+
+class MarketGetOrdersResponse(BaseResponse):
+    response: "MarketGetOrdersResponseModel" = Field()
+
+
+class MarketGetPropertiesResponseModel(BaseModel):
+    items: typing.List["MarketProperty"] = Field()
+    count: int = Field()
+
+
+class MarketGetPropertiesResponse(BaseResponse):
+    response: "MarketGetPropertiesResponseModel" = Field()
+
+
+class MarketGetExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketMarketItemFull"] = Field()
+    variants: typing.Optional[typing.List["MarketMarketItemFull"]] = Field(
+        default=None,
+    )
+
+
+class MarketGetExtendedResponse(BaseResponse):
+    response: "MarketGetExtendedResponseModel" = Field()
+
+
+class MarketGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketMarketItem"] = Field()
+    variants: typing.Optional[typing.List["MarketMarketItem"]] = Field(
+        default=None,
+    )
+
+
+class MarketGetResponse(BaseResponse):
+    response: "MarketGetResponseModel" = Field()
+
+
+class MarketGroupItemsResponseModel(BaseModel):
+    item_group_id: int = Field()
+
+
+class MarketGroupItemsResponse(BaseResponse):
+    response: "MarketGroupItemsResponseModel" = Field()
+
+
+class MarketPhotoIdBulkResponse(BaseResponse):
+    response: typing.List["MarketUploadPhotoData"] = Field()
+
+
+class MarketPhotoIdResponseModel(BaseModel):
+    photo_id: int = Field()
+    photo: typing.Optional["PhotosPhoto"] = Field(
+        default=None,
+    )
+
+
+class MarketPhotoIdResponse(BaseResponse):
+    response: "MarketPhotoIdResponseModel" = Field()
+
+
+class MarketSearchBasicResponseModel(BaseModel):
+    count: int = Field()
+    total: int = Field()
+    items: typing.List["MarketMarketItemBasicWithGroup"] = Field()
+    has_more: typing.Optional[bool] = Field(
+        default=None,
+    )
+
+
+class MarketSearchBasicResponse(BaseResponse):
+    response: "MarketSearchBasicResponseModel" = Field()
+
+
+class MarketSearchExtendedResponseModel(BaseModel):
+    count: int = Field()
+    view_type: "MarketServicesViewType" = Field()
+    items: typing.List["MarketMarketItemFull"] = Field()
+    variants: typing.Optional[typing.List["MarketMarketItemFull"]] = Field(
+        default=None,
+    )
+
+
+class MarketSearchExtendedResponse(BaseResponse):
+    response: "MarketSearchExtendedResponseModel" = Field()
+
+
+class MarketSearchResponseModel(BaseModel):
+    count: int = Field()
+    view_type: "MarketServicesViewType" = Field()
+    items: typing.List["MarketMarketItem"] = Field()
+    variants: typing.Optional[typing.List["MarketMarketItem"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
+    filters: typing.Optional["MarketGlobalSearchFilters"] = Field(
+        default=None,
+    )
+
+
+class MarketSearchResponse(BaseResponse):
+    response: "MarketSearchResponseModel" = Field()

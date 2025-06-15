@@ -1,34 +1,38 @@
 import typing
 
-from vkbottle_types.objects import BaseSticker, StoreProduct, StoreStickersKeyword
+from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.objects import BaseStickerNew, StoreProduct, StoreStickersKeyword
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class GetFavoriteStickersResponse(BaseResponse):
-    response: typing.List["BaseSticker"]
+class StoreGetFavoriteStickersResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["BaseStickerNew"] = Field()
 
 
-class GetProductsResponse(BaseResponse):
-    response: typing.List["StoreProduct"]
+class StoreGetFavoriteStickersResponse(BaseResponse):
+    response: "StoreGetFavoriteStickersResponseModel" = Field()
 
 
-class GetStickersKeywordsResponse(BaseResponse):
-    response: "GetStickersKeywordsResponseModel"
+class StoreGetProductsResponseModel(BaseModel):
+    items: typing.List["StoreProduct"] = Field()
+    count: int = Field()
 
 
-class GetStickersKeywordsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    dictionary: typing.Optional[typing.List["StoreStickersKeyword"]] = None
-    chunks_count: typing.Optional[int] = None
-    chunks_hash: typing.Optional[str] = None
+class StoreGetProductsResponse(BaseResponse):
+    response: "StoreGetProductsResponseModel" = Field()
 
 
-__all__ = (
-    "BaseSticker",
-    "GetFavoriteStickersResponse",
-    "GetProductsResponse",
-    "GetStickersKeywordsResponse",
-    "GetStickersKeywordsResponseModel",
-    "StoreProduct",
-    "StoreStickersKeyword",
-)
+class StoreGetStickersKeywordsResponseModel(BaseModel):
+    count: int = Field()
+    dictionary: typing.List["StoreStickersKeyword"] = Field()
+    chunks_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    chunks_hash: typing.Optional[str] = Field(
+        default=None,
+    )
+
+
+class StoreGetStickersKeywordsResponse(BaseResponse):
+    response: "StoreGetStickersKeywordsResponseModel" = Field()

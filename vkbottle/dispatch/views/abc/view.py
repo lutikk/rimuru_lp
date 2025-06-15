@@ -1,16 +1,16 @@
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING, Any, Dict, Generic, List, Optional, Type, TypeVar, Union
 
-from vkbottle.api.abc import ABCAPI
 from vkbottle.dispatch.middlewares import BaseMiddleware
 from vkbottle.modules import logger
 
 if TYPE_CHECKING:
+    from vkbottle.api import ABCAPI
     from vkbottle.dispatch.dispenser.abc import ABCStateDispenser
     from vkbottle.dispatch.handlers import ABCHandler
     from vkbottle.dispatch.return_manager import BaseReturnManager
 
-    Handlers = Union[List["ABCHandler"], Dict[Any, List]]
+    Handlers = Union[List["ABCHandler[Any]"], Dict[Any, List]]
 
 T_contra = TypeVar("T_contra", list, dict, contravariant=True)
 
@@ -42,7 +42,7 @@ class ABCView(ABC, Generic[T_contra]):
             mw_instance = middleware(event, view=self)
             await mw_instance.pre()
             if not mw_instance.can_forward:
-                logger.debug("{} pre returned error {}", mw_instance, mw_instance.error)
+                logger.error("{} pre returned error {}", mw_instance, mw_instance.error)
                 return None
 
             mw_instances.append(mw_instance)
@@ -80,9 +80,11 @@ class ABCView(ABC, Generic[T_contra]):
     def register_middleware(self, middleware: Type[BaseMiddleware]):
         try:
             if not issubclass(middleware, BaseMiddleware):
-                raise ValueError("Argument is not a subclass of BaseMiddleware")
+                msg = "Argument is not a subclass of BaseMiddleware"
+                raise ValueError(msg)
         except TypeError as e:
-            raise ValueError("Argument is not a class") from e
+            msg = "Argument is not a class"
+            raise ValueError(msg) from e
         self.middlewares.append(middleware)
 
     def __repr__(self) -> str:

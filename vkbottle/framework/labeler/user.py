@@ -7,13 +7,13 @@ from vkbottle.dispatch.handlers import FromFuncHandler
 from vkbottle.dispatch.rules import ABCRule
 from vkbottle.dispatch.views.user import RawUserEventView, UserHandlerBasement, UserMessageView
 
-from .base import CUSTOM_RULES_TYPE, BaseLabeler
+from .base import BaseLabeler, CustomRuleType
 
 if TYPE_CHECKING:
     from vkbottle_types.events import BaseUserEvent
 
     from vkbottle.dispatch.views.user import ABCUserMessageView
-    from vkbottle.tools.dev.mini_types.user import MessageMin
+    from vkbottle.tools.mini_types.user import MessageMin
 
     from .abc import LabeledHandler
 
@@ -36,10 +36,10 @@ class UserLabeler(BaseLabeler):
         self,
         message_view: Optional["ABCUserMessageView"] = None,
         raw_event_view: Optional[RawUserEventView] = None,
-        custom_rules: Optional[CUSTOM_RULES_TYPE] = None,
+        custom_rules: Optional[CustomRuleType] = None,
         auto_rules: Optional[List["ABCRule"]] = None,
         raw_event_auto_rules: Optional[List["ABCRule"]] = None,
-    ):
+    ) -> None:
         message_view = message_view or UserMessageView()
         raw_event_view = raw_event_view or RawUserEventView()
         super().__init__(
@@ -73,16 +73,14 @@ class UserLabeler(BaseLabeler):
         blocking: bool = True,
         **custom_rules,
     ) -> "LabeledHandler":
-        assert all(isinstance(rule, ABCRule) for rule in rules), (
-            "All rules must be subclasses of ABCRule or rule shortcuts "
-            "(https://vkbottle.readthedocs.io/ru/latest/high-level/routing/rules/)"
-        )
+        if any(not isinstance(rule, ABCRule) for rule in rules):
+            msg = "All rules must be subclasses of ABCRule or rule shortcuts (https://vkbottle.rtfd.io/ru/latest/high-level/handling/rules/)"
+            raise ValueError(msg)
 
-        if not isinstance(event, list):
-            event = [event]
+        event_types = [event] if isinstance(event, (int, UserEventType)) else event
 
         def decorator(func):
-            for e in event:
+            for e in event_types:
                 if isinstance(e, int):
                     e = UserEventType(e)
                 handler_basement = UserHandlerBasement(

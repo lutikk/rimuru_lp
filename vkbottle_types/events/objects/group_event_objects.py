@@ -1,35 +1,18 @@
-import inspect
-from typing import Any, Optional
+from typing import Any, List, Optional
 
-from vkbottle_types.objects import (
-    AudioAudio,
-    BaseBoolInt,
-    BoardTopicComment,
-    CallbackGroupJoinType,
-    CallbackGroupMarket,
-    CallbackGroupOfficerRole,
-    CallbackLikeAddRemoveObjectType,
-    ClientInfoForBots,
-    GroupsGroupAudio,
-    GroupsGroupFullAgeLimits,
-    GroupsGroupIsClosed,
-    GroupsGroupPhotos,
-    GroupsGroupVideo,
-    GroupsGroupWall,
-    MarketOrder,
-    MessagesMessage,
-    PhotosPhoto,
-    VideoVideo,
-    WallWallComment,
-    WallWallpostFull,
-)
+import pydantic
 
-from .base_event_object import BaseEventObject
+from vkbottle_types.base_model import BaseModel
+from vkbottle_types.objects import *
+
+
+class BaseEventObject(BaseModel):
+    model_config = pydantic.ConfigDict(frozen=False)
 
 
 class MessageNewObject(BaseEventObject):
-    client_info: Optional["ClientInfoForBots"] = None
-    message: Optional["MessagesMessage"] = None
+    client_info: Optional[ClientInfoForBots] = None
+    message: Optional[MessagesMessage] = None
 
 
 class MessageReplyObject(BaseEventObject, MessagesMessage):
@@ -68,7 +51,7 @@ class PhotoNewObject(BaseEventObject, PhotosPhoto):
 
 
 class PhotoCommentNewObject(BaseEventObject, WallWallComment):
-    photo_id: int
+    photo_id: int  # type: ignore
     photo_owner_id: int
 
 
@@ -96,7 +79,7 @@ class VideoNewObject(BaseEventObject, VideoVideo):
 
 
 class VideoCommentNewObject(BaseEventObject, WallWallComment):
-    video_id: int
+    video_id: int  # type: ignore
     video_owner_id: int
 
 
@@ -148,13 +131,28 @@ class LikeAddObject(BaseEventObject):
     liker_id: int
     object_id: int
     object_owner_id: int
-    object_type: Optional["CallbackLikeAddRemoveObjectType"] = None
+    object_type: Optional[CallbackLikeAddRemoveObjectType] = None
     post_id: int
     thread_reply_id: Optional[int] = None
 
 
 class LikeRemoveObject(LikeAddObject):
     pass
+
+
+class LeadFormAnswerModel(BaseModel):
+    key: str
+    question: str
+    answer: Optional[str] = None
+
+
+class LeadFormsNewObject(BaseEventObject):
+    lead_id: int
+    group_id: int
+    form_id: int
+    user_id: int
+    form_name: str
+    answers: Optional[List[LeadFormAnswerModel]] = None
 
 
 class BoardPostNewObject(BaseEventObject, BoardTopicComment):
@@ -209,12 +207,12 @@ class MarketOrderEditObject(MarketOrderNewObject):
 
 
 class GroupLeaveObject(BaseEventObject):
-    self: Optional["BaseBoolInt"] = None
+    self: Optional[BaseBoolInt] = None
     user_id: Optional[int] = None
 
 
 class GroupJoinObject(BaseEventObject):
-    join_type: "CallbackGroupJoinType"
+    join_type: CallbackGroupJoinType
     user_id: int
 
 
@@ -241,20 +239,20 @@ class PollVoteNewObject(BaseEventObject):
 
 class GroupOfficersEditObject(BaseEventObject):
     admin_id: int
-    level_new: "CallbackGroupOfficerRole"
-    level_old: "CallbackGroupOfficerRole"
+    level_new: CallbackGroupOfficerRole
+    level_old: CallbackGroupOfficerRole
     user_id: int
 
 
 class GroupSettingsChangesObject(BaseEventObject):
-    access: Optional["GroupsGroupIsClosed"] = None
-    age_limits: Optional["GroupsGroupFullAgeLimits"] = None
+    access: Optional[GroupsGroupIsClosed] = None
+    age_limits: Optional[GroupsGroupFullAgeLimits] = None
     description: Optional[str] = None
-    enable_audio: Optional["GroupsGroupAudio"] = None
-    enable_market: Optional["CallbackGroupMarket"] = None
-    enable_photo: Optional["GroupsGroupPhotos"] = None
-    enable_status_default: Optional["GroupsGroupWall"] = None
-    enable_video: Optional["GroupsGroupVideo"] = None
+    enable_audio: Optional[GroupsGroupAudio] = None
+    enable_market: Optional[CallbackGroupMarket] = None
+    enable_photo: Optional[GroupsGroupPhotos] = None
+    enable_status_default: Optional[GroupsGroupWall] = None
+    enable_video: Optional[GroupsGroupVideo] = None
     public_category: Optional[int] = None
     public_subcategory: Optional[int] = None
     screen_name: Optional[str] = None
@@ -270,7 +268,7 @@ class GroupChangeSettingsObject(BaseEventObject):
 
 
 class GroupChangePhotoObject(BaseEventObject):
-    photo: "PhotosPhoto"
+    photo: PhotosPhoto
     user_id: int
 
 
@@ -323,8 +321,75 @@ class DonutMoneyWithdrawErrorObject(BaseEventObject):
     reason: str
 
 
-_locals = locals().copy()
-_locals_values = _locals.values()
-for item in _locals_values:
-    if inspect.isclass(item) and issubclass(item, BaseEventObject):
-        item.update_forward_refs()
+class MessageReactionEventObject(BaseEventObject):
+    reacted_id: int
+    peer_id: int
+    cmid: int
+    reaction_id: Optional[int] = None
+
+
+class MessageReadObject(BaseEventObject):
+    from_id: int
+    peer_id: int
+    read_message_id: int
+    conversation_message_id: int
+
+
+__all__ = (
+    "AudioNewObject",
+    "AppPayloadObject",
+    "BoardPostDeleteObject",
+    "BoardPostEditObject",
+    "BoardPostNewObject",
+    "BoardPostRestoreObject",
+    "ClientInfoForBots",
+    "DonutMoneyWithdrawErrorObject",
+    "DonutMoneyWithdrawObject",
+    "DonutSubscriptionCancelledObject",
+    "DonutSubscriptionCreateObject",
+    "DonutSubscriptionExpiredObject",
+    "DonutSubscriptionProlongedObject",
+    "DonutSubscriptionPriceChangedObject",
+    "GroupChangePhotoObject",
+    "GroupChangeSettingsObject",
+    "GroupLeaveObject",
+    "GroupOfficersEditObject",
+    "GroupSettingsChangesObject",
+    "LeadFormsNewObject",
+    "LikeAddObject",
+    "LikeRemoveObject",
+    "MarketCommentDeleteObject",
+    "MarketCommentEditObject",
+    "MarketCommentNewObject",
+    "MarketCommentRestoreObject",
+    "MarketOrderEditObject",
+    "MarketOrderNewObject",
+    "MessageAllowObject",
+    "MessageDenyObject",
+    "MessageEditObject",
+    "MessageEventObject",
+    "MessageNewObject",
+    "MessageReplyObject",
+    "MessageReactionEventObject",
+    "MessageReadObject",
+    "MessageTypingStateObject",
+    "PhotoCommentDeleteObject",
+    "PhotoCommentEditObject",
+    "PhotoCommentNewObject",
+    "PhotoCommentRestoreObject",
+    "PhotoNewObject",
+    "PollVoteNewObject",
+    "UserBlockObject",
+    "UserUnblockObject",
+    "VideoCommentDeleteObject",
+    "VideoCommentEditObject",
+    "VideoCommentNewObject",
+    "VideoCommentRestoreObject",
+    "VideoNewObject",
+    "WallPostNewObject",
+    "WallReplyDeleteObject",
+    "WallReplyEditObject",
+    "WallReplyNewObject",
+    "WallReplyRestoreObject",
+    "WallRepostObject",
+)

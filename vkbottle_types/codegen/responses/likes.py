@@ -1,63 +1,54 @@
 import typing
 
-from vkbottle_types.objects import BaseBoolInt, UsersUserMin
+from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.objects import UsersSubscriptionsItem
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AddResponse(BaseResponse):
-    response: "AddResponseModel"
+class LikesAddResponseModel(BaseModel):
+    likes: int = Field()
 
 
-class DeleteResponse(BaseResponse):
-    response: "DeleteResponseModel"
+class LikesAddResponse(BaseResponse):
+    response: "LikesAddResponseModel" = Field()
 
 
-class GetListExtendedResponse(BaseResponse):
-    response: "GetListExtendedResponseModel"
+class LikesDeleteResponseModel(BaseModel):
+    likes: int = Field()
 
 
-class GetListResponse(BaseResponse):
-    response: "GetListResponseModel"
+class LikesDeleteResponse(BaseResponse):
+    response: "LikesDeleteResponseModel" = Field()
 
 
-class IsLikedResponse(BaseResponse):
-    response: "IsLikedResponseModel"
+class LikesGetListExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["UsersSubscriptionsItem"] = Field()
+    liked_by_author: typing.Optional[dict] = Field(
+        default=None,
+    )
+    liked_by_group: typing.Optional[dict] = Field(
+        default=None,
+    )
 
 
-class AddResponseModel(BaseResponse):
-    likes: typing.Optional[int] = None
+class LikesGetListExtendedResponse(BaseResponse):
+    response: "LikesGetListExtendedResponseModel" = Field()
 
 
-class DeleteResponseModel(BaseResponse):
-    likes: typing.Optional[int] = None
+class LikesGetListResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List[int] = Field()
 
 
-class GetListExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["UsersUserMin"]] = None
+class LikesGetListResponse(BaseResponse):
+    response: "LikesGetListResponseModel" = Field()
 
 
-class GetListResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List[int]] = None
+class LikesIsLikedResponseModel(BaseModel):
+    liked: bool = Field()
+    copied: bool = Field()
 
 
-class IsLikedResponseModel(BaseResponse):
-    liked: typing.Optional["BaseBoolInt"] = None
-    copied: typing.Optional["BaseBoolInt"] = None
-
-
-__all__ = (
-    "AddResponse",
-    "AddResponseModel",
-    "BaseBoolInt",
-    "DeleteResponse",
-    "DeleteResponseModel",
-    "GetListExtendedResponse",
-    "GetListExtendedResponseModel",
-    "GetListResponse",
-    "GetListResponseModel",
-    "IsLikedResponse",
-    "IsLikedResponseModel",
-    "UsersUserMin",
-)
+class LikesIsLikedResponse(BaseResponse):
+    response: "LikesIsLikedResponseModel" = Field()

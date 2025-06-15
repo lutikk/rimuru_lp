@@ -1,5 +1,4 @@
-from vkbottle_types import GroupTypes
-from vkbottle_types.events import GroupEventType, UserEventType
+from vkbottle_types.events import GroupEventType, GroupTypes, UserEventType
 
 from .api import (
     ABCAPI,
@@ -36,15 +35,16 @@ from .dispatch import (
 )
 from .exception_factory import (
     ABCErrorHandler,
+    APIAuthError,
     CaptchaError,
     CodeException,
     ErrorHandler,
     VKAPIError,
-    swear,
 )
 from .framework import (
     ABCBlueprint,
     ABCFramework,
+    BaseFramework,
     Bot,
     BotBlueprint,
     User,
@@ -52,7 +52,7 @@ from .framework import (
     run_multibot,
 )
 from .http import ABCHTTPClient, AiohttpClient, SingleAiohttpClient
-from .polling import ABCPolling, BotPolling, UserPolling
+from .polling import ABCPolling, BasePolling, BotPolling, UserPolling
 from .tools import (
     EMPTY_KEYBOARD,
     ABCAction,
@@ -71,6 +71,8 @@ from .tools import (
     DocUploader,
     DocWallUploader,
     EqualsValidator,
+    Format,
+    Formatter,
     GraffitiUploader,
     IsInstanceValidator,
     Keyboard,
@@ -91,20 +93,24 @@ from .tools import (
     TemplateElement,
     Text,
     UserAuth,
+    UserPermission,
     UserTypes,
     VideoUploader,
     VKApps,
     VKPay,
     VoiceMessageUploader,
-    keyboard_gen,
+    bold,
+    italic,
     load_blueprints_from_package,
     run_in_task,
     run_sync,
     template_gen,
+    underline,
+    url,
     vkscript,
 )
 
-event_types = GroupTypes
+event_types = GroupTypes  # type: ignore
 
 __all__ = (
     "ABCAPI",
@@ -134,8 +140,10 @@ __all__ = (
     "BaseContext",
     "BaseMiddleware",
     "BaseReturnManager",
+    "BasePolling",
     "BaseStateGroup",
     "BaseUploader",
+    "BaseFramework",
     "BlockingRequestRescheduler",
     "Bot",
     "BotBlueprint",
@@ -145,6 +153,7 @@ __all__ = (
     "CallableValidator",
     "Callback",
     "CaptchaError",
+    "APIAuthError",
     "CodeException",
     "ConsistentTokenGenerator",
     "CtxStorage",
@@ -190,6 +199,7 @@ __all__ = (
     "UserAuth",
     "UserBlueprint",
     "UserEventType",
+    "UserPermission",
     "UserPolling",
     "UserTypes",
     "VKAPIError",
@@ -197,13 +207,17 @@ __all__ = (
     "VKPay",
     "VideoUploader",
     "VoiceMessageUploader",
+    "Formatter",
+    "Format",
+    "bold",
+    "italic",
+    "underline",
+    "url",
     "get_token_generator",
-    "keyboard_gen",
     "load_blueprints_from_package",
     "run_in_task",
     "run_multibot",
     "run_sync",
-    "swear",
     "template_gen",
     "vkscript",
 )

@@ -1,55 +1,58 @@
 import typing
 
-from typing_extensions import Literal
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.base import OkResponse
-from vkbottle_types.responses.utils import (
-    CheckLinkResponse,
-    GetLastShortenedLinksResponse,
-    GetLastShortenedLinksResponseModel,
-    GetLinkStatsExtendedResponse,
-    GetLinkStatsResponse,
-    GetServerTimeResponse,
-    GetShortLinkResponse,
-    ResolveScreenNameResponse,
+from vkbottle_types.objects import (
     UtilsDomainResolved,
     UtilsLinkChecked,
     UtilsLinkStats,
     UtilsLinkStatsExtended,
     UtilsShortLink,
 )
+from vkbottle_types.responses.base import (
+    BaseOkResponse,
+    BaseOkResponseModel,
+)
+from vkbottle_types.responses.utils import *  # noqa: F401,F403  # type: ignore
 
 
 class UtilsCategory(BaseCategory):
-    async def check_link(self, url: str, **kwargs) -> UtilsLinkChecked:
-        """Checks whether a link is blocked in VK.
+    async def check_link(
+        self,
+        url: str,
+        **kwargs: typing.Any,
+    ) -> "UtilsLinkChecked":
+        """Method `utils.checkLink()`
 
         :param url: Link to check (e.g., 'http://google.com').
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("utils.checkLink", params)
-        model = CheckLinkResponse
+        model = UtilsCheckLinkResponse
         return model(**response).response
 
-    async def delete_from_last_shortened(self, key: str, **kwargs) -> int:
-        """Deletes shortened link from user's list.
+    async def delete_from_last_shortened(
+        self,
+        key: str,
+        **kwargs: typing.Any,
+    ) -> BaseOkResponseModel:
+        """Method `utils.deleteFromLastShortened()`
 
         :param key: Link key (characters after vk.cc/).
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("utils.deleteFromLastShortened", params)
-        model = OkResponse
+        model = BaseOkResponse
         return model(**response).response
 
     async def get_last_shortened_links(
         self,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
-        **kwargs
-    ) -> GetLastShortenedLinksResponseModel:
-        """Returns a list of user's shortened links.
+        **kwargs: typing.Any,
+    ) -> UtilsGetLastShortenedLinksResponseModel:
+        """Method `utils.getLastShortenedLinks()`
 
         :param count: Number of links to return.
         :param offset: Offset needed to return a specific subset of links.
@@ -57,101 +60,103 @@ class UtilsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("utils.getLastShortenedLinks", params)
-        model = GetLastShortenedLinksResponse
+        model = UtilsGetLastShortenedLinksResponse
         return model(**response).response
 
     @typing.overload
     async def get_link_stats(
         self,
         key: str,
-        source: typing.Optional[Literal["vk_cc", "vk_link"]] = None,
+        extended: typing.Literal[True],
         access_key: typing.Optional[str] = None,
-        interval: typing.Optional[
-            Literal["day", "forever", "hour", "month", "week"]
-        ] = None,
+        interval: typing.Optional[str] = None,
         intervals_count: typing.Optional[int] = None,
-        extended: typing.Optional[Literal[False]] = ...,
-        **kwargs
-    ) -> UtilsLinkStats:
-        ...
+        source: typing.Optional[str] = None,
+        **kwargs: typing.Any,
+    ) -> "UtilsLinkStatsExtended": ...
 
     @typing.overload
     async def get_link_stats(
         self,
         key: str,
-        source: typing.Optional[Literal["vk_cc", "vk_link"]] = None,
+        extended: typing.Optional[typing.Literal[False]] = None,
         access_key: typing.Optional[str] = None,
-        interval: typing.Optional[
-            Literal["day", "forever", "hour", "month", "week"]
-        ] = None,
+        interval: typing.Optional[str] = None,
         intervals_count: typing.Optional[int] = None,
-        extended: Literal[True] = ...,
-        **kwargs
-    ) -> UtilsLinkStatsExtended:
-        ...
+        source: typing.Optional[str] = None,
+        **kwargs: typing.Any,
+    ) -> "UtilsLinkStats": ...
 
     async def get_link_stats(
         self,
-        key=None,
-        source=None,
-        access_key=None,
-        interval=None,
-        intervals_count=None,
-        extended=None,
-        **kwargs
-    ) -> typing.Union[UtilsLinkStats, UtilsLinkStatsExtended]:
-        """Returns stats data for shortened link.
+        key: str,
+        extended: typing.Optional[bool] = None,
+        access_key: typing.Optional[str] = None,
+        interval: typing.Optional[str] = None,
+        intervals_count: typing.Optional[int] = None,
+        source: typing.Optional[str] = None,
+        **kwargs: typing.Any,
+    ) -> typing.Union["UtilsLinkStatsExtended", "UtilsLinkStats"]:
+        """Method `utils.getLinkStats()`
 
         :param key: Link key (characters after vk.cc/).
-        :param source: Source of scope
+        :param extended: 1 - to return extended stats data (sex, age, geo). 0 - to return views number only.
         :param access_key: Access key for private link stats.
         :param interval: Interval.
         :param intervals_count: Number of intervals to return.
-        :param extended: 1 — to return extended stats data (sex, age, geo). 0 — to return views number only.
+        :param source: Source of scope
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("utils.getLinkStats", params)
         model = self.get_model(
-            ((("extended",), GetLinkStatsExtendedResponse),),
-            default=GetLinkStatsResponse,
+            ((("extended",), UtilsGetLinkStatsExtendedResponse),),
+            default=UtilsGetLinkStatsResponse,
             params=params,
         )
         return model(**response).response
 
-    async def get_server_time(self, **kwargs) -> int:
-        """Returns the current time of the VK server."""
+    async def get_server_time(
+        self,
+        **kwargs: typing.Any,
+    ) -> int:
+        """Method `utils.getServerTime()`"""
 
         params = self.get_set_params(locals())
         response = await self.api.request("utils.getServerTime", params)
-        model = GetServerTimeResponse
+        model = UtilsGetServerTimeResponse
         return model(**response).response
 
     async def get_short_link(
-        self, url: str, private: typing.Optional[bool] = None, **kwargs
-    ) -> UtilsShortLink:
-        """Allows to receive a link shortened via vk.cc.
+        self,
+        url: str,
+        private: typing.Optional[bool] = None,
+        **kwargs: typing.Any,
+    ) -> "UtilsShortLink":
+        """Method `utils.getShortLink()`
 
         :param url: URL to be shortened.
-        :param private: 1 — private stats, 0 — public stats.
+        :param private: 1 - private stats, 0 - public stats.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("utils.getShortLink", params)
-        model = GetShortLinkResponse
+        model = UtilsGetShortLinkResponse
         return model(**response).response
 
     async def resolve_screen_name(
-        self, screen_name: str, **kwargs
-    ) -> UtilsDomainResolved:
-        """Detects a type of object (e.g., user, community, application) and its ID by screen name.
+        self,
+        screen_name: str,
+        **kwargs: typing.Any,
+    ) -> "UtilsDomainResolved":
+        """Method `utils.resolveScreenName()`
 
         :param screen_name: Screen name of the user, community (e.g., 'apiclub,' 'andrew', or 'rules_of_war'), or application.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("utils.resolveScreenName", params)
-        model = ResolveScreenNameResponse
+        model = UtilsResolveScreenNameResponse
         return model(**response).response
 
 

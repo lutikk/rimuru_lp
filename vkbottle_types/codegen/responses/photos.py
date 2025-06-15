@@ -1,16 +1,13 @@
 import typing
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
-    BaseBoolInt,
     BaseImage,
-    BaseUploadServer,
     GroupsGroupFull,
     PhotosPhoto,
     PhotosPhotoAlbumFull,
-    PhotosPhotoFullXtrRealOffset,
     PhotosPhotoTag,
     PhotosPhotoUpload,
-    PhotosPhotoXtrRealOffset,
     PhotosPhotoXtrTagInfo,
     UsersUserFull,
     WallWallComment,
@@ -18,338 +15,313 @@ from vkbottle_types.objects import (
 from vkbottle_types.responses.base_response import BaseResponse
 
 
-class CopyResponse(BaseResponse):
-    response: int
+class PhotosCopyResponse(BaseResponse):
+    response: int = Field()
 
 
-class CreateAlbumResponse(BaseResponse):
-    response: PhotosPhotoAlbumFull
+class PhotosCreateAlbumResponse(BaseResponse):
+    response: "PhotosPhotoAlbumFull" = Field()
 
 
-class CreateCommentResponse(BaseResponse):
-    response: int
+class PhotosCreateCommentResponse(BaseResponse):
+    response: int = Field()
 
 
-class DeleteCommentResponse(BaseResponse):
-    response: BaseBoolInt
+class PhotosGetAlbumsCountResponse(BaseResponse):
+    response: int = Field()
 
 
-class GetAlbumsCountResponse(BaseResponse):
-    response: int
+class PhotosGetAlbumsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PhotosPhotoAlbumFull"] = Field()
 
 
-class GetAlbumsResponse(BaseResponse):
-    response: "GetAlbumsResponseModel"
+class PhotosGetAlbumsResponse(BaseResponse):
+    response: "PhotosGetAlbumsResponseModel" = Field()
 
 
-class GetAllCommentsResponse(BaseResponse):
-    response: "GetAllCommentsResponseModel"
+class PhotosGetAllCommentsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallComment"] = Field()
 
 
-class GetAllExtendedResponse(BaseResponse):
-    response: "GetAllExtendedResponseModel"
+class PhotosGetAllCommentsResponse(BaseResponse):
+    response: "PhotosGetAllCommentsResponseModel" = Field()
 
 
-class GetAllResponse(BaseResponse):
-    response: "GetAllResponseModel"
+class PhotosGetAllResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PhotosPhoto"] = Field()
+    more: typing.Optional[bool] = Field(
+        default=None,
+    )
 
 
-class GetByIdResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"]
+class PhotosGetAllResponse(BaseResponse):
+    response: "PhotosGetAllResponseModel" = Field()
 
 
-class GetCommentsExtendedResponse(BaseResponse):
-    response: "GetCommentsExtendedResponseModel"
+class PhotosGetByIdResponse(BaseResponse):
+    response: typing.List["PhotosPhoto"] = Field()
 
 
-class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel"
+class PhotosGetCommentsExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallComment"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class GetMarketUploadServerResponse(BaseResponse):
-    response: BaseUploadServer
+class PhotosGetCommentsExtendedResponse(BaseResponse):
+    response: "PhotosGetCommentsExtendedResponseModel" = Field()
 
 
-class GetMessagesUploadServerResponse(BaseResponse):
-    response: PhotosPhotoUpload
+class PhotosGetCommentsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallComment"] = Field()
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
 
 
-class GetNewTagsResponse(BaseResponse):
-    response: "GetNewTagsResponseModel"
+class PhotosGetCommentsResponse(BaseResponse):
+    response: "PhotosGetCommentsResponseModel" = Field()
 
 
-class GetTagsResponse(BaseResponse):
-    response: typing.List["PhotosPhotoTag"]
+class PhotosGetMessagesUploadServerResponse(BaseResponse):
+    response: "PhotosPhotoUpload" = Field()
 
 
-class GetUploadServerResponse(BaseResponse):
-    response: PhotosPhotoUpload
+class PhotosGetNewTagsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PhotosPhotoXtrTagInfo"] = Field()
 
 
-class GetUserPhotosResponse(BaseResponse):
-    response: "GetUserPhotosResponseModel"
+class PhotosGetNewTagsResponse(BaseResponse):
+    response: "PhotosGetNewTagsResponseModel" = Field()
 
 
-class GetWallUploadServerResponse(BaseResponse):
-    response: PhotosPhotoUpload
+class PhotosGetTagsResponse(BaseResponse):
+    response: typing.List["PhotosPhotoTag"] = Field()
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class PhotosGetUploadServerResponse(BaseResponse):
+    response: "PhotosPhotoUpload" = Field()
 
 
-class MarketAlbumUploadResponse(BaseResponse):
-    response: "MarketAlbumUploadResponseModel"
+class PhotosGetUserPhotosResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PhotosPhoto"] = Field()
+    next_from: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class MarketUploadResponse(BaseResponse):
-    response: "MarketUploadResponseModel"
+class PhotosGetUserPhotosResponse(BaseResponse):
+    response: "PhotosGetUserPhotosResponseModel" = Field()
+
+
+class PhotosGetWallUploadServerResponse(BaseResponse):
+    response: "PhotosPhotoUpload" = Field()
 
 
-class MessageUploadResponse(BaseResponse):
-    response: "MessageUploadResponseModel"
+class PhotosGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PhotosPhoto"] = Field()
+    next_from: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
-class OwnerCoverUploadResponse(BaseResponse):
-    response: "OwnerCoverUploadResponseModel"
+class PhotosGetResponse(BaseResponse):
+    response: "PhotosGetResponseModel" = Field()
+
+
+class PhotosMarketAlbumUploadResponseModel(BaseModel):
+    gid: typing.Optional[int] = Field(
+        default=None,
+    )
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
+    server: typing.Optional[int] = Field(
+        default=None,
+    )
+
 
+class PhotosMarketAlbumUploadResponse(BaseResponse):
+    response: "PhotosMarketAlbumUploadResponseModel" = Field()
 
-class OwnerUploadResponse(BaseResponse):
-    response: "OwnerUploadResponseModel"
 
+class PhotosMarketUploadResponseModel(BaseModel):
+    crop_data: typing.Optional[str] = Field(
+        default=None,
+    )
+    crop_hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    group_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
+    server: typing.Optional[int] = Field(
+        default=None,
+    )
 
-class PhotoUploadResponse(BaseResponse):
-    response: "PhotoUploadResponseModel"
 
+class PhotosMarketUploadResponse(BaseResponse):
+    response: "PhotosMarketUploadResponseModel" = Field()
 
-class PutTagResponse(BaseResponse):
-    response: int
 
+class PhotosMessageUploadResponseModel(BaseModel):
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
+    server: typing.Optional[int] = Field(
+        default=None,
+    )
 
-class RestoreCommentResponse(BaseResponse):
-    response: BaseBoolInt
 
+class PhotosMessageUploadResponse(BaseResponse):
+    response: "PhotosMessageUploadResponseModel" = Field()
 
-class SaveMarketAlbumPhotoResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"]
 
+class PhotosOwnerCoverUploadResponseModel(BaseModel):
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
 
-class SaveMarketPhotoResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"]
 
+class PhotosOwnerCoverUploadResponse(BaseResponse):
+    response: "PhotosOwnerCoverUploadResponseModel" = Field()
 
-class SaveMessagesPhotoResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"]
 
+class PhotosOwnerUploadResponseModel(BaseModel):
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
+    server: typing.Optional[int] = Field(
+        default=None,
+    )
 
-class SaveOwnerCoverPhotoResponse(BaseResponse):
-    response: "SaveOwnerCoverPhotoResponseModel"
 
+class PhotosOwnerUploadResponse(BaseResponse):
+    response: "PhotosOwnerUploadResponseModel" = Field()
 
-class SaveOwnerPhotoResponse(BaseResponse):
-    response: "SaveOwnerPhotoResponseModel"
 
+class PhotosPhotoUploadResponseModel(BaseModel):
+    aid: typing.Optional[int] = Field(
+        default=None,
+    )
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
+    photos_list: typing.Optional[str] = Field(
+        default=None,
+    )
+    server: typing.Optional[int] = Field(
+        default=None,
+    )
 
-class SaveWallPhotoResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"]
 
+class PhotosPhotoUploadResponse(BaseResponse):
+    response: "PhotosPhotoUploadResponseModel" = Field()
 
-class SaveResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"]
 
+class PhotosPutTagResponse(BaseResponse):
+    response: int = Field()
 
-class SearchResponse(BaseResponse):
-    response: "SearchResponseModel"
 
+class PhotosSaveMarketAlbumPhotoResponse(BaseResponse):
+    response: typing.List["PhotosPhoto"] = Field()
 
-class WallUploadResponse(BaseResponse):
-    response: "WallUploadResponseModel"
 
+class PhotosSaveMessagesPhotoResponse(BaseResponse):
+    response: typing.List["PhotosPhoto"] = Field()
 
-class GetAlbumsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PhotosPhotoAlbumFull"]] = None
 
+class PhotosSaveOwnerCoverPhotoResponseModel(BaseModel):
+    images: typing.Optional[typing.List["BaseImage"]] = Field(
+        default=None,
+    )
 
-class GetAllCommentsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallComment"]] = None
 
+class PhotosSaveOwnerCoverPhotoResponse(BaseResponse):
+    response: "PhotosSaveOwnerCoverPhotoResponseModel" = Field()
 
-class GetAllExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PhotosPhotoFullXtrRealOffset"]] = None
-    more: typing.Optional["BaseBoolInt"] = None
 
+class PhotosSaveOwnerPhotoResponseModel(BaseModel):
+    photo_hash: str = Field()
+    photo_src: str = Field()
+    photo_src_big: typing.Optional[str] = Field(
+        default=None,
+    )
+    photo_src_small: typing.Optional[str] = Field(
+        default=None,
+    )
+    saved: typing.Optional[int] = Field(
+        default=None,
+    )
+    post_id: typing.Optional[int] = Field(
+        default=None,
+    )
 
-class GetAllResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PhotosPhotoXtrRealOffset"]] = None
-    more: typing.Optional["BaseBoolInt"] = None
 
+class PhotosSaveOwnerPhotoResponse(BaseResponse):
+    response: "PhotosSaveOwnerPhotoResponseModel" = Field()
 
-class GetCommentsExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    real_offset: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallComment"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
+class PhotosSaveWallPhotoResponse(BaseResponse):
+    response: typing.List["PhotosPhoto"] = Field()
 
-class GetCommentsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    real_offset: typing.Optional[int] = None
-    items: typing.Optional[typing.List["WallWallComment"]] = None
 
+class PhotosSaveResponse(BaseResponse):
+    response: typing.List["PhotosPhoto"] = Field()
 
-class GetNewTagsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PhotosPhotoXtrTagInfo"]] = None
 
+class PhotosSearchResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PhotosPhoto"] = Field()
 
-class GetUserPhotosResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PhotosPhoto"]] = None
 
+class PhotosSearchResponse(BaseResponse):
+    response: "PhotosSearchResponseModel" = Field()
 
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PhotosPhoto"]] = None
 
+class PhotosWallUploadResponseModel(BaseModel):
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
+    server: typing.Optional[int] = Field(
+        default=None,
+    )
 
-class MarketAlbumUploadResponseModel(BaseResponse):
-    gid: typing.Optional[int] = None
-    hash: typing.Optional[str] = None
-    photo: typing.Optional[str] = None
-    server: typing.Optional[int] = None
 
-
-class MarketUploadResponseModel(BaseResponse):
-    crop_data: typing.Optional[str] = None
-    crop_hash: typing.Optional[str] = None
-    group_id: typing.Optional[int] = None
-    hash: typing.Optional[str] = None
-    photo: typing.Optional[str] = None
-    server: typing.Optional[int] = None
-
-
-class MessageUploadResponseModel(BaseResponse):
-    hash: typing.Optional[str] = None
-    photo: typing.Optional[str] = None
-    server: typing.Optional[int] = None
-
-
-class OwnerCoverUploadResponseModel(BaseResponse):
-    hash: typing.Optional[str] = None
-    photo: typing.Optional[str] = None
-
-
-class OwnerUploadResponseModel(BaseResponse):
-    hash: typing.Optional[str] = None
-    photo: typing.Optional[str] = None
-    server: typing.Optional[int] = None
-
-
-class PhotoUploadResponseModel(BaseResponse):
-    aid: typing.Optional[int] = None
-    hash: typing.Optional[str] = None
-    photo: typing.Optional[str] = None
-    photos_list: typing.Optional[str] = None
-    server: typing.Optional[int] = None
-
-
-class SaveOwnerCoverPhotoResponseModel(BaseResponse):
-    images: typing.Optional[typing.List["BaseImage"]] = None
-
-
-class SaveOwnerPhotoResponseModel(BaseResponse):
-    photo_hash: typing.Optional[str] = None
-    photo_src: typing.Optional[str] = None
-    photo_src_big: typing.Optional[str] = None
-    photo_src_small: typing.Optional[str] = None
-    saved: typing.Optional[int] = None
-    post_id: typing.Optional[int] = None
-
-
-class SearchResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PhotosPhoto"]] = None
-
-
-class WallUploadResponseModel(BaseResponse):
-    hash: typing.Optional[str] = None
-    photo: typing.Optional[str] = None
-    server: typing.Optional[int] = None
-
-
-__all__ = (
-    "BaseBoolInt",
-    "BaseImage",
-    "BaseUploadServer",
-    "CopyResponse",
-    "CreateAlbumResponse",
-    "CreateCommentResponse",
-    "DeleteCommentResponse",
-    "GetAlbumsCountResponse",
-    "GetAlbumsResponse",
-    "GetAlbumsResponseModel",
-    "GetAllCommentsResponse",
-    "GetAllCommentsResponseModel",
-    "GetAllExtendedResponse",
-    "GetAllExtendedResponseModel",
-    "GetAllResponse",
-    "GetAllResponseModel",
-    "GetByIdResponse",
-    "GetCommentsExtendedResponse",
-    "GetCommentsExtendedResponseModel",
-    "GetCommentsResponse",
-    "GetCommentsResponseModel",
-    "GetMarketUploadServerResponse",
-    "GetMessagesUploadServerResponse",
-    "GetNewTagsResponse",
-    "GetNewTagsResponseModel",
-    "GetResponse",
-    "GetResponseModel",
-    "GetTagsResponse",
-    "GetUploadServerResponse",
-    "GetUserPhotosResponse",
-    "GetUserPhotosResponseModel",
-    "GetWallUploadServerResponse",
-    "GroupsGroupFull",
-    "MarketAlbumUploadResponse",
-    "MarketAlbumUploadResponseModel",
-    "MarketUploadResponse",
-    "MarketUploadResponseModel",
-    "MessageUploadResponse",
-    "MessageUploadResponseModel",
-    "OwnerCoverUploadResponse",
-    "OwnerCoverUploadResponseModel",
-    "OwnerUploadResponse",
-    "OwnerUploadResponseModel",
-    "PhotoUploadResponse",
-    "PhotoUploadResponseModel",
-    "PhotosPhoto",
-    "PhotosPhotoAlbumFull",
-    "PhotosPhotoFullXtrRealOffset",
-    "PhotosPhotoTag",
-    "PhotosPhotoUpload",
-    "PhotosPhotoXtrRealOffset",
-    "PhotosPhotoXtrTagInfo",
-    "PutTagResponse",
-    "RestoreCommentResponse",
-    "SaveMarketAlbumPhotoResponse",
-    "SaveMarketPhotoResponse",
-    "SaveMessagesPhotoResponse",
-    "SaveOwnerCoverPhotoResponse",
-    "SaveOwnerCoverPhotoResponseModel",
-    "SaveOwnerPhotoResponse",
-    "SaveOwnerPhotoResponseModel",
-    "SaveResponse",
-    "SaveWallPhotoResponse",
-    "SearchResponse",
-    "SearchResponseModel",
-    "UsersUserFull",
-    "WallUploadResponse",
-    "WallUploadResponseModel",
-    "WallWallComment",
-)
+class PhotosWallUploadResponse(BaseResponse):
+    response: "PhotosWallUploadResponseModel" = Field()
