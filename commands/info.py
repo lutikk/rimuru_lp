@@ -27,7 +27,7 @@ async def info(message: Message, **kwargs):
     process = psutil.Process()
     mem_usage = process.memory_info().rss
     mem_usage_mb = mem_usage / 1024 / 1024
-    version = f'4.5.0'
+    version = f'4.6.2'
     text = f'RimuruLP v{version}\n'
     text += f'Мои префиксы: {" ".join(user.my_pref) if user.my_pref else ""}\n' \
             f'Сервисные префиксы: {"".join(user.serv_pref) if user.serv_pref else ""}\n' \

@@ -11,9 +11,7 @@ class BaseResponse(BaseModel):
     @property
     def raw(self) -> str:
         if not self.raw_json:
-            raise AttributeError(
-                "You cannot get raw_json from here. Get a full raw_json from unnested response."
-            )
+            raise AttributeError("You cannot get raw_json from here. Get a full raw_json from unnested response.")
         return self.raw_json
 
 
@@ -28,10 +26,6 @@ class DictResponse(BaseResponse):
         if not self.response:
             return None
         return json.dumps(self.response)
-
-
-BaseResponse.model_rebuild()
-DictResponse.model_rebuild()
 
 
 __all__ = ("BaseResponse", "DictResponse")

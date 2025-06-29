@@ -1,5 +1,7 @@
+import datetime
 import enum
-import typing
+
+import typing_extensions as typing
 
 from vkbottle_types.base_model import BaseEnumMeta, BaseModel, Field
 
@@ -816,6 +818,7 @@ class BasePropertyExists(int, enum.Enum, metaclass=BaseEnumMeta):
 
 class BaseRepostsInfo(BaseModel):
     """
+    Count of views
     Model: `BaseRepostsInfo`
     """
 
@@ -3010,6 +3013,7 @@ class MessagesForward(BaseModel):
 
 class MessagesFwdMessages(BaseModel):
     """
+    Forwarded messages
     Model: `MessagesFwdMessages`
     """
 
@@ -3240,6 +3244,7 @@ class MessagesKeyboardButtonActionCallbackType(str, enum.Enum, metaclass=BaseEnu
 
 class MessagesKeyboardButtonActionCallback(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionCallback`
     """
 
@@ -3261,6 +3266,7 @@ class MessagesKeyboardButtonActionLocationType(str, enum.Enum, metaclass=BaseEnu
 
 class MessagesKeyboardButtonActionLocation(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionLocation`
     """
 
@@ -3279,6 +3285,7 @@ class MessagesKeyboardButtonActionOpenAppType(str, enum.Enum, metaclass=BaseEnum
 
 class MessagesKeyboardButtonActionOpenApp(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionOpenApp`
     """
 
@@ -3311,6 +3318,7 @@ class MessagesKeyboardButtonActionOpenLinkType(str, enum.Enum, metaclass=BaseEnu
 
 class MessagesKeyboardButtonActionOpenLink(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionOpenLink`
     """
 
@@ -3335,6 +3343,7 @@ class MessagesKeyboardButtonActionOpenPhotoType(str, enum.Enum, metaclass=BaseEn
 
 class MessagesKeyboardButtonActionOpenPhoto(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionOpenPhoto`
     """
 
@@ -3348,6 +3357,7 @@ class MessagesKeyboardButtonActionTextType(str, enum.Enum, metaclass=BaseEnumMet
 
 class MessagesKeyboardButtonActionText(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionText`
     """
 
@@ -3369,6 +3379,7 @@ class MessagesKeyboardButtonActionVkpayType(str, enum.Enum, metaclass=BaseEnumMe
 
 class MessagesKeyboardButtonActionVkpay(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionVkpay`
     """
 
@@ -4977,6 +4988,7 @@ class AdsClipItem(BaseModel):
 
 class AdsClipItemLink(BaseModel):
     """
+    Link
     Model: `AdsClipItemLink`
     """
 
@@ -5841,6 +5853,7 @@ class AdsPost(BaseModel):
 
 class AdsPostComments(BaseModel):
     """
+    Comments
     Model: `AdsPostComments`
     """
 
@@ -5852,6 +5865,7 @@ class AdsPostComments(BaseModel):
 
 class AdsPostDonut(BaseModel):
     """
+    Donut
     Model: `AdsPostDonut`
     """
 
@@ -5863,6 +5877,7 @@ class AdsPostDonut(BaseModel):
 
 class AdsPostEasyPromote(BaseModel):
     """
+    Ads easy promote
     Model: `AdsPostEasyPromote`
     """
 
@@ -5904,6 +5919,7 @@ class AdsPostEasyPromote(BaseModel):
 
 class AdsPostLikes(BaseModel):
     """
+    Likes
     Model: `AdsPostLikes`
     """
 
@@ -5925,6 +5941,7 @@ class AdsPostLikes(BaseModel):
 
 class AdsPostOwner(BaseModel):
     """
+    Owner
     Model: `AdsPostOwner`
     """
 
@@ -5951,6 +5968,7 @@ class AdsPostOwner(BaseModel):
 
 class AdsPostReposts(BaseModel):
     """
+    Reposts
     Model: `AdsPostReposts`
     """
 
@@ -5972,6 +5990,7 @@ class AdsPostReposts(BaseModel):
 
 class AdsPostViews(BaseModel):
     """
+    Views
     Model: `AdsPostViews`
     """
 
@@ -6660,6 +6679,7 @@ class AdsStoryItemStats(BaseModel):
 
 class AdsStoryItemStatsFollow(BaseModel):
     """
+    Follow event stats
     Model: `AdsStoryItemStatsFollow`
     """
 
@@ -6676,6 +6696,7 @@ class AdsStoryItemStatsFollow(BaseModel):
 
 class AdsStoryItemStatsUrlView(BaseModel):
     """
+    Url view event stats
     Model: `AdsStoryItemStatsUrlView`
     """
 
@@ -7406,6 +7427,7 @@ class AppsScopeName(str, enum.Enum, metaclass=BaseEnumMeta):
 
 class AppsScope(BaseModel):
     """
+    Scope description
     Model: `AppsScope`
     """
 
@@ -8359,6 +8381,7 @@ class CallbackDonutSubscriptionProlonged(BaseModel):
 
 class CallbackFwdMessages(BaseModel):
     """
+    Forwarded messages
     Model: `CallbackFwdMessages`
     """
 
@@ -9922,6 +9945,7 @@ class CallsParticipants(BaseModel):
 
 class CallsShortCredentials(BaseModel):
     """
+    These credentials may be used to join a call without knowing a VK Join Link
     Model: `CallsShortCredentials`
     """
 
@@ -10286,6 +10310,7 @@ class DonutDonatorSubscriptionInfoStatus(str, enum.Enum, metaclass=BaseEnumMeta)
 
 class DonutDonatorSubscriptionInfo(BaseModel):
     """
+    Info about user VK Donut subscription
     Model: `DonutDonatorSubscriptionInfo`
     """
 
@@ -10626,6 +10651,7 @@ class GroupsAddress(BaseModel):
 
 class GroupsAddressTimetable(BaseModel):
     """
+    Timetable for a week
     Model: `GroupsAddressTimetable`
     """
 
@@ -10667,6 +10693,7 @@ class GroupsAddressTimetable(BaseModel):
 
 class GroupsAddressTimetableDay(BaseModel):
     """
+    Timetable for one day
     Model: `GroupsAddressTimetableDay`
     """
 
@@ -12004,6 +12031,7 @@ class GroupsMemberStatusFull(BaseModel):
 
 class GroupsOnlineStatus(BaseModel):
     """
+    Online status of group
     Model: `GroupsOnlineStatus`
     """
 
@@ -12410,6 +12438,7 @@ class MarketGlobalSearchFilters(BaseModel):
 
 class MarketItemOwnerInfo(BaseModel):
     """
+    Information about the group where the item is placed
     Model: `MarketItemOwnerInfo`
     """
 
@@ -12446,6 +12475,7 @@ class MarketItemOwnerInfo(BaseModel):
 
 class MarketItemPromotionInfo(BaseModel):
     """
+    Information about promotion of the market item
     Model: `MarketItemPromotionInfo`
     """
 
@@ -14489,6 +14519,7 @@ class PollsPoll(BaseModel):
 
 class PollsPollAnonymous(BaseModel):
     """
+    Information whether the field is anonymous
     Model: `PollsPollAnonymous`
     """
 
@@ -14805,6 +14836,7 @@ class SecureTransaction(BaseModel):
 
 class StatsActivity(BaseModel):
     """
+    Activity stats
     Model: `StatsActivity`
     """
 
@@ -14917,20 +14949,15 @@ class StatsPeriod(BaseModel):
     """Property `StatsPeriod.visitors`."""
 
 
-class StatsPeriodFromOneOf(BaseModel):
-    """
-    Model: `StatsPeriodFromOneOf`
-    """
+StatsPeriodFromOneOf: typing.TypeAlias = datetime.datetime
 
 
-class StatsPeriodToOneOf(BaseModel):
-    """
-    Model: `StatsPeriodToOneOf`
-    """
+StatsPeriodToOneOf: typing.TypeAlias = datetime.datetime
 
 
 class StatsReach(BaseModel):
     """
+    Reach stats
     Model: `StatsReach`
     """
 
@@ -15006,6 +15033,7 @@ class StatsSexAge(BaseModel):
 
 class StatsViews(BaseModel):
     """
+    Views stats
     Model: `StatsViews`
     """
 
@@ -15661,6 +15689,7 @@ class StoriesFeedItem(BaseModel):
 
 class StoriesPromoBlock(BaseModel):
     """
+    Additional data for promo stories
     Model: `StoriesPromoBlock`
     """
 
@@ -16415,6 +16444,7 @@ class VideoLiveInfo(BaseModel):
 
 class VideoLiveSettings(BaseModel):
     """
+    Video live settings
     Model: `VideoLiveSettings`
     """
 
@@ -17706,6 +17736,7 @@ class WallWallpostCommentsDonut(BaseModel):
 
 class WallWallpostCommentsDonutPlaceholder(BaseModel):
     """
+    Info about paid comments feature
     Model: `WallWallpostCommentsDonutPlaceholder`
     """
 
@@ -17720,6 +17751,7 @@ class WallWallpostDonutEditMode(str, enum.Enum, metaclass=BaseEnumMeta):
 
 class WallWallpostDonut(BaseModel):
     """
+    Info about paid wall post
     Model: `WallWallpostDonut`
     """
 
@@ -20565,157 +20597,6 @@ class NewsfeedListFull(NewsfeedList):
 
 
 __all__ = (
-    "BaseBoolInt",
-    "BaseCity",
-    "BaseCommentsInfo",
-    "BaseCountry",
-    "BaseCropPhoto",
-    "BaseCropPhotoCrop",
-    "BaseCropPhotoRect",
-    "BaseError",
-    "BaseErrorInnerType",
-    "BaseGeo",
-    "BaseGeoCoordinates",
-    "BaseGradientPoint",
-    "BaseImage",
-    "BaseImageTheme",
-    "BaseLang",
-    "BaseLikes",
-    "BaseLikesInfo",
-    "BaseLinkApplication",
-    "BaseLinkApplicationStore",
-    "BaseLinkButton",
-    "BaseLinkButtonAction",
-    "BaseLinkButtonActionType",
-    "BaseLinkButtonStyle",
-    "BaseLinkNoProduct",
-    "BaseLinkProduct",
-    "BaseLinkProductType",
-    "BaseLinkProductCategory",
-    "BaseLinkProductStatus",
-    "BaseLinkRating",
-    "BaseLinkRatingType",
-    "BaseMessageError",
-    "BaseNameCase",
-    "BaseObject",
-    "BaseObjectCount",
-    "BaseObjectWithName",
-    "BaseOwnerCover",
-    "BaseOwnerCoverCropParams",
-    "BasePlace",
-    "BasePropertyExists",
-    "BaseRepostsInfo",
-    "BaseRequestParam",
-    "BaseSex",
-    "BaseSticker",
-    "BaseStickerInnerType",
-    "BaseStickerAnimation",
-    "BaseStickerAnimationType",
-    "BaseStickerNew",
-    "BaseStickerNewInnerType",
-    "BaseUploadServer",
-    "BaseUserGroupFields",
-    "BaseUserId",
-    "UsersCareer",
-    "UsersExports",
-    "UsersFields",
-    "UsersLastSeen",
-    "UsersMilitary",
-    "UsersOccupation",
-    "UsersOccupationType",
-    "UsersOnlineInfo",
-    "UsersOnlineInfoStatus",
-    "UsersPersonal",
-    "UsersRelative",
-    "UsersRelativeType",
-    "UsersSchool",
-    "UsersSubscriptionsItem",
-    "UsersUniversity",
-    "UsersUserConnections",
-    "UsersUserCounters",
-    "UsersUserMin",
-    "UsersUserRelation",
-    "UsersUserSettingsXtr",
-    "UsersUserType",
-    "UsersUsersArray",
-    "MessagesActionOneOf",
-    "MessagesAudioMessage",
-    "MessagesBaseMessage",
-    "MessagesChat",
-    "MessagesChatFull",
-    "MessagesChatPreview",
-    "MessagesChatPushSettings",
-    "MessagesChatRestrictions",
-    "MessagesChatSettings",
-    "MessagesChatSettingsAcl",
-    "MessagesChatSettingsPermissions",
-    "MessagesChatSettingsPermissionsInvite",
-    "MessagesChatSettingsPermissionsChangeInfo",
-    "MessagesChatSettingsPermissionsChangePin",
-    "MessagesChatSettingsPermissionsUseMassMentions",
-    "MessagesChatSettingsPermissionsSeeInviteLink",
-    "MessagesChatSettingsPermissionsCall",
-    "MessagesChatSettingsPermissionsChangeAdmins",
-    "MessagesChatSettingsPhoto",
-    "MessagesChatSettingsState",
-    "MessagesConversation",
-    "MessagesConversationSpecialServiceType",
-    "MessagesConversationCanWrite",
-    "MessagesConversationMember",
-    "MessagesConversationPeer",
-    "MessagesConversationPeerType",
-    "MessagesConversationSortId",
-    "MessagesConversationWithMessage",
-    "MessagesDeleteFullResponseItem",
-    "MessagesForeignMessage",
-    "MessagesForward",
-    "MessagesFwdMessages",
-    "MessagesGetConversationById",
-    "MessagesGetConversationMembers",
-    "MessagesGetInviteLinkByOwnerResponseItem",
-    "MessagesGraffiti",
-    "MessagesHistoryAttachment",
-    "MessagesHistoryMessageAttachment",
-    "MessagesHistoryMessageAttachmentType",
-    "MessagesKeyboard",
-    "MessagesKeyboardButton",
-    "MessagesKeyboardButtonColor",
-    "MessagesKeyboardButtonActionCallback",
-    "MessagesKeyboardButtonActionCallbackType",
-    "MessagesKeyboardButtonActionLocation",
-    "MessagesKeyboardButtonActionLocationType",
-    "MessagesKeyboardButtonActionOpenApp",
-    "MessagesKeyboardButtonActionOpenAppType",
-    "MessagesKeyboardButtonActionOpenLink",
-    "MessagesKeyboardButtonActionOpenLinkType",
-    "MessagesKeyboardButtonActionOpenPhoto",
-    "MessagesKeyboardButtonActionOpenPhotoType",
-    "MessagesKeyboardButtonActionText",
-    "MessagesKeyboardButtonActionTextType",
-    "MessagesKeyboardButtonActionVkpay",
-    "MessagesKeyboardButtonActionVkpayType",
-    "MessagesKeyboardButtonPropertyAction",
-    "MessagesLastActivity",
-    "MessagesLongpollMessages",
-    "MessagesLongpollParams",
-    "MessagesMessageAction",
-    "MessagesMessageActionPhoto",
-    "MessagesMessageActionStatus",
-    "MessagesMessageAttachment",
-    "MessagesMessageAttachmentType",
-    "MessagesMessageRequestData",
-    "MessagesMessagesArray",
-    "MessagesOutReadBy",
-    "MessagesPinnedMessage",
-    "MessagesPushSettings",
-    "MessagesReactionAssetItem",
-    "MessagesReactionAssetItemLinks",
-    "MessagesReactionCounterResponseItem",
-    "MessagesReactionCountersResponseItem",
-    "MessagesReactionResponseItem",
-    "MessagesSendUserIdsResponseItem",
-    "MessagesTemplateActionTypeNames",
-    "MessagesUserTypeForXtrInvitedBy",
     "AccountAccountCounters",
     "AccountCountersFilter",
     "AccountInfo",
@@ -20730,6 +20611,7 @@ __all__ = (
     "AccountPushParamsOnoff",
     "AccountPushParamsSettings",
     "AccountPushSettings",
+    "AccountUserSettings",
     "AccountUserSettingsInterest",
     "AccountUserSettingsInterests",
     "AddressFields",
@@ -20763,9 +20645,9 @@ __all__ = (
     "AdsFloodStatsByUserItem",
     "AdsLinkStatus",
     "AdsLookalikeRequest",
-    "AdsLookalikeRequestStatus",
-    "AdsLookalikeRequestSourceType",
     "AdsLookalikeRequestSaveAudienceLevel",
+    "AdsLookalikeRequestSourceType",
+    "AdsLookalikeRequestStatus",
     "AdsMobileStatItem",
     "AdsMusician",
     "AdsObjectType",
@@ -20786,7 +20668,11 @@ __all__ = (
     "AdsStatisticClickAction",
     "AdsStatisticClickActionType",
     "AdsStats",
+    "AdsStatsAge",
+    "AdsStatsCities",
     "AdsStatsFormat",
+    "AdsStatsSex",
+    "AdsStatsSexAge",
     "AdsStatsSexValue",
     "AdsStatsViewsTimes",
     "AdsStories",
@@ -20796,6 +20682,7 @@ __all__ = (
     "AdsStoryItemStats",
     "AdsStoryItemStatsFollow",
     "AdsStoryItemStatsUrlView",
+    "AdsTargSettings",
     "AdsTargStats",
     "AdsTargSuggestions",
     "AdsTargSuggestionsCities",
@@ -20805,14 +20692,15 @@ __all__ = (
     "AdsTargetGroup",
     "AdsTargetGroupTargetPixelRule",
     "AdsTargetPixelInfo",
-    "AdsUpdateOfficeUsersResult",
     "AdsUpdateAdsStatus",
     "AdsUpdateClientsStatus",
+    "AdsUpdateOfficeUsersResult",
     "AdsUserSpecification",
     "AdsUserSpecificationCutted",
     "AdsUsers",
     "AppWidgetsPhoto",
     "AppWidgetsPhotos",
+    "AppsApp",
     "AppsAppFields",
     "AppsAppLeaderboardType",
     "AppsAppMin",
@@ -20825,6 +20713,58 @@ __all__ = (
     "AppsScopeName",
     "AppsTestingGroup",
     "AudioAudio",
+    "BaseBoolInt",
+    "BaseCity",
+    "BaseCommentsInfo",
+    "BaseCountry",
+    "BaseCropPhoto",
+    "BaseCropPhotoCrop",
+    "BaseCropPhotoRect",
+    "BaseError",
+    "BaseErrorInnerType",
+    "BaseGeo",
+    "BaseGeoCoordinates",
+    "BaseGradientPoint",
+    "BaseImage",
+    "BaseImageTheme",
+    "BaseLang",
+    "BaseLikes",
+    "BaseLikesInfo",
+    "BaseLink",
+    "BaseLinkApplication",
+    "BaseLinkApplicationStore",
+    "BaseLinkButton",
+    "BaseLinkButtonAction",
+    "BaseLinkButtonActionType",
+    "BaseLinkButtonStyle",
+    "BaseLinkNoProduct",
+    "BaseLinkProduct",
+    "BaseLinkProductCategory",
+    "BaseLinkProductStatus",
+    "BaseLinkProductType",
+    "BaseLinkRating",
+    "BaseLinkRatingType",
+    "BaseMessageError",
+    "BaseNameCase",
+    "BaseObject",
+    "BaseObjectCount",
+    "BaseObjectWithName",
+    "BaseOwnerCover",
+    "BaseOwnerCoverCropParams",
+    "BasePlace",
+    "BasePropertyExists",
+    "BaseRepostsInfo",
+    "BaseRequestParam",
+    "BaseSex",
+    "BaseSticker",
+    "BaseStickerAnimation",
+    "BaseStickerAnimationType",
+    "BaseStickerInnerType",
+    "BaseStickerNew",
+    "BaseStickerNewInnerType",
+    "BaseUploadServer",
+    "BaseUserGroupFields",
+    "BaseUserId",
     "BoardDefaultOrder",
     "BoardTopic",
     "BoardTopicComment",
@@ -20844,6 +20784,7 @@ __all__ = (
     "CallbackBoardPostEdit",
     "CallbackBoardPostNew",
     "CallbackBoardPostRestore",
+    "CallbackConfirmation",
     "CallbackDonutMoneyWithdraw",
     "CallbackDonutMoneyWithdrawError",
     "CallbackDonutSubscriptionCancelled",
@@ -20851,6 +20792,7 @@ __all__ = (
     "CallbackDonutSubscriptionExpired",
     "CallbackDonutSubscriptionPriceChanged",
     "CallbackDonutSubscriptionProlonged",
+    "CallbackForeignMessage",
     "CallbackFwdMessages",
     "CallbackGroupChangePhoto",
     "CallbackGroupChangeSettings",
@@ -20868,6 +20810,7 @@ __all__ = (
     "CallbackLikeAddRemoveObjectType",
     "CallbackMarketComment",
     "CallbackMarketCommentDelete",
+    "CallbackMessage",
     "CallbackMessageAllow",
     "CallbackMessageDeny",
     "CallbackMessageEvent",
@@ -20877,6 +20820,7 @@ __all__ = (
     "CallbackMessageRead",
     "CallbackMessageTypingState",
     "CallbackMessageTypingStateState",
+    "CallbackPhotoComment",
     "CallbackPhotoCommentDelete",
     "CallbackPhotoNew",
     "CallbackPhotoNewVerticalAlign",
@@ -20884,6 +20828,7 @@ __all__ = (
     "CallbackType",
     "CallbackUserBlock",
     "CallbackUserUnblock",
+    "CallbackVideoComment",
     "CallbackVideoCommentDelete",
     "CallbackVideoNew",
     "CallbackVkpayTransaction",
@@ -20901,6 +20846,7 @@ __all__ = (
     "CallsShortCredentials",
     "CommentThread",
     "DatabaseCitiesFields",
+    "DatabaseCity",
     "DatabaseCityById",
     "DatabaseFaculty",
     "DatabaseLanguageFull",
@@ -20926,6 +20872,16 @@ __all__ = (
     "FavePage",
     "FavePageType",
     "FaveTag",
+    "FriendsFriendExtendedStatus",
+    "FriendsFriendStatus",
+    "FriendsFriendStatusStatus",
+    "FriendsFriendsList",
+    "FriendsMutualFriend",
+    "FriendsOnlineUsers",
+    "FriendsOnlineUsersWithMobile",
+    "FriendsRequestsMutual",
+    "FriendsRequestsXtrMessage",
+    "FriendsRequestsXtrMutual",
     "GiftsGift",
     "GiftsGiftPrivacy",
     "GiftsLayout",
@@ -20954,6 +20910,7 @@ __all__ = (
     "GroupsGroupCategoryFull",
     "GroupsGroupCategoryType",
     "GroupsGroupDocs",
+    "GroupsGroupFull",
     "GroupsGroupFullAgeLimits",
     "GroupsGroupFullMemberStatus",
     "GroupsGroupFullSection",
@@ -20998,14 +20955,15 @@ __all__ = (
     "GroupsSettingsTwitterStatus",
     "GroupsSubjectItem",
     "GroupsTokenPermissionSetting",
+    "GroupsUserXtrRole",
     "LeadFormsAnswer",
     "LeadFormsAnswerItem",
     "LeadFormsAnswerOneOf",
     "LeadFormsForm",
     "LeadFormsLead",
     "LeadFormsQuestionItem",
-    "LeadFormsQuestionItemType",
     "LeadFormsQuestionItemOption",
+    "LeadFormsQuestionItemType",
     "LikesType",
     "LinkTargetObject",
     "MarketCurrency",
@@ -21023,6 +20981,8 @@ __all__ = (
     "MarketMarketItem",
     "MarketMarketItemAvailability",
     "MarketMarketItemBasic",
+    "MarketMarketItemBasicWithGroup",
+    "MarketMarketItemFull",
     "MarketOrder",
     "MarketOrderItem",
     "MarketOwnerType",
@@ -21032,6 +20992,131 @@ __all__ = (
     "MarketPropertyVariant",
     "MarketServicesViewType",
     "MarketUploadPhotoData",
+    "MessagesActionOneOf",
+    "MessagesAudioMessage",
+    "MessagesBaseMessage",
+    "MessagesChat",
+    "MessagesChatFull",
+    "MessagesChatPreview",
+    "MessagesChatPushSettings",
+    "MessagesChatRestrictions",
+    "MessagesChatSettings",
+    "MessagesChatSettingsAcl",
+    "MessagesChatSettingsPermissions",
+    "MessagesChatSettingsPermissionsCall",
+    "MessagesChatSettingsPermissionsChangeAdmins",
+    "MessagesChatSettingsPermissionsChangeInfo",
+    "MessagesChatSettingsPermissionsChangePin",
+    "MessagesChatSettingsPermissionsInvite",
+    "MessagesChatSettingsPermissionsSeeInviteLink",
+    "MessagesChatSettingsPermissionsUseMassMentions",
+    "MessagesChatSettingsPhoto",
+    "MessagesChatSettingsState",
+    "MessagesConversation",
+    "MessagesConversationCanWrite",
+    "MessagesConversationMember",
+    "MessagesConversationPeer",
+    "MessagesConversationPeerType",
+    "MessagesConversationSortId",
+    "MessagesConversationSpecialServiceType",
+    "MessagesConversationWithMessage",
+    "MessagesDeleteFullResponseItem",
+    "MessagesForeignMessage",
+    "MessagesForward",
+    "MessagesFwdMessages",
+    "MessagesGetConversationById",
+    "MessagesGetConversationByIdExtended",
+    "MessagesGetConversationMembers",
+    "MessagesGetInviteLinkByOwnerResponseItem",
+    "MessagesGraffiti",
+    "MessagesHistoryAttachment",
+    "MessagesHistoryMessageAttachment",
+    "MessagesHistoryMessageAttachmentType",
+    "MessagesKeyboard",
+    "MessagesKeyboardButton",
+    "MessagesKeyboardButtonActionCallback",
+    "MessagesKeyboardButtonActionCallbackType",
+    "MessagesKeyboardButtonActionLocation",
+    "MessagesKeyboardButtonActionLocationType",
+    "MessagesKeyboardButtonActionOpenApp",
+    "MessagesKeyboardButtonActionOpenAppType",
+    "MessagesKeyboardButtonActionOpenLink",
+    "MessagesKeyboardButtonActionOpenLinkType",
+    "MessagesKeyboardButtonActionOpenPhoto",
+    "MessagesKeyboardButtonActionOpenPhotoType",
+    "MessagesKeyboardButtonActionText",
+    "MessagesKeyboardButtonActionTextType",
+    "MessagesKeyboardButtonActionVkpay",
+    "MessagesKeyboardButtonActionVkpayType",
+    "MessagesKeyboardButtonColor",
+    "MessagesKeyboardButtonPropertyAction",
+    "MessagesLastActivity",
+    "MessagesLongpollMessages",
+    "MessagesLongpollParams",
+    "MessagesMessage",
+    "MessagesMessageAction",
+    "MessagesMessageActionPhoto",
+    "MessagesMessageActionStatus",
+    "MessagesMessageAttachment",
+    "MessagesMessageAttachmentType",
+    "MessagesMessageRequestData",
+    "MessagesMessagesArray",
+    "MessagesOutReadBy",
+    "MessagesPinnedMessage",
+    "MessagesPushSettings",
+    "MessagesReactionAssetItem",
+    "MessagesReactionAssetItemLinks",
+    "MessagesReactionCounterResponseItem",
+    "MessagesReactionCountersResponseItem",
+    "MessagesReactionResponseItem",
+    "MessagesSendUserIdsResponseItem",
+    "MessagesTemplateActionTypeNames",
+    "MessagesUserTypeForXtrInvitedBy",
+    "MessagesUserXtrInvitedBy",
+    "NewsfeedCommentsBase",
+    "NewsfeedCommentsFilters",
+    "NewsfeedCommentsItem",
+    "NewsfeedCommentsItemBase",
+    "NewsfeedCommentsItemTypeMarket",
+    "NewsfeedCommentsItemTypeNotes",
+    "NewsfeedCommentsItemTypePhoto",
+    "NewsfeedCommentsItemTypePost",
+    "NewsfeedCommentsItemTypeTopic",
+    "NewsfeedCommentsItemTypeVideo",
+    "NewsfeedIgnoreItemType",
+    "NewsfeedItemAudio",
+    "NewsfeedItemAudioAudio",
+    "NewsfeedItemBase",
+    "NewsfeedItemDigest",
+    "NewsfeedItemDigestButton",
+    "NewsfeedItemDigestButtonStyle",
+    "NewsfeedItemDigestFooter",
+    "NewsfeedItemDigestFooterStyle",
+    "NewsfeedItemDigestFullItem",
+    "NewsfeedItemDigestHeader",
+    "NewsfeedItemDigestHeaderStyle",
+    "NewsfeedItemDigestItem",
+    "NewsfeedItemFriend",
+    "NewsfeedItemFriendFriends",
+    "NewsfeedItemHolidayRecommendationsBlockHeader",
+    "NewsfeedItemPhoto",
+    "NewsfeedItemPhotoPhotos",
+    "NewsfeedItemPhotoTag",
+    "NewsfeedItemPhotoTagPhotoTags",
+    "NewsfeedItemPromoButton",
+    "NewsfeedItemPromoButtonAction",
+    "NewsfeedItemPromoButtonImage",
+    "NewsfeedItemTopic",
+    "NewsfeedItemVideo",
+    "NewsfeedItemVideoVideo",
+    "NewsfeedItemWallpost",
+    "NewsfeedItemWallpostFeedback",
+    "NewsfeedItemWallpostFeedbackAnswer",
+    "NewsfeedItemWallpostFeedbackType",
+    "NewsfeedList",
+    "NewsfeedListFull",
+    "NewsfeedNewsfeedItem",
+    "NewsfeedNewsfeedItemType",
     "NotesNote",
     "NotesNoteComment",
     "NotificationsFeedback",
@@ -21056,13 +21141,13 @@ __all__ = (
     "PhotosImage",
     "PhotosImageType",
     "PhotosPhoto",
-    "PhotosPhotoVerticalAlign",
     "PhotosPhotoAlbum",
     "PhotosPhotoAlbumFull",
     "PhotosPhotoSizes",
     "PhotosPhotoSizesType",
     "PhotosPhotoTag",
     "PhotosPhotoUpload",
+    "PhotosPhotoVerticalAlign",
     "PhotosPhotoXtrTagInfo",
     "PhotosTagsSuggestionItem",
     "PhotosTagsSuggestionItemButton",
@@ -21077,6 +21162,7 @@ __all__ = (
     "PollsFriend",
     "PollsPoll",
     "PollsPollAnonymous",
+    "PollsPollExtended",
     "PollsVoters",
     "PollsVotersFieldsUsers",
     "PollsVotersUsers",
@@ -21107,15 +21193,15 @@ __all__ = (
     "StickersImageSet",
     "StorageValue",
     "StoreProduct",
-    "StoreProductType",
     "StoreProductIcon",
+    "StoreProductType",
     "StoreStickersKeyword",
     "StoreStickersKeywordSticker",
     "StoriesClickableArea",
     "StoriesClickableSticker",
-    "StoriesClickableStickerType",
     "StoriesClickableStickerStyle",
     "StoriesClickableStickerSubtype",
+    "StoriesClickableStickerType",
     "StoriesClickableStickers",
     "StoriesFeedItem",
     "StoriesFeedItemType",
@@ -21133,13 +21219,31 @@ __all__ = (
     "StreamingStats",
     "StreamingStatsEventType",
     "StreamingStatsPoint",
-    "FriendsFriendStatus",
-    "FriendsFriendStatusStatus",
-    "FriendsFriendsList",
-    "FriendsMutualFriend",
-    "FriendsOnlineUsers",
-    "FriendsOnlineUsersWithMobile",
-    "FriendsRequestsMutual",
+    "UsersCareer",
+    "UsersExports",
+    "UsersFields",
+    "UsersLastSeen",
+    "UsersMilitary",
+    "UsersOccupation",
+    "UsersOccupationType",
+    "UsersOnlineInfo",
+    "UsersOnlineInfoStatus",
+    "UsersPersonal",
+    "UsersRelative",
+    "UsersRelativeType",
+    "UsersSchool",
+    "UsersSubscriptionsItem",
+    "UsersUniversity",
+    "UsersUser",
+    "UsersUserConnections",
+    "UsersUserCounters",
+    "UsersUserFull",
+    "UsersUserMin",
+    "UsersUserRelation",
+    "UsersUserSettingsXtr",
+    "UsersUserType",
+    "UsersUserXtrType",
+    "UsersUsersArray",
     "UtilsDomainResolved",
     "UtilsDomainResolvedType",
     "UtilsLastShortenedLink",
@@ -21161,11 +21265,14 @@ __all__ = (
     "VideoSaveResult",
     "VideoStreamInputParams",
     "VideoVideo",
-    "VideoVideoResponseType",
-    "VideoVideoType",
     "VideoVideoAlbum",
+    "VideoVideoAlbumFull",
     "VideoVideoAlbumResponseType",
     "VideoVideoFiles",
+    "VideoVideoFull",
+    "VideoVideoImage",
+    "VideoVideoResponseType",
+    "VideoVideoType",
     "WallAppPost",
     "WallAttachedNote",
     "WallCarouselBase",
@@ -21186,7 +21293,6 @@ __all__ = (
     "WallWallCommentDonutPlaceholder",
     "WallWallItem",
     "WallWallpost",
-    "WallWallpostInnerType",
     "WallWallpostAttachment",
     "WallWallpostAttachmentType",
     "WallWallpostCommentsDonut",
@@ -21194,32 +21300,8 @@ __all__ = (
     "WallWallpostDonut",
     "WallWallpostDonutEditMode",
     "WallWallpostDonutPlaceholder",
-    "NewsfeedCommentsFilters",
-    "NewsfeedCommentsItem",
-    "NewsfeedCommentsItemBase",
-    "NewsfeedIgnoreItemType",
-    "NewsfeedItemAudioAudio",
-    "NewsfeedItemBase",
-    "NewsfeedItemDigestButton",
-    "NewsfeedItemDigestButtonStyle",
-    "NewsfeedItemDigestFooter",
-    "NewsfeedItemDigestFooterStyle",
-    "NewsfeedItemDigestHeader",
-    "NewsfeedItemDigestHeaderStyle",
-    "NewsfeedItemDigestItem",
-    "NewsfeedItemFriendFriends",
-    "NewsfeedItemHolidayRecommendationsBlockHeader",
-    "NewsfeedItemPhotoPhotos",
-    "NewsfeedItemPhotoTagPhotoTags",
-    "NewsfeedItemPromoButtonAction",
-    "NewsfeedItemPromoButtonImage",
-    "NewsfeedItemVideoVideo",
-    "NewsfeedItemWallpostFeedback",
-    "NewsfeedItemWallpostFeedbackAnswer",
-    "NewsfeedItemWallpostFeedbackType",
-    "NewsfeedList",
-    "NewsfeedNewsfeedItem",
-    "NewsfeedNewsfeedItemType",
+    "WallWallpostFull",
+    "WallWallpostInnerType",
     "WidgetsCommentMedia",
     "WidgetsCommentMediaType",
     "WidgetsCommentReplies",
@@ -21227,54 +21309,4 @@ __all__ = (
     "WidgetsWidgetComment",
     "WidgetsWidgetLikes",
     "WidgetsWidgetPage",
-    "BaseLink",
-    "UsersUser",
-    "UsersUserFull",
-    "UsersUserXtrType",
-    "MessagesUserXtrInvitedBy",
-    "MessagesGetConversationByIdExtended",
-    "MessagesMessage",
-    "AccountUserSettings",
-    "AdsStatsAge",
-    "AdsStatsCities",
-    "AdsStatsSex",
-    "AdsStatsSexAge",
-    "AdsTargSettings",
-    "AppsApp",
-    "CallbackForeignMessage",
-    "CallbackMessage",
-    "CallbackPhotoComment",
-    "CallbackVideoComment",
-    "CallbackConfirmation",
-    "DatabaseCity",
-    "GroupsUserXtrRole",
-    "GroupsGroupFull",
-    "MarketMarketItemBasicWithGroup",
-    "MarketMarketItemFull",
-    "PollsPollExtended",
-    "FriendsRequestsXtrMutual",
-    "FriendsFriendExtendedStatus",
-    "FriendsRequestsXtrMessage",
-    "VideoVideoImage",
-    "VideoVideoAlbumFull",
-    "VideoVideoFull",
-    "WallWallpostFull",
-    "NewsfeedCommentsBase",
-    "NewsfeedCommentsItemTypeMarket",
-    "NewsfeedCommentsItemTypeNotes",
-    "NewsfeedCommentsItemTypePhoto",
-    "NewsfeedCommentsItemTypePost",
-    "NewsfeedCommentsItemTypeTopic",
-    "NewsfeedCommentsItemTypeVideo",
-    "NewsfeedItemAudio",
-    "NewsfeedItemDigest",
-    "NewsfeedItemDigestFullItem",
-    "NewsfeedItemFriend",
-    "NewsfeedItemPhoto",
-    "NewsfeedItemPhotoTag",
-    "NewsfeedItemPromoButton",
-    "NewsfeedItemTopic",
-    "NewsfeedItemVideo",
-    "NewsfeedItemWallpost",
-    "NewsfeedListFull",
 )

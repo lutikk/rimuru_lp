@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ed3852f7-7e36-42d0-b1b1-f11844a0f84b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/rimuru_lp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rimuru_lp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands/info.py" beforeDir="false" afterPath="$PROJECT_DIR$/commands/info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lp.py" beforeDir="false" afterPath="$PROJECT_DIR$/lp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/req.txt" beforeDir="false" afterPath="$PROJECT_DIR$/req.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/base_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/base_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/categories.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/categories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/account.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/ads.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/ads.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/app_widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/app_widgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/board.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/bugtracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/bugtracker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/calls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/docs.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/docs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/donut.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/donut.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/downloaded_games.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/downloaded_games.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/fave.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/fave.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/friends.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/friends.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/gifts.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/gifts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/groups.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/groups.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/lead_forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/lead_forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/likes.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/likes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/market.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/market.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/messages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/newsfeed.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/newsfeed.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/notes.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/notes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/orders.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/pages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/photos.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/photos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/podcasts.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/podcasts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/polls.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/polls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/pretty_cards.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/pretty_cards.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/secure.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/secure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/stats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/status.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/status.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/storage.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/storage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/store.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/stories.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/stories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/streaming.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/streaming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/translations.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/translations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/video.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/video.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/wall.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/wall.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/methods/widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/methods/widgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/objects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/account.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/ads.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/ads.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/app_widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/app_widgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/board.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/bugtracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/bugtracker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/calls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/docs.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/docs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/donut.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/donut.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/downloaded_games.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/downloaded_games.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/fave.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/fave.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/friends.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/friends.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/gifts.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/gifts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/groups.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/groups.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/lead_forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/lead_forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/likes.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/likes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/market.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/market.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/messages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/newsfeed.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/newsfeed.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/notes.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/notes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/orders.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/pages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/photos.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/photos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/podcasts.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/podcasts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/polls.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/polls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/pretty_cards.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/pretty_cards.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/secure.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/secure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/stats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/status.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/status.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/storage.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/storage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/store.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/stories.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/stories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/streaming.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/streaming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/translations.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/translations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/video.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/video.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/wall.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/wall.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/codegen/responses/widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/codegen/responses/widgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/events/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/events/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/events/bot_events.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/events/bot_events.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/events/bot_typings.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/events/bot_typings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/events/enums/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/events/enums/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/events/enums/group_events.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/events/enums/group_events.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/events/enums/user_events.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/events/enums/user_events.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/events/objects/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/events/objects/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/events/objects/group_event_objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/events/objects/group_event_objects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/events/objects/user_event_objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/events/objects/user_event_objects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/events/user_events.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/events/user_events.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/events/user_typings.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/events/user_typings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/account.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/ads.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/ads.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/app_widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/app_widgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/base_category.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/base_category.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/board.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/bugtracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/bugtracker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/docs.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/docs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/donut.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/donut.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/downloaded_games.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/downloaded_games.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/fave.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/fave.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/friends.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/friends.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/gifts.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/gifts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/groups.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/groups.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/lead_forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/lead_forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/likes.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/likes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/market.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/market.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/messages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/newsfeed.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/newsfeed.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/notes.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/notes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/orders.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/pages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/photos.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/photos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/podcasts.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/podcasts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/polls.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/polls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/pretty_cards.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/pretty_cards.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/secure.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/secure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/stats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/status.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/status.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/storage.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/storage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/store.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/stories.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/stories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/streaming.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/streaming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/translations.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/translations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/video.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/video.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/wall.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/wall.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/methods/widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/methods/widgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/objects.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/objects.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/account.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/ads.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/ads.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/app_widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/app_widgets.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/base_response.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/base_response.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/board.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/board.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/bugtracker.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/bugtracker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/calls.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/calls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/docs.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/docs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/donut.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/donut.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/downloaded_games.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/downloaded_games.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/fave.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/fave.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/friends.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/friends.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/gifts.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/gifts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/groups.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/groups.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/lead_forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/lead_forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/likes.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/likes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/market.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/market.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/messages.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/messages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/newsfeed.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/newsfeed.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/notes.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/notes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/notifications.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/notifications.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/orders.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/orders.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/pages.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/pages.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/photos.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/photos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/podcasts.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/podcasts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/polls.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/polls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/pretty_cards.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/pretty_cards.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/search.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/secure.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/secure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/stats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/status.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/status.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/storage.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/storage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/store.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/store.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/stories.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/stories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/streaming.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/streaming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/translations.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/translations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/video.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/video.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/wall.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/wall.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vkbottle_types/responses/widgets.py" beforeDir="false" afterPath="$PROJECT_DIR$/vkbottle_types/responses/widgets.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "lutikk"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/lutikk/rimuru_lp.git",
+    "accountId": "f3f9f432-0cdf-4ce1-8644-4934d10158dc"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2z9rBG2nID1kJaKZT7GPjQH25WK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-PY-251.26094.141" />
+        <option value="bundled-python-sdk-9f8e2b94138c-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26094.141" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ed3852f7-7e36-42d0-b1b1-f11844a0f84b" name="Changes" comment="" />
+      <created>1751153993295</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751153993295</updated>
+      <workItem from="1751153994363" duration="4972000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

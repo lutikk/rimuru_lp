@@ -1,12 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import (
-    VideoLiveCategory,
-    VideoPlaylistPrivacyCategory,
-    VideoSaveResult,
-    VideoVideoAlbumFull,
-)
+from vkbottle_types.objects import VideoLiveCategory, VideoPlaylistPrivacyCategory, VideoSaveResult, VideoVideoAlbumFull
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseOkResponse,
@@ -377,7 +372,7 @@ class VideoCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         target_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[int], VideoGetAlbumsByVideoExtendedResponseModel]:
+    ) -> typing.Union[VideoGetAlbumsByVideoExtendedResponseModel, typing.List[int]]:
         """Method `video.getAlbumsByVideo()`
 
         :param owner_id:
@@ -769,9 +764,7 @@ class VideoCategory(BaseCategory):
         adult: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        filters: typing.Optional[
-            typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]
-        ] = None,
+        filters: typing.Optional[typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]] = None,
         hd: typing.Optional[int] = None,
         live: typing.Optional[bool] = None,
         longer: typing.Optional[int] = None,
@@ -791,9 +784,7 @@ class VideoCategory(BaseCategory):
         adult: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        filters: typing.Optional[
-            typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]
-        ] = None,
+        filters: typing.Optional[typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]] = None,
         hd: typing.Optional[int] = None,
         live: typing.Optional[bool] = None,
         longer: typing.Optional[int] = None,
@@ -812,9 +803,7 @@ class VideoCategory(BaseCategory):
         adult: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        filters: typing.Optional[
-            typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]
-        ] = None,
+        filters: typing.Optional[typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]] = None,
         hd: typing.Optional[int] = None,
         live: typing.Optional[bool] = None,
         longer: typing.Optional[int] = None,

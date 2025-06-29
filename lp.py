@@ -1,4 +1,4 @@
-BASE_DOMAIN = 'https://api.rimuruproject.ru'
+BASE_DOMAIN = 'http://127.0.0.1:83'
 
 
 def CALLBACK_LINK():
